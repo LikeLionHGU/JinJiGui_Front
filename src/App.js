@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import ClubPage from "./pages/ClubPage";
+import MyPage from "./pages/MyPage";
+import Create from "./pages/Create";
+import BookTicket from "./pages/BookTicket";
+import bookmodal from "./components/BookModal";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routers>
+        <Route path="/" element={<Home/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/clubpage" element={<ClubPage />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/create" element={<Create />}/>
+        <Route path="/bookmodal" element={<BookModal />}/>
+        <Route path="/bookticket" element={<BookTicket />}/>
+      </Routers>
     </div>
   );
 }
