@@ -10,7 +10,7 @@ function Home () {
         <button>로그인</button> 
       </link>
 
-      <link to="/mypage_student">
+      <link to="/clubpage">
         <button>마이페이지</button>
       </link>
 
