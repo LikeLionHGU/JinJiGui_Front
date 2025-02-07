@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function BookModal () {
   return (
@@ -8,3 +8,5 @@ function BookModal () {
     </div>
   )
 }
+
+export default BookModal;
