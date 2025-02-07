@@ -1,0 +1,17 @@
+.Footer_Container{
+  display: grid;
+  color: #FFFFFF;
+  background-color: #161616;
+}
+.Footer_Left{
+  display: grid;
+}
+
+.Footer_Right{
+  display: grid;
+}
+
+.Footer_Line{
+  margin: 0;
+  border: 20px solid #EB5A3C;
+}

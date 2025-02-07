@@ -9,8 +9,8 @@
   border: 1px solid #FFFFFF;
 }
 .Header_Right{
-  display: inline-block;
+  display: grid;
 }
 .Header_Left{
-  display: inline-block;
+  display: grid;
 }
