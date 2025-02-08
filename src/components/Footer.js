@@ -6,20 +6,24 @@ function Footer () {
     <div className="Footer">
       <hr className="Footer_Line"/>
       <div className="Footer_Container">
-        <div className="Footer_Left">
-          <span>LOGO</span>
-          <span>COMPANY: MOBOGGA</span>
-          <span>ADRESS: Jongno 3-gil, Jongno-gu, Seoul</span>
-          <span>CALL: 010-8507-5949</span>
-        </div>
+        <span className="Footer_Left">
+          <ul>
+            <li>LOGO</li>
+            <li>COMPANY: MOBOGGA</li>
+            <li>ADRESS: Jongno 3-gil, Jongno-gu, Seoul</li>
+            <li>CALL: 010-8507-5949</li>
+          </ul>
+        </span>
 
         <div className="Footer_Right">
-          <span>Company introduction</span>
-          <span>Recruitment of talent</span>
-          <span>Affiliate proposal</span>
-          <span>Terms and Conditions of Use</span>
-          <span>Personal Information Processing Policy</span>
-          <span>Policy Customer Center</span>
+          <ul>
+            <li>Company introduction</li>
+            <li>Recruitment of talent</li>
+            <li>Affiliate proposal</li>
+            <li>Terms and Conditions of Use</li>
+            <li>Personal Information Processing Policy</li>
+            <li>Policy Customer Center</li>
+          </ul>
         </div>
       </div>
     </div>
