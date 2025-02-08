@@ -3,7 +3,7 @@ import "../components/styles/Footer.css";
 
 function Footer () {
   return (
-    <div>
+    <div className="Footer">
       <hr className="Footer_Line"/>
       <div className="Footer_Container">
         <div className="Footer_Left">
@@ -20,7 +20,7 @@ function Footer () {
           <span>Terms and Conditions of Use</span>
           <span>Personal Information Processing Policy</span>
           <span>Policy Customer Center</span>
-      </div>
+        </div>
       </div>
     </div>
   )

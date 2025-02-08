@@ -11,6 +11,8 @@ import MyPage from "./pages/MyPage";
 import Create from "./pages/Create";
 import BookTicket from "./pages/BookTicket";
 
+import "../src/App.css";
+
 function App() {
   return (
     <div className="App">
