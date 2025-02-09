@@ -1,7 +1,10 @@
 .Header_Container{
+  display: flex;
+  padding: 40px 400px 40px 400px;
+  justify-content: space-between;
+  align-items: flex-start;
   font-size: 15px;
   font-weight: bold;
-  height: 90px;
   color: #FFFFFF;
   background-color: #161616;
 }
@@ -9,8 +12,11 @@
   border: 1px solid #FFFFFF;
 }
 .Header_Right{
-  display: grid;
+  align-items: flex-end;
+}
+.Header_Right span{
+  padding: 30px 0 30px 30px;
 }
 .Header_Left{
-  display: grid;
+  align-items: flex-start;
 }
