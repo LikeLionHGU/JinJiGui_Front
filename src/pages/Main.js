@@ -1,19 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 function Main() {
   return (
     <div className="wrap">
-      <header>
-        <link to="/clubpage">
-          <button>회원가입</button>
-        </link>
-        <link to="/login">
-          <button>로그인</button>
-        </link>
-      </header>
+      <Header id="header"></Header>
       <div id="contents"></div>
-      <footer></footer>
+      <Footer id="footer"></Footer>
     </div>
   );
 }
