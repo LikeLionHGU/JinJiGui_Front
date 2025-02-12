@@ -30,7 +30,6 @@ function Header() {
           </span>
         </div>
       </div>
-      <hr className="Header_Line" />
     </div>
   );
 }

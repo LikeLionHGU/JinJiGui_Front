@@ -1,6 +1,6 @@
-.Header_Container{
+.SubHeader_Container{
   display: flex;
-  padding: 40px 400px 40px 400px;
+  padding: 10px 400px 10px 400px;
   justify-content: space-between;
   align-items: flex-start;
   font-size: 15px;
@@ -8,15 +8,18 @@
   color: #FFFFFF;
   background-color: #161616;
 }
-.Header_Right{
+.SubHeader_Right{
   align-items: flex-end;
 }
-.Header_Right span{
+.SubHeader_Right span{
   padding: 30px 0 30px 30px;
 }
-.Header_Left{
+.SubSubHeader_Left{
   align-items: flex-start;
 }
-.Header_Link{
+.SubHeader_Left span{
+  padding: 30px 30px 30px 0;
+}
+.SubSubHeader_Link{
   cursor: pointer;
 }
