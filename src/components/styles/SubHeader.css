@@ -1,26 +1,31 @@
-.SubHeader_Container{
+.SubHeader_Container {
   display: flex;
   padding: 10px 400px 10px 400px;
   justify-content: space-between;
   align-items: flex-start;
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid #ffffff;
   font-size: 15px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #161616;
 }
-.SubHeader_Right{
+.SubHeader_Right {
   align-items: flex-end;
 }
-.SubHeader_Right span{
+.SubHeader_Right span {
   padding: 30px 0 30px 30px;
 }
-.SubSubHeader_Left{
+.SubSubHeader_Left {
   align-items: flex-start;
 }
-.SubHeader_Left span{
+.SubHeader_Link {
   margin: 30px 30px 30px 0;
+  text-decoration: none;
+  color: #ffffff;
 }
-.SubHeader_Link{
+.SubHeader_Link:hover {
   cursor: pointer;
+}
+.SubHeader_Link:active {
+  color: #eb5a3c;
 }

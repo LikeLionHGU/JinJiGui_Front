@@ -1,5 +1,6 @@
 import React from "react";
 import SubHeader from "../components/SubHeader";
+import "./styles/MyReservList.css"
 
 function MyReservList () {
   return (
