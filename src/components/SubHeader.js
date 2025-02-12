@@ -4,8 +4,8 @@ import "../components/styles/SubHeader.css";
 function SubHeader() {
   const navigate = useNavigate();
 
-  const recentReservList = () => {
-    navigate("/mypage/recent");
+  const myReservList = () => {
+    navigate("/mypage/reservation");
   };
   const updateProfile = () => {
     navigate("/mypage/update");
@@ -15,7 +15,7 @@ function SubHeader() {
     <div>
       <div className="SubHeader_Container">
         <div className="SubHeader_Left">
-          <span className="SubHeader_Link" onClick={recentReservList}>
+          <span className="SubHeader_Link" onClick={myReservList}>
             최근 예매내역
           </span>
           <span className="SubHeader_Link" onClick={updateProfile}>

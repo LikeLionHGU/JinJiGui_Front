@@ -1,7 +1,7 @@
 import React from "react";
 import SubHeader from "../components/SubHeader";
 
-function RecentReservList () {
+function MyReservList () {
   return (
     <div>
       <SubHeader />
@@ -10,4 +10,4 @@ function RecentReservList () {
   )
 }
 
-export default RecentReservList;
+export default MyReservList;

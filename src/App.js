@@ -7,12 +7,11 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ClubPage from "./pages/ClubPage";
-import MyPage from "./pages/MyPage";
 import Create from "./pages/Create";
 import BookTicket from "./pages/BookTicket";
 
 import "../src/App.css";
-import RecentReservList from "./pages/RecentReservList.js";
+import MyReservList from "./pages/MyReservList.js";
 import UpdateProfile from "./pages/UpdateProfile.js";
 
 function App() {
@@ -24,8 +23,8 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/clubpage" element={<ClubPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/mypage/recent" element={<RecentReservList />} />
+          <Route path="/mypage" element={<MyReservList />} />
+          <Route path="/mypage/reservation" element={<MyReservList />} />
           <Route path="/mypage/update" element={<UpdateProfile />} />
           <Route path="/create" element={<Create />}/>
           <Route path="/bookticket" element={<BookTicket />}/>
