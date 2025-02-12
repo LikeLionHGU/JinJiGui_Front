@@ -3,6 +3,7 @@
   padding: 10px 400px 10px 400px;
   justify-content: space-between;
   align-items: flex-start;
+  border-bottom: 1px solid #FFFFFF;
   font-size: 15px;
   font-weight: bold;
   color: #FFFFFF;
@@ -18,8 +19,8 @@
   align-items: flex-start;
 }
 .SubHeader_Left span{
-  padding: 30px 30px 30px 0;
+  margin: 30px 30px 30px 0;
 }
-.SubSubHeader_Link{
+.SubHeader_Link{
   cursor: pointer;
 }
