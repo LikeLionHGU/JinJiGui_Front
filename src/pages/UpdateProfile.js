@@ -1,13 +1,13 @@
 import React from "react";
 import SubHeader from "../components/SubHeader";
 
-function MyPage () {
+function UpdateProfile () {
   return (
     <div>
       <SubHeader />
-      <div> 학생의 마이 페이지 입니다. </div>
+      <div> 프로필 수정 페이지입니다. </div>
     </div>
   )
 }
 
-export default MyPage;
+export default UpdateProfile;

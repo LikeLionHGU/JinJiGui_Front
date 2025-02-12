@@ -8,9 +8,6 @@
   color: #FFFFFF;
   background-color: #161616;
 }
-.Header_Line{
-  border: 1px solid #FFFFFF;
-}
 .Header_Right{
   align-items: flex-end;
 }

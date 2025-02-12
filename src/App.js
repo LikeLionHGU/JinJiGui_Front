@@ -12,6 +12,8 @@ import Create from "./pages/Create";
 import BookTicket from "./pages/BookTicket";
 
 import "../src/App.css";
+import RecentReservList from "./pages/RecentReservList.js";
+import UpdateProfile from "./pages/UpdateProfile.js";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/clubpage" element={<ClubPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mypage/recent" element={<RecentReservList />} />
+          <Route path="/mypage/update" element={<UpdateProfile />} />
           <Route path="/create" element={<Create />}/>
           <Route path="/bookticket" element={<BookTicket />}/>
         </Routes>

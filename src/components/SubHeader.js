@@ -5,29 +5,24 @@ function SubHeader() {
   const navigate = useNavigate();
 
   const recentReservList = () => {
-    navigate("/recent");
+    navigate("/mypage/recent");
   };
   const updateProfile = () => {
-    navigate("/update");
+    navigate("/mypage/update");
   };
 
   return (
     <div>
       <div className="SubHeader_Container">
         <div className="SubHeader_Left">
-          <span className="SubHeader_Link" onClick={homeEnter}>LOGO</span>
-        </div>
-
-        <div className="SubHeader_Right">
-          <span className="SubHeader_Link" onClick={homeEnter}>
+          <span className="SubHeader_Link" onClick={recentReservList}>
             최근 예매내역
           </span>
-          <span className="SubHeader_Link" onClick={loginEnter}>
+          <span className="SubHeader_Link" onClick={updateProfile}>
             개인정보 수정
           </span>
         </div>
       </div>
-      <hr className="SubHeader_Line" />
     </div>
   );
 }
