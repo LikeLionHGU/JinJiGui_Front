@@ -1,0 +1,27 @@
+
+
+.update-page-body {
+  padding: 100px;
+  padding-left: 400px;
+  padding-right: 400px;
+  background-color: #161616;
+  color: white;
+}
+
+.update-page-box {
+  padding: 50px;
+  border: 1px solid white;
+
+}
+
+.update-page-title-box {
+  padding: 10px;
+  padding-left: 180px;
+  padding-right: 180px;
+}
+
+.update-page-title {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
