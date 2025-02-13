@@ -13,6 +13,7 @@ import BookTicket from "./pages/BookTicket";
 import "../src/App.css";
 import MyReservList from "./pages/MyReservList.js";
 import UpdateProfile from "./pages/UpdateProfile.js";
+import PerformDetail from "./pages/PerformDetail.js";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/mypage/update" element={<UpdateProfile />} />
           <Route path="/create" element={<Create />}/>
           <Route path="/bookticket" element={<BookTicket />}/>
+          <Route path="/performdetail" element={<PerformDetail/>}/>
         </Routes>
         <Footer/>
       </Router>
