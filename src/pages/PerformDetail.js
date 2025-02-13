@@ -65,10 +65,10 @@ function PerformDetail () {
     setCount({...count, min: count.min+1});
   }
 
-  const [showcost, setShowCost] = useState(schedule.cost);
-
   const [perform, setPerform] = useState([]);
   const [schedule, setSchedule] = useState([]);
+
+  // const {Price}
 
   return (
     <div>
@@ -112,7 +112,7 @@ function PerformDetail () {
             </div>
             
             <span>총 금액</span>
-            <span>{showcost}원</span>
+            {/* <span>{showcost}원</span> */}
             <button className="BookBtn">예매하기</button>
           </div>
 
