@@ -24,18 +24,11 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/clubpage" element={<ClubPage />} />
-<<<<<<< HEAD
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/bookticket" element={<BookTicket />} />
-          <Route path="/addinfo" element={<AddInfo />} />
-=======
           <Route path="/mypage" element={<MyReservList />} />
           <Route path="/mypage/reservation" element={<MyReservList />} />
           <Route path="/mypage/update" element={<UpdateProfile />} />
-          <Route path="/create" element={<Create />}/>
-          <Route path="/bookticket" element={<BookTicket />}/>
->>>>>>> main
+          <Route path="/create" element={<Create />} />
+          <Route path="/bookticket" element={<BookTicket />} />
         </Routes>
         <Footer />
       </Router>
