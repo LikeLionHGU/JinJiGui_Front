@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
-import ShowList from "./ShowList";
 import Card from "../components/Card";
 import axios from "axios";
 import "../components/styles/Main.css";
@@ -26,16 +24,51 @@ function Main() {
           category: "뮤지컬",
         },
       },
+      {
+        show: {
+          id: 2,
+          poster:
+            "https://stqnq5ux4599.edge.naverncp.com/data2/content/image/2023/10/12/.cache/512/202310120969480.jpg",
+          title: "에픽하이",
+          startDate: "2025-12-16",
+          endDate: "2025-12-17",
+        },
+        club: {
+          name: "에픽하이",
+          category: "콘서트",
+        },
+      },
     ],
   };
 
-  const getCards = async () => {
-    try {
-      const response = await axios.get(
-        `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.2&sort_by=like_count`
-      );
+  // const getCards = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.2&sort_by=like_count`
+  //     );
 
-      const showInfo = response.data.show_info || [];
+  //     const showInfo = response.data.show_info || [];
+  //     const formattedCards = showInfo.map((info) => ({
+  //       id: info.show.id,
+  //       poster: info.show.poster,
+  //       title: info.show.title,
+  //       startDate: info.show.startDate,
+  //       endDate: info.show.endDate,
+  //       clubName: info.club.name,
+  //       category: info.club.category,
+  //     }));
+  //     setCards(formattedCards);
+  //   } catch (error) {
+  //     console.error("카드를 불러오지 못했습니다.", error);
+  //     setError("카드를 불러오지 못했습니다.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const getCards = () => {
+    try {
+      const showInfo = sample_data.show_info || [];
       const formattedCards = showInfo.map((info) => ({
         id: info.show.id,
         poster: info.show.poster,
@@ -64,6 +97,7 @@ function Main() {
   return (
     <div className="wrap">
       <div id="contents">
+        <div id="banner"></div>
         <div id="showLists">
           {cards.map((card) => (
             <div key={card.id} className="card_list">
