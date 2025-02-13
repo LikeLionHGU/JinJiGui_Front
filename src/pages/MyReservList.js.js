@@ -1,7 +1,8 @@
 import React from "react";
 import SubHeader from "../components/SubHeader";
+import "./styles/MyReservList.css"
 
-function RecentReservList () {
+function MyReservList () {
   return (
     <div>
       <SubHeader />
@@ -10,4 +11,4 @@ function RecentReservList () {
   )
 }
 
-export default RecentReservList;
+export default MyReservList;

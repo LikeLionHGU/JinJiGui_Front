@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import "../components/styles/Header.css";
+import main_logo from "../assets/main_logo.svg"
+
 function Header() {
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ function Header() {
     <div>
       <div className="Header_Container">
         <div className="Header_Left">
-          <span className="Header_Link" onClick={homeEnter}>LOGO</span>
+          <img className="Header_Link" src={main_logo} alt="로고 이미지" onClick={homeEnter} />
         </div>
 
         <div className="Header_Right">

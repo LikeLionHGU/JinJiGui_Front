@@ -1,26 +1,29 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { NavLink } from "react-router-dom";
 import "../components/styles/SubHeader.css";
 function SubHeader() {
-  const navigate = useNavigate();
-
-  const recentReservList = () => {
-    navigate("/mypage/recent");
-  };
-  const updateProfile = () => {
-    navigate("/mypage/update");
+  const activeStyle = {
+    color: "#EB5A3C",
   };
 
   return (
     <div>
       <div className="SubHeader_Container">
         <div className="SubHeader_Left">
-          <span className="SubHeader_Link" onClick={recentReservList}>
+          <NavLink
+            className="SubHeader_Link"
+            style={({ isActive }) => (isActive ? activeStyle : {})}
+            to="/mypage/reservation"
+          >
             최근 예매내역
-          </span>
-          <span className="SubHeader_Link" onClick={updateProfile}>
+          </NavLink>
+          <NavLink
+            className="SubHeader_Link"
+            style={({ isActive }) => (isActive ? activeStyle : {})}
+            to="/mypage/update"
+          >
             개인정보 수정
-          </span>
+          </NavLink>
         </div>
       </div>
     </div>
