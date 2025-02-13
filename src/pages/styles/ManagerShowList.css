@@ -1,0 +1,49 @@
+.manager-showlist-body {
+  padding: 100px;
+  padding-left: 250px;
+  padding-right: 250px;
+  background-color: #161616;
+  color: white;
+}
+
+.manager-showlist-title-box {
+  padding: 10px;
+  padding-left: 400px;
+  padding-right: 400px;
+  margin-bottom: 30px;
+}
+
+.manager-showlist-title {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+.manager-showlist-content-box {
+  width: 1000px;
+}
+
+.manager-showlist-content-header-box {
+  display: flex;
+  justify-content: center;
+}
+
+.manager-showlist-content-header {
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border: 2px solid white;
+
+}
+
+.manager-showlist-content-body-box {
+  display: flex;
+  justify-content: center;
+}
+
+.manager-showlist-content-body {
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border: 2px solid white;
+}

@@ -6,14 +6,19 @@ import Footer from "./components/Footer";
 
 import Main from "./pages/Main";
 import Login from "./pages/Login";
-import ClubPage from "./pages/ClubPage";
-import Create from "./pages/Create";
-import BookTicket from "./pages/BookTicket";
-import AddInfo from "./pages/AddInfo";
 
-import "../src/App.css";
 import MyReservList from "./pages/MyReservList.js";
 import UpdateProfile from "./pages/UpdateProfile.js";
+
+import ManagerShowList from "./pages/ManagerShowList.js"
+import ManageClub from "./pages/ManageClub.js";
+import HolderList from "./pages/HolderList.js"
+import CreateShow from "./pages/CreateShow.js";
+import UpdateShow from "./pages/UpdateShow.js";
+
+import BookTicket from "./pages/BookTicket";
+
+import "../src/App.css";
 
 function App() {
   return (
@@ -23,11 +28,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/clubpage" element={<ClubPage />} />
           <Route path="/mypage" element={<MyReservList />} />
           <Route path="/mypage/reservation" element={<MyReservList />} />
           <Route path="/mypage/update" element={<UpdateProfile />} />
-          <Route path="/create" element={<Create />} />
+          <Route path="/manager" element={<ManagerShowList />} />
+          <Route path="/manager/show" element={<ManagerShowList />} />
+          <Route path="/manager/club" element={<ManageClub />} />
+          <Route path="/manager/holder" element={<HolderList />} />
+          <Route path="/manager/create" element={<CreateShow />} />
+          <Route path="/manager/update" element={<UpdateShow />} />
           <Route path="/bookticket" element={<BookTicket />} />
         </Routes>
         <Footer />
