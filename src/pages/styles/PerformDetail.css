@@ -1,7 +1,18 @@
 .DetailBody{
   width: auto;
+  height: 100vh;
   color: #ffff;
   background-color: #161616;
+}
+.PerformDetail_Container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.Box_LR{
+  display: flex;
+  flex-direction: row;
 }
 .Perform_Box{
   width: 920px;
@@ -45,11 +56,13 @@
   border: 1px solid #ffff;
 }
 
-/**/
-.Perform_Pic{
-  width: 295px;
-  height: 415px;
-  border: 1px solid #ffff;
+.ticketBtns button{
+  background-color: #161616;
+  border: none;
+  color: #ffff;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .Perform_LB{
   border: 1px solid #ffff;
