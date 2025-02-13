@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "../components/styles/Header.css";
+import main_logo from "../assets/main_logo.svg";
+
 function Header() {
   const [notLoggedIn, setNotLoggedIn] = useState(false);
   const [manager, setManager] = useState(true);
@@ -18,9 +20,12 @@ function Header() {
     <div>
       <div className="Header_Container">
         <div className="Header_Left">
-          <span className="Header_Link" onClick={homeEnter}>
-            LOGO
-          </span>
+          <img
+            className="Header_Link"
+            src={main_logo}
+            alt="로고 이미지"
+            onClick={homeEnter}
+          />
         </div>
 
         {notLoggedIn ? (
@@ -56,7 +61,6 @@ function Header() {
           </div>
         )}
       </div>
-      <hr className="Header_Line" />
     </div>
   );
 }

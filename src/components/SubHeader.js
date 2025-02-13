@@ -1,36 +1,31 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { NavLink } from "react-router-dom";
 import "../components/styles/SubHeader.css";
 function SubHeader() {
-  const navigate = useNavigate();
-
-  const recentReservList = () => {
-    navigate("/recent");
-  };
-  const updateProfile = () => {
-    navigate("/update");
+  const activeStyle = {
+    color: "#EB5A3C",
   };
 
   return (
     <div>
-      <div className="Header_Container">
-        <div className="Header_Left">
-          <span className="Header_Link" onClick={homeEnter}>LOGO</span>
-        </div>
-
-        <div className="Header_Right">
-          <span className="Header_Link" onClick={homeEnter}>
-            홈
-          </span>
-          <span className="Header_Link" onClick={loginEnter}>
-            로그인
-          </span>
-          <span className="Header_Link" onClick={loginEnter}>
-            회원가입
-          </span>
+      <div className="SubHeader_Container">
+        <div className="SubHeader_Left">
+          <NavLink
+            className="SubHeader_Link"
+            style={({ isActive }) => (isActive ? activeStyle : {})}
+            to="/mypage/reservation"
+          >
+            최근 예매내역
+          </NavLink>
+          <NavLink
+            className="SubHeader_Link"
+            style={({ isActive }) => (isActive ? activeStyle : {})}
+            to="/mypage/update"
+          >
+            개인정보 수정
+          </NavLink>
         </div>
       </div>
-      <hr className="Header_Line" />
     </div>
   );
 }
