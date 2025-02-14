@@ -9,8 +9,7 @@ function Card({ img_path, title, startDate, endDate, clubName }) {
       <div id="list-info-box">
         <div id="list-title-box">{title} </div>
         <div id="list-date">
-          {startDate}
-          {endDate}
+          {startDate} ~ {endDate}
         </div>
         <div id="list-club">{clubName}</div>
       </div>

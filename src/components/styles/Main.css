@@ -8,9 +8,25 @@
 
 #showLists {
   display: flex;
-  margin-left: 20%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 10%;
+  padding-top: 53px;
+}
+
+#list-text {
+  background-color: #eb5a3c;
+  height: 50px;
+}
+
+#list-text p {
+  font-size: 30px;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
 #card_list {
-  width: 300px;
+  max-width: 300px;
 }
