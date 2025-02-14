@@ -40,6 +40,7 @@ function App() {
           <Route path="/manager/create" element={<CreateShow />} />
           <Route path="/manager/update" element={<UpdateShow />} />
           <Route path="/bookticket" element={<BookTicket />} />
+          <Route path="/show" element={<PerformDetail />} />
         </Routes>
         <Footer />
       </Router>

@@ -14,26 +14,38 @@
   display: flex;
   flex-direction: row;
 }
-.Perform_Box{
+.Perform_Box_Pic{
+  width: 270px;
+  height: 350px;
+  margin: 50px;
+  border: 1px solid #ffff;
+}
+.Perform_Box_Info{
+  display: flex;
   width: 920px;
   height: 445px;
   border: 1px solid #ffff;
 }
-/* 공연 정보 */
-.Titles{
-  width: 50%;
+/* 공연 정보 (제목, 장소, 날짜 ...)*/
+.names h1{
+  margin: 10;
+  padding: 0;
+}
+.names p{
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+.Infos{
   display: flex;
 }
 .Titles ul{
   padding: 0;
 }
-.Titles h1{
-  width: 1000px;
-}
 .ExBox_name li{
   width: 100px;
   height: 40px;
-
+  margin: 10px;
   background-color: #ffff;
   color: #161616;
   font-size: 15px;
@@ -47,6 +59,7 @@
 .Each_ExBox li{
   width: 300px;
   height: 40px;
+  margin: 10px;
   font-size: 15px;
   font-weight: bold;
 
@@ -55,7 +68,17 @@
   list-style: none;
   border: 1px solid #ffff;
 }
-
+.tic{
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 15px;
+}
+.inside_tic{
+  display: flex;
+  margin-left: 105px;
+  gap: 90px;
+}
 .ticketBtns button{
   background-color: #161616;
   border: none;
@@ -83,6 +106,10 @@
   color: #ffff;
   font-size: 15px;
 }
+.showPrice{
+  display: flex;
+  flex-direction: column;
+}
 
 .BookBtn{
   width: 360px;
@@ -93,9 +120,6 @@
   font-weight: bold;
 }
 
-.BookBtn:hover {
-  cursor: pointer;
-}
 
 .showInfoBox p{
   padding: 70px 70px 10px 70px;

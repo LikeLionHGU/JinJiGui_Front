@@ -4,6 +4,10 @@ import "../pages/styles/PerformDetail.css";
 
 function PerformDetail () {
 
+  const [perform, setPerform] = useState([]);
+  const [schedule, setSchedule] = useState([]);
+
+
   // const show_info = [
   //   {
   //     "show": {
@@ -47,7 +51,6 @@ function PerformDetail () {
   //   }
   // ];
 
-
   const [count, setCount] = useState({max:3, min:0});
 
   const Decrese = () => {
@@ -65,10 +68,7 @@ function PerformDetail () {
     setCount({...count, min: count.min+1});
   }
 
-  const [perform, setPerform] = useState([]);
-  const [schedule, setSchedule] = useState([]);
-
-  // const {Price}
+  const showPrice = 4500;
 
   return (
     <div>
@@ -76,22 +76,35 @@ function PerformDetail () {
         <div className="PerformDetail_Container">
           <h3>공연 상세 페이지</h3>
 
-          <div className="Perform_Box">
-            <div class="Titles">
-              <h1>{perform.title}</h1>
-              <ul className="ExBox_name">                
-                <li>장소</li>
-                <li>날짜</li>
-                {/* <li>런타임</li> */}
-                <li>카테고리</li>
-              </ul>
-              <ul className="Each_ExBox">
-                <li>{perform.location}</li>
-                <li>{perform.startDate} ~ {perform.endDate}</li>
-                {/* <li>{show.}분</li>  */}
-                <li>{perform.category}</li>
-              </ul>
+          <div className="Perform_Box_Info">
+            <div className="Perform_Box_Pic">
+              사진
             </div>
+
+            <div class="Titles">
+              <div className="names">
+                <h1>{perform.title}우리집</h1>
+                <p>동아리 이름</p>
+              </div>
+
+              <div className="Infos">
+                <ul className="ExBox_name">                
+                  <li>장소</li>
+                  <li>날짜</li>
+                  <li>런타임</li>
+                  <li>카테고리</li>
+                  <li>담당자</li>
+                </ul>
+                <ul className="Each_ExBox">
+                  <li>{perform.location}</li>
+                  <li>{perform.startDate} ~ {perform.endDate}</li>
+                  <li>{perform.runtime}분</li> 
+                  <li>{perform.category}</li>
+                  <li>{perform.phone} (김한동)</li>
+                </ul>
+              </div>
+            </div>
+
           </div>
 
         <div className="Box_LR"> 
@@ -104,20 +117,28 @@ function PerformDetail () {
           </div>
 
           <div className="Perform_RB">
-            <span>티켓 매수</span>
-            <div className="ticketBtns">
-              <button onClick={Decrese}>- </button>
-              <span>{count.min}매</span>
-              <button className="AddNum"onClick={Increse}> + </button>
+            <div className="tic">
+              <div>티켓 매수</div>
+              <div>총 금액</div>
             </div>
+
+            <div className="inside_tic">
+              <div className="ticketBtns">
+                <button onClick={Decrese}>- </button>
+                <span>{count.min}매</span>
+                <button className="AddNum"onClick={Increse}> + </button>
+              </div>
             
-            <span>총 금액</span>
-            {/* <span>{showcost}원</span> */}
+              <div className="showPrice">
+                <p>{showPrice*count.min}원</p>
+              </div>
+            </div>
             <button className="BookBtn">예매하기</button>
           </div>
 
         </div>
         
+        {/* 공연소개 */}
         <div>
           <div className="showInfoBox">
             <p>공연에 대한 소개</p>
