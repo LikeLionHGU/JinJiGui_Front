@@ -117,29 +117,29 @@ function PerformDetail () {
           </div>
 
           <div className="LR">
-            <div className="tic">
-              <div>티켓 매수</div>
-              <div>총 금액</div>
-            </div>
-
-            <div className="inside_tic">
-              <div className="ticketBtns">
-                <button onClick={Decrese}>- </button>
-                <span>{count.min}매</span>
-                <button className="AddNum"onClick={Increse}> + </button>
+            <div className="LR_tic">
+              <div className="tic">
+                <div>티켓 매수</div>
+                <div className="ticketBtns">
+                  <button onClick={Decrese}>- </button>
+                  <span>{count.min}매</span>
+                  <button className="AddNum"onClick={Increse}> + </button>
+                </div>
               </div>
+    
+              <div className="total_tic">
+                <div>총 금액</div>
+                <div className="showPrice">
+                  <p>{showPrice*count.min}원</p>
+                </div>
+              </div>
+            </div>
             
-              <div className="showPrice">
-                <p>{showPrice*count.min}원</p>
-              </div>
-            </div>
             <button className="BookBtn">예매하기</button>
           </div>
-
         </div>
         
         {/* 공연소개 */}
-        <div>
           <div className="showInfoBox">
             <p>공연에 대한 소개</p>
             <div className="InfoBox">
@@ -156,11 +156,9 @@ function PerformDetail () {
             </div>
           </div>
         </div>
-
-        </div>
       </div>
-    </div>
-  )
+    </div> 
+  );
 }
 
 export default PerformDetail;
