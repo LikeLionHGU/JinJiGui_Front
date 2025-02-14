@@ -4,11 +4,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+
 import Main from "./pages/Main";
 import Login from "./pages/Login";
 
 import MyReservList from "./pages/MyReservList.js";
 import UpdateProfile from "./pages/UpdateProfile.js";
+import PerformDetail from "./pages/PerformDetail.js";
 
 import ManagerShowList from "./pages/ManagerShowList.js"
 import ManageClub from "./pages/ManageClub.js";

@@ -1,0 +1,108 @@
+.DetailBody{
+  width: auto;
+  height: 100vh;
+  color: #ffff;
+  background-color: #161616;
+}
+.PerformDetail_Container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.Box_LR{
+  display: flex;
+  flex-direction: row;
+}
+.Perform_Box{
+  width: 920px;
+  height: 445px;
+  border: 1px solid #ffff;
+}
+/* 공연 정보 */
+.Titles{
+  width: 50%;
+  display: flex;
+}
+.Titles ul{
+  padding: 0;
+}
+.Titles h1{
+  width: 1000px;
+}
+.ExBox_name li{
+  width: 100px;
+  height: 40px;
+
+  background-color: #ffff;
+  color: #161616;
+  font-size: 15px;
+  font-weight: bold;
+
+  border-radius: 10px;
+  list-style-type: none;
+  list-style: none;
+  border: 1px solid #ffff;
+}
+.Each_ExBox li{
+  width: 300px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: bold;
+
+  border-radius: 10px;
+  list-style-type: none;
+  list-style: none;
+  border: 1px solid #ffff;
+}
+
+.ticketBtns button{
+  background-color: #161616;
+  border: none;
+  color: #ffff;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.Perform_LB{
+  border: 1px solid #ffff;
+  width: 460px;
+  height: 150px;
+}
+.Perform_RB{
+  border: 1px solid #ffff;
+  width: 460px;
+  height: 150px;
+}
+.chosePerformBox{
+  margin-top: 50px;
+  padding: 15px 90px 15px 90px;
+  border-radius: 7px;
+  border: 1px solid #ffff;
+  background-color: #161616;
+  color: #ffff;
+  font-size: 15px;
+}
+
+.BookBtn{
+  width: 360px;
+  height: 58px;
+  background-color: #EB5A3C;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.BookBtn:hover {
+  cursor: pointer;
+}
+
+.showInfoBox p{
+  padding: 70px 70px 10px 70px;
+}
+
+.InfoBox{
+  width: 920px;
+  height: 400px;
+  border: 1px solid #ffff;
+}
