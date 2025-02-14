@@ -109,14 +109,14 @@ function PerformDetail () {
 
         <div className="Box_LR"> 
           
-          <div className="Perform_LB">
+          <div className="LR">
             <select className="chosePerformBox">
               <option value="">상세 공연 선택</option>
               <option value={schedule.id}>{schedule.order}공 {schedule.date}</option>
             </select>
           </div>
 
-          <div className="Perform_RB">
+          <div className="LR">
             <div className="tic">
               <div>티켓 매수</div>
               <div>총 금액</div>
