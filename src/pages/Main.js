@@ -70,7 +70,7 @@ function Main() {
 
   const getCards = async () => {
     try {
-      const response = await axios.get(REACT_APP_MAIN_API).then(() => {
+      const response = await axios.get(`https://jinjigui.info/`).then(() => {
         console.log("API 호출 성공:", response.data);
       }); // 응답 데이터 확인
       const showInfo = response.data || []; // 응답 데이터가 비어있거나 null일 때 대비
