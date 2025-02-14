@@ -4,10 +4,12 @@ import "./styles/MyReservList.css"
 
 function MyReservList () {
   return (
-    <div>
+    <>
       <SubHeader />
-      <div> 최근 예매내역 페이지입니다. </div>
-    </div>
+      <div className="reservation-page-body">
+        최근 예매 내역 페이지입니당.
+      </div>
+    </>
   )
 }
 

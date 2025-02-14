@@ -15,6 +15,9 @@ function Header() {
   const homeEnter = () => {
     navigate("/");
   };
+  const myPage = () => {
+    navigate("/mypage")
+  }
 
   return (
     <div>
@@ -47,7 +50,7 @@ function Header() {
               홈
             </span>
             <span>로그아웃</span>
-            <span>마이페이지</span>
+            <span className="Header_Link" onClick={myPage}>마이페이지</span>
           </div>
         ) : (
           <div className="Header_Right">
@@ -57,7 +60,7 @@ function Header() {
             <span className="Header_Link" onClick={loginEnter}>
               로그아웃
             </span>
-            <span>마이페이지</span>
+            <span className="Header_Link" onClick={myPage}>마이페이지</span>
           </div>
         )}
       </div>
