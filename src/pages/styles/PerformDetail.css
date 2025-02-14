@@ -1,6 +1,6 @@
 .DetailBody{
   width: auto;
-  height: 100vh;
+  height: auto;
   color: #ffff;
   background-color: #161616;
 }
@@ -14,26 +14,47 @@
   display: flex;
   flex-direction: row;
 }
-.Perform_Box{
-  width: 920px;
-  height: 445px;
+.Perform_Box_Pic{
+  width: 270px;
+  height: 350px;
+  margin: 58px 30px 80px 80px ;
   border: 1px solid #ffff;
 }
-/* 공연 정보 */
-.Titles{
-  width: 50%;
+.Perform_Box_Info{
   display: flex;
+  width: 920px;
+  height: 470px;
+  border: 1px solid #ffff;
+}
+/* 공연 정보 (제목, 장소, 날짜 ...)*/
+.names{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+.names h1{
+  margin: 50px 0 0 ;
+  padding: 0;
+}
+.names p{
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+.Infos{
+  display: flex;
+}
+.Titles{
+  padding: 0;
 }
 .Titles ul{
   padding: 0;
 }
-.Titles h1{
-  width: 1000px;
-}
 .ExBox_name li{
   width: 100px;
   height: 40px;
-
+  margin: 10px;
   background-color: #ffff;
   color: #161616;
   font-size: 15px;
@@ -47,6 +68,7 @@
 .Each_ExBox li{
   width: 300px;
   height: 40px;
+  margin: 10px;
   font-size: 15px;
   font-weight: bold;
 
@@ -55,27 +77,41 @@
   list-style: none;
   border: 1px solid #ffff;
 }
-
+.tic{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 50px 10px 110px;
+}
+.total_tic{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 100px 10px 60px;
+}
+.inside_tic{
+  display: flex;
+}
 .ticketBtns button{
   background-color: #161616;
   border: none;
   color: #ffff;
-  margin: 10px;
   font-size: 20px;
   font-weight: bold;
 }
-.Perform_LB{
+.LR{
   border: 1px solid #ffff;
   width: 460px;
-  height: 150px;
+  height: 170px;
 }
-.Perform_RB{
-  border: 1px solid #ffff;
-  width: 460px;
-  height: 150px;
+.LR_tic{
+  display: flex;
+  margin-top: 15px;
 }
 .chosePerformBox{
-  margin-top: 50px;
+  margin-top: 60px;
   padding: 15px 90px 15px 90px;
   border-radius: 7px;
   border: 1px solid #ffff;
@@ -83,7 +119,13 @@
   color: #ffff;
   font-size: 15px;
 }
-
+.showPrice{
+  display: flex;
+  flex-direction: column;
+}
+.showPrice p{
+  margin: 0;
+}
 .BookBtn{
   width: 360px;
   height: 58px;
@@ -93,16 +135,16 @@
   font-weight: bold;
 }
 
-.BookBtn:hover {
-  cursor: pointer;
-}
 
 .showInfoBox p{
   padding: 70px 70px 10px 70px;
 }
 
 .InfoBox{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
   width: 920px;
-  height: 400px;
+  height: 300px;
   border: 1px solid #ffff;
 }
