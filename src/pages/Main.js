@@ -14,7 +14,8 @@ function Main() {
       {
         show: {
           id: 1,
-          poster: "https://example.com/poster1.jpg",
+          poster:
+            "https://i.namu.wiki/i/7kU78ZkCv1RYH2qYYi4Q_bjobolAhAMcc73yTyfrm6gE-GE8Bf5b5DxP0kPb97hcMA5-GtnK9gbM8xBY2Z5qIA.webp",
           title: "어스 공연",
           startDate: "2025-03-01",
           endDate: "2025-03-05",
@@ -38,16 +39,63 @@ function Main() {
           category: "콘서트",
         },
       },
+      {
+        show: {
+          id: 3,
+          poster: "https://cdn.hankyung.com/photo/202410/01.38224314.1.jpg",
+          title: "2NE1",
+          startDate: "2025-12-3",
+          endDate: "2025-12-8",
+        },
+        club: {
+          name: "2NE1",
+          category: "콘서트",
+        },
+      },
+      {
+        show: {
+          id: 4,
+          poster: "https://cdn.hankyung.com/photo/202410/01.38224314.1.jpg",
+          title: "2NE1",
+          startDate: "2025-12-3",
+          endDate: "2025-12-8",
+        },
+        club: {
+          name: "2NE1",
+          category: "콘서트",
+        },
+      },
     ],
   };
 
-  // const getCards = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.2&sort_by=like_count`
-  //     );
+  const getCards = async () => {
+    try {
+      const response = await axios.get(`https://jinjigui.info/`).then(() => {
+        console.log("API 호출 성공:", response.data);
+      }); // 응답 데이터 확인
+      const showInfo = response.data || []; // 응답 데이터가 비어있거나 null일 때 대비
+      const formattedCards = showInfo.map((info) => ({
+        id: info.show.id,
+        poster: info.show.poster,
+        title: info.show.title,
+        startDate: info.show.startDate,
+        endDate: info.show.endDate,
+        clubId: info.club.id,
+        clubName: info.club.name,
+        category: info.club.category,
+      }));
+      setCards(formattedCards);
+    } catch (error) {
+      console.error("API 호출 실패:", error);
+      setError("카드를 불러오지 못했습니다.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  //     const showInfo = response.data.show_info || [];
+  // const getCards = () => {
+  //   try {
+  //     const showInfo = sample_data.show_info || [];
   //     const formattedCards = showInfo.map((info) => ({
   //       id: info.show.id,
   //       poster: info.show.poster,
@@ -57,6 +105,7 @@ function Main() {
   //       clubName: info.club.name,
   //       category: info.club.category,
   //     }));
+  //     console.log(showInfo);
   //     setCards(formattedCards);
   //   } catch (error) {
   //     console.error("카드를 불러오지 못했습니다.", error);
@@ -65,27 +114,6 @@ function Main() {
   //     setLoading(false);
   //   }
   // };
-
-  const getCards = () => {
-    try {
-      const showInfo = sample_data.show_info || [];
-      const formattedCards = showInfo.map((info) => ({
-        id: info.show.id,
-        poster: info.show.poster,
-        title: info.show.title,
-        startDate: info.show.startDate,
-        endDate: info.show.endDate,
-        clubName: info.club.name,
-        category: info.club.category,
-      }));
-      setCards(formattedCards);
-    } catch (error) {
-      console.error("카드를 불러오지 못했습니다.", error);
-      setError("카드를 불러오지 못했습니다.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
     getCards();
@@ -98,15 +126,19 @@ function Main() {
     <div className="wrap">
       <div id="contents">
         <div id="banner"></div>
+        <div id="list-text">
+          <p> 전체 공연 목록</p>
+        </div>
         <div id="showLists">
           {cards.map((card) => (
             <div key={card.id} className="card_list">
               <Card
                 img_path={card.poster}
-                groupName={card.clubName}
-                category={card.category}
-                location={`${card.startDate} ~ ${card.endDate}`}
+                clubName={card.clubName}
+                startDate={card.startDate}
+                endDate={card.endDate}
                 title={card.title}
+                category={card.category}
               />
             </div>
           ))}
