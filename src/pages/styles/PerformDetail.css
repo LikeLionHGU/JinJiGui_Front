@@ -83,6 +83,7 @@
   color: #ffff;
   font-size: 15px;
 }
+
 .BookBtn{
   width: 360px;
   height: 58px;
@@ -91,6 +92,17 @@
   font-size: 15px;
   font-weight: bold;
 }
+
 .BookBtn:hover {
   cursor: pointer;
+}
+
+.showInfoBox p{
+  padding: 70px 70px 10px 70px;
+}
+
+.InfoBox{
+  width: 920px;
+  height: 400px;
+  border: 1px solid #ffff;
 }

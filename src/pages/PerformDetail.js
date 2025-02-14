@@ -117,6 +117,24 @@ function PerformDetail () {
           </div>
 
         </div>
+        
+        <div>
+          <div className="showInfoBox">
+            <p>공연에 대한 소개</p>
+            <div className="InfoBox">
+              <span>
+                우리 집에 왜 왔니 왜 왔니 왜 왔니?~ 웃음꽃을 찾으러 왔단다 왔단다~ 
+                <br/>
+                코미디 맛집 어메이징 스토리가 돌아왔다!
+                <br/>
+                공지
+                <br/>
+                티켓은 공연 당일, 공연장 앞에서 수령하실 수 있습니다.
+                티켓 환불은 5월 19일 일요일(공연전주 일요일)까지만 가능합니다.
+              </span>
+            </div>
+          </div>
+        </div>
 
         </div>
       </div>
