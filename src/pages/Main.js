@@ -1,6 +1,6 @@
 import React from "react";
 
-function Home () {
+function Main () {
   return (
     <div>
       <div> 홈페이지 입니다 </div>
@@ -8,4 +8,4 @@ function Home () {
   )
 }
 
-export default Home;
+export default Main;
