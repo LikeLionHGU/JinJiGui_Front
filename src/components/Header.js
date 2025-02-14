@@ -16,7 +16,10 @@ function Header() {
     navigate("/");
   };
   const myPage = () => {
-    navigate("/mypage")
+    navigate("/mypage");
+  }
+  const ManagerPage = () => {
+    navigate("/manager");
   }
 
   return (
@@ -43,7 +46,7 @@ function Header() {
           </div>
         ) : manager ? (
           <div className="Header_Right">
-            <span className="Header_Link" onClick={loginEnter}>
+            <span className="Header_Link" onClick={ManagerPage}>
               관리자 페이지
             </span>
             <span className="Header_Link" onClick={homeEnter}>
