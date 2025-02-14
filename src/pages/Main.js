@@ -38,28 +38,43 @@ function Main() {
           category: "콘서트",
         },
       },
+      {
+        show: {
+          id: 3,
+          poster: "https://cdn.hankyung.com/photo/202410/01.38224314.1.jpg",
+          title: "2NE1",
+          startDate: "2025-12-3",
+          endDate: "2025-12-8",
+        },
+        club: {
+          name: "2NE1",
+          category: "콘서트",
+        },
+      },
     ],
   };
 
   // const getCards = async () => {
   //   try {
-  //     const response = await axios.get(
-  //       `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.2&sort_by=like_count`
-  //     );
-
-  //     const showInfo = response.data.show_info || [];
+  //     const response = await axios
+  //       .get(`https://jinjigui.info/:443/main`)
+  //       .then(() => {
+  //         console.log("API 호출 성공:", response.data);
+  //       }); // 응답 데이터 확인
+  //     const showInfo = response.data || []; // 응답 데이터가 비어있거나 null일 때 대비
   //     const formattedCards = showInfo.map((info) => ({
   //       id: info.show.id,
   //       poster: info.show.poster,
   //       title: info.show.title,
   //       startDate: info.show.startDate,
   //       endDate: info.show.endDate,
+  //       clubId: info.club.id,
   //       clubName: info.club.name,
   //       category: info.club.category,
   //     }));
   //     setCards(formattedCards);
   //   } catch (error) {
-  //     console.error("카드를 불러오지 못했습니다.", error);
+  //     console.error("API 호출 실패:", error);
   //     setError("카드를 불러오지 못했습니다.");
   //   } finally {
   //     setLoading(false);
@@ -78,6 +93,7 @@ function Main() {
         clubName: info.club.name,
         category: info.club.category,
       }));
+      console.log(showInfo);
       setCards(formattedCards);
     } catch (error) {
       console.error("카드를 불러오지 못했습니다.", error);
@@ -103,10 +119,10 @@ function Main() {
             <div key={card.id} className="card_list">
               <Card
                 img_path={card.poster}
-                groupName={card.clubName}
-                category={card.category}
-                location={`${card.startDate} ~ ${card.endDate}`}
+                clubName={card.clubName}
+                startDate={`${card.startDate} ~ ${card.endDate}`}
                 title={card.title}
+                category={card.category}
               />
             </div>
           ))}
