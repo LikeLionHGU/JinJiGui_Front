@@ -1,0 +1,158 @@
+.DetailBody{
+  width: auto;
+  height: auto;
+  color: #ffff;
+  background-color: #161616;
+}
+.PerformDetail_Container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.PerformDetail_Container h3{
+  margin: 70px 0 40px 0;
+}
+.Box_LR{
+  display: flex;
+  flex-direction: row;
+}
+.Perform_Box_Pic{
+  width: 270px;
+  height: 350px;
+  margin: 58px 30px 80px 80px ;
+  border: 1px solid #ffff;
+}
+.Perform_Box_Info{
+  display: flex;
+  width: 920px;
+  height: 470px;
+  border: 1px solid #ffff;
+}
+/* 공연 정보 (제목, 장소, 날짜 ...)*/
+.names{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+.names h1{
+  margin: 50px 0 0 ;
+  padding: 0;
+}
+.names p{
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+.Infos{
+  display: flex;
+}
+.Titles{
+  padding: 0;
+}
+.Titles ul{
+  padding: 0;
+}
+.ExBox_name li{
+  padding: 10px 15px 10px 15px;
+  margin: 10px;
+  background-color: #ffff;
+  color: #161616;
+  font-size: 15px;
+  font-weight: bold;
+
+  border-radius: 10px;
+  list-style-type: none;
+  list-style: none;
+  border: 1px solid #ffff;
+}
+.Each_ExBox li{
+  padding: 10px 130px 10px 20px;
+  margin: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: flex-start;
+  border-radius: 10px;
+  list-style-type: none;
+  list-style: none;
+  border: 1px solid #ffff;
+}
+.tic{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 50px 10px 110px;
+}
+.total_tic{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 100px 10px 60px;
+}
+.inside_tic{
+  display: flex;
+}
+.ticketBtns button{
+  background-color: #161616;
+  border: none;
+  color: #ffff;
+  font-size: 20px;
+  font-weight: bold;
+}
+.LR{
+  border: 1px solid #ffff;
+  width: 460px;
+  height: 170px;
+}
+.LR_tic{
+  display: flex;
+  margin-top: 15px;
+}
+.chosePerformBox{
+  margin-top: 55px;
+  padding: 23px ;
+  border-radius: 7px;
+  border: 1px solid #ffff;
+  background-color: #161616;
+  color: #ffff;
+  font-size: 15px;
+}
+.showPrice{
+  display: flex;
+  flex-direction: column;
+}
+.showPrice p{
+  margin: 0;
+}
+/*공연 소개란 */
+.showInfoBox p{
+  padding: 70px 70px 10px 70px;
+}
+
+.InfoBox{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  width: 920px;
+  height: 300px;
+  border: 1px solid #ffff;
+}
+.InfoBox span{
+  margin: 20px;
+}
+/*예매하기 버튼*/
+.BookBtn{
+  width: 360px;
+  height: 58px;
+  background-color: #EB5A3C;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.BookBtn:hover {
+  cursor: pointer;
+}

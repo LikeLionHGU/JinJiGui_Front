@@ -4,6 +4,10 @@ import login_logo from "../assets/login_logo.svg";
 import "./styles/UpdateProfile.css";
 
 function UpdateProfile() {
+  const alertSave = () => {
+    alert("저장되었습니다!");
+  }
+
   return (
     <>
       <SubHeader />
@@ -15,7 +19,7 @@ function UpdateProfile() {
           <div className="update-page-title-box">
             <div className="update-page-title">회원정보 수정</div>
           </div>
-          <form className="update-page-content-box" onsubmit="return false;">
+          <div className="update-page-content-box">
             <div className="update-page-content" id="update-my-name">
               <input type="text" placeholder="이름" />
             </div>
@@ -25,15 +29,12 @@ function UpdateProfile() {
             <div className="update-page-content" id="update-my-stdNum">
               <input type="text" placeholder="학번" />
             </div>
-            <div className="update-page-saveButton-box" >
-              <input
-                type="submit"
-                value="저장"
-                // onClick={alert("저장되었습니다.")}
-                className="update-page-saveButton"
-              />
+            <div className="update-page-saveButton-box">
+              <button onClick={alertSave} className="update-page-saveButton">
+                저장
+              </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </>

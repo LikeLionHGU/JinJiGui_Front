@@ -10,8 +10,9 @@
     "react-dom": "^19.0.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.29.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "styled-components": "^6.1.14",
+    "sweetalert2": "^11.16.1",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
