@@ -141,6 +141,9 @@
   height: 300px;
   border: 1px solid #ffff;
 }
+.InfoBox span{
+  margin: 20px;
+}
 /*예매하기 버튼*/
 .BookBtn{
   width: 360px;
