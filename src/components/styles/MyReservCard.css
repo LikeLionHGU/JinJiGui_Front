@@ -56,3 +56,12 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+
+#myreserv-show-title {
+  
+}
+
+#myreserv-show-title:hover {
+  text-decoration: underline;
+  color: gray;
+}

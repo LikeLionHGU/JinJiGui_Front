@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles/MyReservCard.css";
 
 function MyReservCard({
@@ -20,6 +21,11 @@ function MyReservCard({
       <span style={{ color: "red" }}>입금 전</span>
     );
   };
+  const navigate = useNavigate();
+
+  const handleTitleClick = () => {
+    navigate(`/show/${title}`);
+  };
 
   return (
     <>
@@ -29,7 +35,7 @@ function MyReservCard({
         </div>
         <div className="myreserv-detail-box">
           <div className="myreserv-detail-column" id="myreserv-detail-left-box">
-            <div className="myreserv-detail-header">제목</div>
+            <div className="myreserv-detail-header">공연명</div>
             <div className="myreserv-detail-header">회차</div>
             <div className="myreserv-detail-header">날짜 | 시간</div>
             <div className="myreserv-detail-header">장소</div>
@@ -41,8 +47,15 @@ function MyReservCard({
             className="myreserv-detail-column"
             id="myreserv-detail-right-box"
           >
-            <div className="myreserv-detail-body">{title}</div>
-            <div className="myreserv-detail-body">{order}</div>
+            <div
+              className="myreserv-detail-body"
+              id="myreserv-show-title"
+              onClick={handleTitleClick}
+              style={{ cursor: "pointer" }}
+            >
+              {title} ▶
+            </div>
+            <div className="myreserv-detail-body">{order}공</div>
             <div className="myreserv-detail-body">
               {date} | {time}
             </div>
