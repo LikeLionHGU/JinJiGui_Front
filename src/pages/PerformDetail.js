@@ -70,6 +70,41 @@ function PerformDetail () {
 
   const showPrice = 4500;
 
+  const handleBooking = async () => {
+    const userId = 1;
+    const ticketNumber = count.min;
+    const showId = schedule.id;
+
+    if(ticketNumber === 0) {
+      alert("최소 1장 이상 예매해야 합니다.");
+      return;
+    }
+    const requestData = {
+      userId,
+      ticketNumber,
+      showId,
+    };
+    try {
+      const response = await fetch("https://your-backend-api.com/book-ticket", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+      if(!response.ok) {
+        Error("예매 요청 실패");
+      }
+      const result = await response.json();
+      alert("예매 성공!");
+      console.log("예매 성공:",result);
+    }
+    catch(error){
+      console.error("예매 오류:",error);
+      alert("예매에 실패 했습니다.");
+    }
+  };
+
   return (
     <div>
       <div className="DetailBody">
@@ -77,9 +112,11 @@ function PerformDetail () {
           <h3>공연 상세 페이지</h3>
 
           <div className="Perform_Box_Info">
-            <div className="Perform_Box_Pic">
-              사진
-            </div>
+            <img 
+              className="Perform_Box_Pic"
+              src={``}
+              alt="show_image"
+            />
 
             <div class="Titles">
               <div className="names">
@@ -135,7 +172,17 @@ function PerformDetail () {
               </div>
             </div>
             
-            <button className="BookBtn">예매하기</button>
+            <button className="BookBtn" onClick={handleBooking}>
+              예매하기
+              <span className="blob-btn__inner">
+                <span className="blob-btn__blobs">
+                  <span className="blob-btn__blob"></span>
+                  <span className="blob-btn__blob"></span>
+                  <span className="blob-btn__blob"></span>
+                  <span className="blob-btn__blob"></span>
+                </span>
+              </span>
+            </button>
           </div>
         </div>
         

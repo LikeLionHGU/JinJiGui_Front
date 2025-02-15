@@ -10,6 +10,9 @@
   align-items: center;
   flex-direction: column;
 }
+.PerformDetail_Container h3{
+  margin: 70px 0 40px 0;
+}
 .Box_LR{
   display: flex;
   flex-direction: row;
@@ -126,16 +129,7 @@
 .showPrice p{
   margin: 0;
 }
-.BookBtn{
-  width: 360px;
-  height: 58px;
-  background-color: #EB5A3C;
-  border-radius: 30px;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-
+/*공연 소개란 */
 .showInfoBox p{
   padding: 70px 70px 10px 70px;
 }
@@ -147,4 +141,16 @@
   width: 920px;
   height: 300px;
   border: 1px solid #ffff;
+}
+/*예매하기 버튼*/
+.BookBtn{
+  width: 360px;
+  height: 58px;
+  background-color: #EB5A3C;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.BookBtn:hover {
+  cursor: pointer;
 }
