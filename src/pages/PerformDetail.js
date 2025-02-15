@@ -172,7 +172,17 @@ function PerformDetail () {
               </div>
             </div>
             
-            <button className="BookBtn" onClick={handleBooking}>예매하기</button>
+            <button className="BookBtn" onClick={handleBooking}>
+              예매하기
+              <span className="blob-btn__inner">
+                <span className="blob-btn__blobs">
+                  <span className="blob-btn__blob"></span>
+                  <span className="blob-btn__blob"></span>
+                  <span className="blob-btn__blob"></span>
+                  <span className="blob-btn__blob"></span>
+                </span>
+              </span>
+            </button>
           </div>
         </div>
         
