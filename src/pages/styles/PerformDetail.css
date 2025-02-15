@@ -134,7 +134,9 @@
   font-size: 15px;
   font-weight: bold;
 }
-
+.BookBtn:hover {
+  cursor: pointer;
+}
 
 .showInfoBox p{
   padding: 70px 70px 10px 70px;

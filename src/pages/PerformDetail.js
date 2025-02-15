@@ -112,9 +112,11 @@ function PerformDetail () {
           <h3>공연 상세 페이지</h3>
 
           <div className="Perform_Box_Info">
-            <div className="Perform_Box_Pic">
-              사진
-            </div>
+            <img 
+              className="Perform_Box_Pic"
+              src={``}
+              alt="show_image"
+            />
 
             <div class="Titles">
               <div className="names">
