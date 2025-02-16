@@ -34,10 +34,9 @@ function Create () {
         <div className="Create_Container">
           <div className="Detail_Entire_Box">
             <div className="SImage_Box">
-            <img
-              className="showImage"
-              src=""
-              alt="show_image"
+            <input
+              type="file"
+              accept="image/*"
             />
           </div>
 
@@ -105,9 +104,10 @@ function Create () {
           </div>
 
           <div className="Detail_show">
-            <div>
+            <div className="show_inputs">
               <input
                 type="number"
+                defaultValue="0"
               />
               공
             </div>
@@ -120,12 +120,13 @@ function Create () {
             <div>
               <input
                 type="number"
-              />
+                defaultValue="0"/>
               원
             </div>
             <div>
               <input
                 type="number"
+                defaultValue="0"
               />
               명
             </div>

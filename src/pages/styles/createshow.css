@@ -112,11 +112,20 @@
 .Each_shows_Name div{
   margin: 20px 0 20px 0;
 }
+.Detail_show{
+  display: flex;
+  margin-top: 20px;
+  border-bottom: 1px solid #fff;
+}
+.show_inputs input{
+  margin-bottom: 20px;
+}
 /* 상세 공연 입력란 */
 .Detail_show input{
   background-color: #161616;
   color: #fff;
-  
+  border: none;
+  padding: 0;
 }
 /* 공연에 대한 소개 */
 

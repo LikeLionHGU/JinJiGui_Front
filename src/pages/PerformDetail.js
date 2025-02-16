@@ -19,6 +19,7 @@ function PerformDetail() {
       console.log("API 응답 데이터:", response.data);
       if(response.data && response.data.show){
         setShow(response.data.show);
+        console.log("api전체",show);
       }else{
         console.error("API응답에 'show'데이터가 없습니다.");
         setShow(null);
@@ -62,7 +63,6 @@ function PerformDetail() {
       return;
     }
     const requestData = {
-      selectedSchedule  : 1,
       ticketNumber: count,
       showId: selectedSchedule.id,
     };
@@ -71,13 +71,19 @@ function PerformDetail() {
         `https://jinjigui.info/show/${id}/reservation`,
         requestData
       );
-      Swal.fire("예매 성공!", "성공적으로 예매 되었습니다.", "success");
+      Swal.fire({
+        title:"예매 성공!",
+        html: "성공적으로 예매 되었습니다.<br><br>"+show.user.account+"로 "+(show.selectedSchedule?.cost || 0 )*count+"원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
+        icon:"success"
+      }
+    );    
       console.log("예매 성공", response.data);
     } catch (error) {
       console.error("예매 오류", error);
       Swal.fire("예매 실패", "예매에 실패했습니다.", "error");
     }
   };
+  
   return (
     <div>
       <div className="DetailBody">
@@ -133,7 +139,7 @@ function PerformDetail() {
                 <option value="">상세 공연 선택</option>
                 {show?.schedule.map((sch) => (
                   <option key={sch.id} value={sch.id}>
-                    {sch.order}공 {sch.date} {sch.time} {sch.cost}원
+                    {sch.order}공 {sch.date} {sch.time} {sch.cost}
                     {sch.applyPeople}/{sch.maxPeople}
                   </option>
                 ))}
