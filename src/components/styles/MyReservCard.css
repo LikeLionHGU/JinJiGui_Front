@@ -17,6 +17,11 @@
   display: block;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+
+  &:hover {
+    box-shadow: 3px 3px 5px lightgray;
+    transition: all 0.5s;
+  }
 }
 
 .myreserv-detail-box {
@@ -58,10 +63,9 @@
 }
 
 #myreserv-show-title {
-  
-}
-
-#myreserv-show-title:hover {
-  text-decoration: underline;
-  color: gray;
+  &:hover {
+    text-decoration: underline;
+    color: gray;
+    transition: all 0.1s;
+  }
 }
