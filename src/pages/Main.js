@@ -12,6 +12,7 @@ function Main() {
   const [banners, setBanners] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselRef = useRef(null);
 
   const sample_data = {
@@ -146,10 +147,6 @@ function Main() {
     }
   };
 
-  const handleThumbClick = (index) => {
-    console.log(`썸네일 ${index + 1} 클릭!`);
-  };
-
   const getBanners = async () => {
     try {
       const response = await axios.get(`https://jinjigui.info:443/main`);
@@ -206,6 +203,9 @@ function Main() {
     }
   };
 
+  const handleBannerClick = (index) => {
+    setSelectedIndex(index); // 클릭한 배너의 인덱스를 중앙으로 설정
+  };
   return (
     <div className="wrap">
       <div id="contents">
@@ -214,15 +214,23 @@ function Main() {
             ref={carouselRef}
             autoPlay
             infiniteLoop
-            interval={3000}
+            interval={2000}
             showThumbs={false}
             showArrows={true}
             showStatus={false}
             centerMode
             centerSlidePercentage={33.3} // 화면에 3개 보이도록 설정
+            selectedItem={selectedIndex}
+            onChange={(index) => setSelectedIndex(index)}
           >
-            {banners.map((banner) => (
-              <div key={banner.id} className="banner-item">
+            {banners.map((banner, index) => (
+              <div
+                key={banner.id}
+                className={`banner-item ${
+                  index !== selectedIndex ? "dim" : ""
+                }`} // dim 처리
+                onClick={() => handleBannerClick(index)} // 클릭 시 중앙으로 이동
+              >
                 <img src={banner.poster} alt={`Banner ${banner.id}`} />
               </div>
             ))}
