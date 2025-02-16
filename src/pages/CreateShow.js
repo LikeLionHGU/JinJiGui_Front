@@ -19,10 +19,10 @@ function Create () {
 
 /* 공연 소개란 */
   const handleContent = (e) => {
-    if(e.target.value.length <= 300){
+    if(e.target.value.length <= 500){
       setContent(e.target.value);
     }else{
-      Swal.fire("300자를 초과할 수 없습니다.")
+      Swal.fire("500자를 초과할 수 없습니다.")
     }
   }
 
@@ -55,6 +55,7 @@ function Create () {
               <input
                 type="text"
                 placeholder="제목을 입력하시오 (최대14자)"
+                value={title}
                 onChange={handletitle}
               />
               <input
@@ -104,32 +105,33 @@ function Create () {
           </div>
 
           <div className="Detail_show">
+            <div>
+              <input
+                type="number"
+              />
+              공
+            </div>
             <input
-              type="number"
+              type="date"
             />
-            공
-          </div>
-          <input
-            type="date"
-          />
-          <input
-            type="time"
-          />
-          <div>
             <input
-              type="number"
+              type="time"
             />
-            원
+            <div>
+              <input
+                type="number"
+              />
+              원
+            </div>
+            <div>
+              <input
+                type="number"
+              />
+              명
+            </div>
+            <button> - </button>
           </div>
-          <div>
-            <input
-              type="number"
-            />
-            명
-          </div>
-          <button> - </button>
         </div>
-
         <div className="show_content_Entire">
           <p>공연에 대한 소개</p>
           <div className="show_content">
@@ -137,7 +139,7 @@ function Create () {
               value={content}
               onChange={handleContent}
             />
-            <p>( {content.length}/300 )</p>
+            <p>( {content.length}/500 )</p>
           </div>
         </div>
       </div>

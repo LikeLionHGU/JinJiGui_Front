@@ -112,6 +112,14 @@
 .Each_shows_Name div{
   margin: 20px 0 20px 0;
 }
+/* 상세 공연 입력란 */
+.Detail_show input{
+  background-color: #161616;
+  color: #fff;
+  
+}
+/* 공연에 대한 소개 */
+
 .show_content_Entire{
   margin: 70px 0 30px 0;
 }
