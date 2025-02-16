@@ -29,6 +29,7 @@
   flex-direction: row;
   width: 500px;
 }
+
 .myreserv-detail-column {
   display: flex;
   flex-direction: column;
