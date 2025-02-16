@@ -9,7 +9,7 @@
 }
 
 #banner {
-  height: 766px;
+  height: 50%;
 }
 
 .crsl {
@@ -31,12 +31,13 @@
 
 #list-text {
   width: 100%;
+  height: 12%;
   background-color: #eb5a3c;
-  height: 50px;
+  margin-top: 5%;
 }
 
 #list-text p {
-  font-size: 30px;
+  font-size: 25px;
   align-items: center;
   justify-items: center;
   align-content: center;
@@ -45,35 +46,4 @@
 
 #card_list {
   width: 20%;
-}
-
-/* Carousel 이미지 dim 처리 */
-.dim-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-/* 가운데 슬라이드는 밝게 처리 */
-.carousel .slide.selected img {
-  opacity: 1 !important;
-}
-
-/* 양옆 슬라이드는 dim 처리 */
-.carousel .slide img {
-  width: 75%;
-  opacity: 0.5;
-  transition: opacity 0.5s;
-}
-
-/* 화살표 스타일 */
-.carousel .control-arrow {
-  background-color: #fff;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
 }

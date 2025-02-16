@@ -1,0 +1,83 @@
+/* 배너 사이 간격 설정 */
+.banner-item {
+  margin-right: 30px;
+  cursor: pointer;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.carousel .slide img {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-root {
+  margin-top: 3%;
+}
+
+/* 썸네일 스타일 */
+#thumbnail-container {
+  margin-top: 20px;
+  margin-left: 10%;
+  display: flex;
+  justify-content: left;
+}
+
+.thumbnail-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.thumbnail-item {
+  width: 61px;
+  height: 87px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail-item:hover {
+  border: solid white; /* 썸네일을 살짝 확대 */
+}
+
+/* Carousel 이미지 dim 처리 */
+.dim-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* 가운데 슬라이드는 밝게 처리 */
+.carousel .slide.selected img {
+  opacity: 1 !important;
+}
+
+/* 양옆 슬라이드는 dim 처리 */
+.carousel .slide img {
+  width: 75%;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+
+/* 화살표 스타일 */
+.carousel .control-arrow {
+  margin-top: 15%;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.carousel .carousel-slider {
+  display: flex;
+}
+
+.custom-carousel .control-arrow {
+  margin-top: 15% !important;
+}
