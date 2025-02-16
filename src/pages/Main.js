@@ -12,6 +12,7 @@ function Main() {
   const [banners, setBanners] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const carouselRef = useRef(null);
 
   const sample_data = {
@@ -118,9 +119,11 @@ function Main() {
 
   const getCards = async () => {
     try {
-      const response = await axios.get(`https://jinjigui.info:443/`);
-      console.log("API 호출 성공:", response.data); // 응답 데이터 확인
-      const showInfo = response.data || []; // 응답 데이터가 비어있거나 null일 때 대비
+      const response = await axios.get(`https://jinjigui.info:443/main`);
+
+      console.log("API 호출 성공:", response.data);
+
+      const showInfo = response.data.show_info || []; // 응답 데이터가 비어있거나 null일 때 대비
       const formattedCards = showInfo.map((info) => ({
         id: info.show.id,
         poster: info.show.poster,
@@ -133,20 +136,23 @@ function Main() {
       }));
       setCards(formattedCards);
     } catch (error) {
-      console.error("API 호출 실패:", error);
+      console.error("API 호출 실패:", error.message);
+      if (error.response) {
+        console.error("응답 데이터:", error.response.data);
+        console.error("응답 상태 코드:", error.response.status);
+      }
       setError("카드를 불러오지 못했습니다.");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleThumbClick = (index) => {
-    console.log(`썸네일 ${index + 1} 클릭!`);
-  };
-
-  const getBanners = () => {
+  const getBanners = async () => {
     try {
-      const showInfo = sample_data.show_info || [];
+      const response = await axios.get(`https://jinjigui.info:443/main`);
+
+      console.log("API 호출 성공:", response.data);
+      const showInfo = response.data.show_info || [];
       const formattedBanners = showInfo.map((info) => ({
         id: info.show.id,
         poster: info.show.poster,
@@ -184,17 +190,8 @@ function Main() {
   // };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        await Promise.all([getBanners(), getCards()]);
-      } catch (error) {
-        setError("데이터를 불러오는 중 문제가 발생했습니다.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+    getBanners();
+    getCards();
   }, []);
 
   if (loading) return <p>Loading...</p>;
@@ -206,6 +203,9 @@ function Main() {
     }
   };
 
+  const handleBannerClick = (index) => {
+    setSelectedIndex(index); // 클릭한 배너의 인덱스를 중앙으로 설정
+  };
   return (
     <div className="wrap">
       <div id="contents">
@@ -214,15 +214,23 @@ function Main() {
             ref={carouselRef}
             autoPlay
             infiniteLoop
-            interval={3000}
+            interval={2000}
             showThumbs={false}
             showArrows={true}
             showStatus={false}
             centerMode
             centerSlidePercentage={33.3} // 화면에 3개 보이도록 설정
+            selectedItem={selectedIndex}
+            onChange={(index) => setSelectedIndex(index)}
           >
-            {banners.map((banner) => (
-              <div key={banner.id} className="banner-item">
+            {banners.map((banner, index) => (
+              <div
+                key={banner.id}
+                className={`banner-item ${
+                  index !== selectedIndex ? "dim" : ""
+                }`} // dim 처리
+                onClick={() => handleBannerClick(index)} // 클릭 시 중앙으로 이동
+              >
                 <img src={banner.poster} alt={`Banner ${banner.id}`} />
               </div>
             ))}
