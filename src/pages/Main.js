@@ -116,30 +116,29 @@ function Main() {
     ],
   };
 
-  // const getCards = async () => {
-  //   try {
-  //     const response = await axios.get(`https://jinjigui.info/`).then(() => {
-  //       console.log("API 호출 성공:", response.data);
-  //     }); // 응답 데이터 확인
-  //     const showInfo = response.data || []; // 응답 데이터가 비어있거나 null일 때 대비
-  //     const formattedCards = showInfo.map((info) => ({
-  //       id: info.show.id,
-  //       poster: info.show.poster,
-  //       title: info.show.title,
-  //       startDate: info.show.startDate,
-  //       endDate: info.show.endDate,
-  //       clubId: info.club.id,
-  //       clubName: info.club.name,
-  //       category: info.club.category,
-  //     }));
-  //     setCards(formattedCards);
-  //   } catch (error) {
-  //     console.error("API 호출 실패:", error);
-  //     setError("카드를 불러오지 못했습니다.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const getCards = async () => {
+    try {
+      const response = await axios.get(`https://jinjigui.info:443/`);
+      console.log("API 호출 성공:", response.data); // 응답 데이터 확인
+      const showInfo = response.data || []; // 응답 데이터가 비어있거나 null일 때 대비
+      const formattedCards = showInfo.map((info) => ({
+        id: info.show.id,
+        poster: info.show.poster,
+        title: info.show.title,
+        startDate: info.show.startDate,
+        endDate: info.show.endDate,
+        clubId: info.club.id,
+        clubName: info.club.name,
+        category: info.club.category,
+      }));
+      setCards(formattedCards);
+    } catch (error) {
+      console.error("API 호출 실패:", error);
+      setError("카드를 불러오지 못했습니다.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleThumbClick = (index) => {
     console.log(`썸네일 ${index + 1} 클릭!`);
@@ -162,31 +161,40 @@ function Main() {
     }
   };
 
-  const getCards = () => {
-    try {
-      const showInfo = sample_data.show_info || [];
-      const formattedCards = showInfo.map((info) => ({
-        id: info.show.id,
-        poster: info.show.poster,
-        title: info.show.title,
-        startDate: info.show.startDate,
-        endDate: info.show.endDate,
-        clubName: info.club.name,
-        category: info.club.category,
-      }));
-      console.log(showInfo);
-      setCards(formattedCards);
-    } catch (error) {
-      console.error("카드를 불러오지 못했습니다.", error);
-      setError("카드를 불러오지 못했습니다.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const getCards = () => {
+  //   try {
+  //     const showInfo = sample_data.show_info || [];
+  //     const formattedCards = showInfo.map((info) => ({
+  //       id: info.show.id,
+  //       poster: info.show.poster,
+  //       title: info.show.title,
+  //       startDate: info.show.startDate,
+  //       endDate: info.show.endDate,
+  //       clubName: info.club.name,
+  //       category: info.club.category,
+  //     }));
+  //     console.log(showInfo);
+  //     setCards(formattedCards);
+  //   } catch (error) {
+  //     console.error("카드를 불러오지 못했습니다.", error);
+  //     setError("카드를 불러오지 못했습니다.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
-    getBanners();
-    getCards();
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        await Promise.all([getBanners(), getCards()]);
+      } catch (error) {
+        setError("데이터를 불러오는 중 문제가 발생했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, []);
 
   if (loading) return <p>Loading...</p>;
