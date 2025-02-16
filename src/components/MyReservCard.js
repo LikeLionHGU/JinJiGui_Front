@@ -23,7 +23,7 @@ function MyReservCard({
   };
   const navigate = useNavigate();
 
-  const handleTitleClick = () => {
+  const handleLinkClick = () => {
     navigate(`/show/${title}`);
   };
 
@@ -31,7 +31,13 @@ function MyReservCard({
     <>
       <div className="myreserv-card">
         <div className="myreserv-poster-box">
-          <img src={img_path} id="myreserv-poster" alt="show_poster" />
+          <img
+            src={img_path}
+            id="myreserv-poster"
+            onClick={handleLinkClick}
+            style={{ cursor: "pointer" }}
+            alt="show_poster"
+          />
         </div>
         <div className="myreserv-detail-box">
           <div className="myreserv-detail-column" id="myreserv-detail-left-box">
@@ -50,7 +56,7 @@ function MyReservCard({
             <div
               className="myreserv-detail-body"
               id="myreserv-show-title"
-              onClick={handleTitleClick}
+              onClick={handleLinkClick}
               style={{ cursor: "pointer" }}
             >
               {title} ▶
