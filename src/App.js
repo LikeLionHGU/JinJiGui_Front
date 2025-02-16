@@ -17,7 +17,7 @@ import ManageClub from "./pages/ManageClub.js";
 import HolderList from "./pages/HolderList.js"
 import CreateShow from "./pages/CreateShow.js";
 import UpdateShow from "./pages/UpdateShow.js";
-
+import AddInfo from "./pages/AddInfo.js";
 import BookTicket from "./pages/BookTicket";
 
 import "../src/App.css";
@@ -30,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/add-info" element={<AddInfo />} />
           <Route path="/mypage" element={<MyReservList />} />
           <Route path="/mypage/reservation" element={<MyReservList />} />
           <Route path="/mypage/update" element={<UpdateProfile />} />

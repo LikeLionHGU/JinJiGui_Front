@@ -13,21 +13,18 @@ function UpdateProfile() {
       <SubHeader />
       <div className="update-page-body">
         <div className="update-page-box">
-          {/* <div className="update-page-logo-box">
-            <img src={login_logo} alt="서비스_로고" />
-          </div> */}
           <div className="update-page-title-box">
             <div className="update-page-title">회원정보 수정</div>
           </div>
           <div className="update-page-content-box">
             <div className="update-page-content" id="update-my-name">
-              <input type="text" placeholder="이름" />
+              <input type="text" placeholder="이름" required/>
             </div>
             <div className="update-page-content" id="update-my-phone">
-              <input type="text" placeholder="전화번호" />
+              <input type="text" placeholder="전화번호" required/>
             </div>
             <div className="update-page-content" id="update-my-stdNum">
-              <input type="text" placeholder="학번" />
+              <input type="text" placeholder="학번" required/>
             </div>
             <div className="update-page-saveButton-box">
               <button onClick={alertSave} className="update-page-saveButton">
