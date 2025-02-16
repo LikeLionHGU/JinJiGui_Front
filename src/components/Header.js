@@ -62,9 +62,13 @@ function Header() {
           </div>
         ) : manager ? (
           <div className="Header_Right">
-            <span className="Header_Link" onClick={ManagerPage}>
-              관리자 페이지
-            </span>
+            <NavLink
+              className="Header_Link"
+              style={({ isActive }) => (isActive ? activeStyle : {color: "white"})}
+              to="/manager"
+            >
+              <span>내 공연 관리</span>
+            </NavLink>
             <NavLink
               className="Header_Link"
               style={({ isActive }) =>

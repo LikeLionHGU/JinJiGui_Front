@@ -1,0 +1,9 @@
+.function_icon {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.alert-title {
+  font-size: 1.4rem;
+}
