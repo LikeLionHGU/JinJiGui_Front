@@ -15,14 +15,16 @@ function HolderListCard({ title, order, applyPeople, maxPeople }) {
 
   const handleDeleteIconClick = () => {
     Swal.fire({
-      title: title + " 을(를) 삭제하시겠습니까???",
-      text: "삭제하시면 다시 복구시킬 수 없습니다.",
+      title: title + " 을(를) 삭제하시겠습니까?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "확인",
+      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#d33",
+      confirmButtonText: "삭제",
       cancelButtonText: "취소",
+      customClass: {
+        title: 'alert-title'
+      }
     }).then((result) => {
       if (result.value) {
         navigate(`/show/${title}`);
