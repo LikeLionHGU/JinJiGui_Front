@@ -1,8 +1,35 @@
-.reservation-page-body {
+.myreservlist-page-body {
   padding: 100px;
+  padding-top: 50px;
   padding-left: 400px;
   padding-right: 400px;
-  padding-bottom: 500px;
   background-color: #161616;
   color: white;
+}
+
+.myreservlist-page-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 100px;
+  /* border: 2px solid white; */
+  border-radius: 10px;
+}
+
+.myreservlist-page-title-box {
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.myreservlist-page-title {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 2rem;
+}
+/* 
+.myreservlist-page-content-box {
+} */
+
+.myreservlist-page-content {
+  margin-bottom: 30px;
 }

@@ -1,0 +1,73 @@
+.myreserv-card {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+
+.myreserv-poster-box {
+  height: 15rem;
+  width: 10rem;
+  flex-shrink: 0;
+}
+
+#myreserv-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  &:hover {
+    box-shadow: 3px 3px 5px lightgray;
+    transition: all 0.5s;
+  }
+}
+
+.myreserv-detail-box {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+}
+.myreserv-detail-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#myreserv-detail-left-box {
+  width: 30%;
+  color: #161616;
+  background-color: #e2998a;
+}
+
+#myreserv-detail-right-box {
+  align-items: baseline;
+  width: 70%;
+  padding-left: 20px;
+  color: #161616;
+  background-color: #e8d5d1;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.myreserv-detail-header {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.myreserv-detail-body {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#myreserv-show-title {
+  &:hover {
+    text-decoration: underline;
+    color: gray;
+    transition: all 0.1s;
+  }
+}
