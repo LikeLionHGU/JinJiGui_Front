@@ -76,7 +76,7 @@ function Create () {
               </div>
               <input
                 type="number"
-                placeholder="공연 런타임을 입력하시오"
+                placeholder="공연 런타임을 입력하시오 (분)"
               />
               <select>
                 <option value="">공연 카테고리를 선택하세요</option>
@@ -92,10 +92,10 @@ function Create () {
           </div>
           </div>
 
-          <div>상세 공연 만들기</div>
+          <div className="Each_shows">상세 공연 만들기</div>
 
-          <div>
-            <div>회차</div>
+          <div className="Each_shows_Name">
+            <div className="form">회차</div>
             <div>날짜</div>
             <div>시간</div>
             <div>가격</div>
