@@ -15,7 +15,7 @@ function PerformDetail () {
 
   const fetchData = async () => {
     try{
-      const response = await axios.get(`https://jinjigui.info/show/${id}`);
+      const response = await axios.get(`https://jinjigui.info:443/show/${id}`);
       setShow(response.data.show);
     } catch (error) {
       console.error('Error fetching data:', error);
