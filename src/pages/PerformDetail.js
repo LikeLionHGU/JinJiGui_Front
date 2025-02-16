@@ -8,17 +8,27 @@ import { useParams } from "react-router-dom";
 
 function PerformDetail() {
   const { id } = useParams();
-  const [show, setShow] = useState(null);
+  const [show, setShow] = useState({});
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try{
       const response = await axios.get(`https://jinjigui.info:443/show/${id}`);
-      setShow(response.data.show);
+      console.log("API 응답 데이터:", response.data);
+      if(response.data && response.data.show){
+        setShow(response.data.show);
+      }else{
+        console.error("API응답에 'show'데이터가 없습니다.");
+        setShow(null);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
       Swal.fire("데이터를 불러오는 중 오류가 발생했습니다.");
+      setShow(null);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -26,6 +36,9 @@ function PerformDetail() {
     fetchData();
   }, [id]);
 
+  if(loading){
+    return <p>로딩중...</p>;
+  }
   const Decrese = () => {
     if (count > 0) {
       setCount(count - 1);
@@ -49,7 +62,7 @@ function PerformDetail() {
       return;
     }
     const requestData = {
-      userId: 1,
+      selectedSchedule  : 1,
       ticketNumber: count,
       showId: selectedSchedule.id,
     };
@@ -80,8 +93,8 @@ function PerformDetail() {
 
             <div className="Titles">
               <div className="names">
-                <h1>{show.title}우리집</h1>
-                <p>{show.clubName}</p>
+                <h1>{show?.title || "공연정보 없음"}</h1>
+                <p>{show?.clubName || "동아리 정보 없음"}</p>
               </div>
 
               <div className="Infos">
@@ -93,14 +106,14 @@ function PerformDetail() {
                   <li>담당자</li>
                 </ul>
                 <ul className="Each_ExBox">
-                  <li>{show.location}</li>
+                  <li>{show?.location || "장소 정보 없음"}</li>
                   <li>
-                    {show.startDate} ~ {show.endDate}
+                    {show?.startDate || "시작날짜 정보 없음"} ~ {show?.endDate || "종료날짜 정보 없음"}
                   </li>
-                  <li>{show.runtime}분</li>
-                  <li>{show.category}</li>
+                  <li>{show?.runTime || "런타임 정보 없음"}분</li>
+                  <li>{show?.category || "카테고리 정보 없음"}</li>
                   <li>
-                    {show.user.phoneNumber} ({show.user.name})
+                    {show?.user?.phoneNumber || "연락처 없음"} ({show?.user?.name || "이름 없음"})
                   </li>
                 </ul>
               </div>
@@ -120,7 +133,7 @@ function PerformDetail() {
                 <option value="">상세 공연 선택</option>
                 {show?.schedule.map((sch) => (
                   <option key={sch.id} value={sch.id}>
-                    {sch.order}공 {sch.date} {sch.time} {sch.cost}{" "}
+                    {sch.order}공 {sch.date} {sch.time} {sch.cost}원
                     {sch.applyPeople}/{sch.maxPeople}
                   </option>
                 ))}
@@ -158,7 +171,7 @@ function PerformDetail() {
           <div className="showInfoBox">
             <p>공연에 대한 소개</p>
             <div className="InfoBox">
-              <span>{show.content}</span>
+              <span>{show?.content || "공연소개글 정보 없음"}</span>
             </div>
           </div>
         </div>
