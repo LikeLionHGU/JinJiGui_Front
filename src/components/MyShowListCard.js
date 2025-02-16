@@ -1,16 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles/HolderListCard.css";
+import "./styles/MyShowListCard.css";
 import Swal from "sweetalert2";
 
 import watch_icon from "../assets/watch_icon.svg";
 import delete_icon from "../assets/delete_icon.svg";
 
-function HolderListCard({ title, order, applyPeople, maxPeople }) {
+function MyShowListCard({ title, order, applyPeople, maxPeople }) {
   const navigate = useNavigate();
 
   const handleWatchIconClick = () => {
-    navigate(`/show/${title}`);
+    navigate(`/manager/holder`);
   };
 
   const handleDeleteIconClick = () => {
@@ -49,4 +49,4 @@ function HolderListCard({ title, order, applyPeople, maxPeople }) {
   );
 }
 
-export default HolderListCard;
+export default MyShowListCard;

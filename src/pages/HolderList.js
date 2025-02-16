@@ -1,12 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
-export class HolderList extends Component {
-  static propTypes = {};
-
-  render() {
-    return <div></div>;
-  }
+function HolderList() {
+  return <></>;
 }
 
 export default HolderList;

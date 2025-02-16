@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import SubHeader from "../components/SubHeader";
 import "./styles/ManagerShowList.css";
 
-import HolderListCard from "../components/HolderListCard";
+import MyShowListCard from "../components/MyShowListCard";
 
 function ManagerShowList() {
-  const holderList_data = [
+  const myShowList_data = [
     {
       title: "오아시스 내한 공연",
       order: "1",
@@ -26,19 +25,19 @@ function ManagerShowList() {
     },
   ];
 
-  const [holderListCards, setHolderListCards] = useState([]);
+  const [MyShowListCards, setMyShowListCards] = useState([]);
 
-  const getHolderListCards = async () => {
+  const getMyShowListCards = async () => {
     // const response = await fetch(
     //   `공연관리 DB API`
     // );
     // const json = await response.json();
-    setHolderListCards(holderList_data);
+    setMyShowListCards(myShowList_data);
   };
 
   useEffect(() => {
-    console.log(holderList_data);
-    getHolderListCards();
+    console.log(myShowList_data);
+    getMyShowListCards();
   }, []);
 
   return (
@@ -62,12 +61,13 @@ function ManagerShowList() {
               <div className="manager-showlist-header">삭제</div>
             </div>
             <div className="manager-showlist-content">
-              {holderListCards.map((holderListCard) => (
-                <HolderListCard
-                  title={holderListCard.title}
-                  order={holderListCard.order}
-                  applyPeople={holderListCard.applyPeople}
-                  maxPeople={holderListCard.maxPeople}
+              {MyShowListCards.map((show) => (
+                <MyShowListCard
+                  key={show.id}
+                  title={show.title}
+                  order={show.order}
+                  applyPeople={show.applyPeople}
+                  maxPeople={show.maxPeople}
                 />
               ))}
             </div>
