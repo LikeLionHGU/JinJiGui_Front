@@ -5,7 +5,7 @@ import "../components/styles/Header.css";
 import main_logo from "../assets/main_logo.svg";
 
 function Header() {
-  const [notLoggedIn, setNotLoggedIn] = useState(false);
+  const [notLoggedIn, setNotLoggedIn] = useState(true);
   const [manager, setManager] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function Header() {
 
   // 마이페이지 경로 체크 함수
   const isMyPageActive = () => {
-    return location.pathname.startsWith('/mypage');
+    return location.pathname.startsWith("/mypage");
   };
 
   return (
@@ -48,7 +48,9 @@ function Header() {
           <div className="Header_Right">
             <NavLink
               className="Header_Link"
-              style={({ isActive }) => (isActive ? activeStyle : {color: "white"})}
+              style={({ isActive }) =>
+                isActive ? activeStyle : { color: "white" }
+              }
               to="/"
             >
               <span>홈</span>
@@ -65,7 +67,9 @@ function Header() {
             </span>
             <NavLink
               className="Header_Link"
-              style={({ isActive }) => (isActive ? activeStyle : {color: "white"})}
+              style={({ isActive }) =>
+                isActive ? activeStyle : { color: "white" }
+              }
               to="/"
             >
               <span>홈</span>
@@ -73,7 +77,9 @@ function Header() {
             <span>로그아웃</span>
             <NavLink
               className="Header_Link"
-              style={() => (isMyPageActive() ? activeStyle : {color: "white"})}
+              style={() =>
+                isMyPageActive() ? activeStyle : { color: "white" }
+              }
               to="/mypage"
             >
               <span>마이페이지</span>
@@ -89,7 +95,9 @@ function Header() {
             </span>
             <NavLink
               className="Header_Link"
-              style={() => (isMyPageActive() ? activeStyle : {color: "white"})}
+              style={() =>
+                isMyPageActive() ? activeStyle : { color: "white" }
+              }
               to="/mypage"
             >
               <span>마이페이지</span>

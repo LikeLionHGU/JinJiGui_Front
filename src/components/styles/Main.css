@@ -9,7 +9,7 @@
 }
 
 #banner {
-  height: 800px;
+  height: 766px;
 }
 
 .crsl {
@@ -30,6 +30,7 @@
 }
 
 #list-text {
+  width: 100%;
   background-color: #eb5a3c;
   height: 50px;
 }
