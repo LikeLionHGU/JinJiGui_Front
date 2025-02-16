@@ -6,10 +6,9 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-function PerformDetail () {
-
-  const {id} = useParams(); 
-  const [show, setShow ] = useState(null);
+function PerformDetail() {
+  const { id } = useParams();
+  const [show, setShow] = useState(null);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [count, setCount] = useState(0);
 
@@ -18,7 +17,7 @@ function PerformDetail () {
       const response = await axios.get(`https://jinjigui.info:443/show/${id}`);
       setShow(response.data.show);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       Swal.fire("데이터를 불러오는 중 오류가 발생했습니다.");
     }
   };
@@ -28,24 +27,24 @@ function PerformDetail () {
   }, [id]);
 
   const Decrese = () => {
-    if (count > 0){
-      setCount(count-1);
+    if (count > 0) {
+      setCount(count - 1);
     }
   };
 
   const Increse = () => {
-    if (show && count < show.maxTickets ){
+    if (show && count < show.maxTickets) {
       setCount(count + 1);
     }
   };
 
   /* 예매 버튼 api 전송 */
   const handleBooking = async () => {
-    if(!selectedSchedule){
+    if (!selectedSchedule) {
       Swal.fire("공연 시간을 선택해 주세요.");
       return;
     }
-    if(count === 0) {
+    if (count === 0) {
       Swal.fire("최소 1장 이상 예매해야 합니다.");
       return;
     }
@@ -55,14 +54,17 @@ function PerformDetail () {
       showId: selectedSchedule.id,
     };
     try {
-      const response = await axios.post(`https://jinjigui.info/show/${id}/reservation`,requestData);
-      Swal.fire("예매 성공!","성공적으로 예매 되었습니다.","success");
-      console.log("예매 성공",response.data);
-    } catch(error){
-      console.error("예매 오류",error);
-      Swal.fire("예매 실패","예매에 실패했습니다.","error");
+      const response = await axios.post(
+        `https://jinjigui.info/show/${id}/reservation`,
+        requestData
+      );
+      Swal.fire("예매 성공!", "성공적으로 예매 되었습니다.", "success");
+      console.log("예매 성공", response.data);
+    } catch (error) {
+      console.error("예매 오류", error);
+      Swal.fire("예매 실패", "예매에 실패했습니다.", "error");
     }
-  }
+  };
   return (
     <div>
       <div className="DetailBody">
@@ -70,7 +72,7 @@ function PerformDetail () {
           <h3>공연 상세 페이지</h3>
 
           <div className="Perform_Box_Info">
-            <img 
+            <img
               className="Perform_Box_Pic"
               src={show?.showPic || ""}
               alt="show_image"
@@ -83,7 +85,7 @@ function PerformDetail () {
               </div>
 
               <div className="Infos">
-                <ul className="ExBox_name">                
+                <ul className="ExBox_name">
                   <li>장소</li>
                   <li>날짜</li>
                   <li>런타임</li>
@@ -92,73 +94,80 @@ function PerformDetail () {
                 </ul>
                 <ul className="Each_ExBox">
                   <li>{show.location}</li>
-                  <li>{show.startDate} ~ {show.endDate}</li>
-                  <li>{show.runtime}분</li> 
+                  <li>
+                    {show.startDate} ~ {show.endDate}
+                  </li>
+                  <li>{show.runtime}분</li>
                   <li>{show.category}</li>
-                  <li>{show.user.phoneNumber} ({show.user.name})</li>
+                  <li>
+                    {show.user.phoneNumber} ({show.user.name})
+                  </li>
                 </ul>
               </div>
             </div>
-
           </div>
 
-        <div className="Box_LR"> 
-          
-          <div className="LR">
-            <select className="chosePerformBox"
-              onChange={(e) =>
-                setSelectedSchedule(show?.schedule.find((s)=> s.id === Number(e.target.value)))
-              }
-            >
-              <option value="">상세 공연 선택</option>
-              {show?.schedule.map((sch)=>(
-                <option key={sch.id} value={sch.id}>
-                  {sch.order}공 {sch.date} {sch.time} {sch.cost} {sch.applyPeople}/{sch.maxPeople} 
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="LR">
-            <div className="LR_tic">
-              <div className="tic">
-                <div>티켓 매수</div>
-                <div className="ticketBtns">
-                  <button onClick={Decrese}>-</button>
-                  <span>{count}매</span>
-                  <button className="AddNum"onClick={Increse}>+</button>
-                </div>
-              </div>
-    
-              <div className="total_tic">
-                <div>총 금액</div>
-                <div className="showPrice">
-                  <p>{(selectedSchedule?.cost || 0) * count}원</p>
-                </div>
-              </div>
+          <div className="Box_LR">
+            <div className="LR">
+              <select
+                className="chosePerformBox"
+                onChange={(e) =>
+                  setSelectedSchedule(
+                    show?.schedule.find((s) => s.id === Number(e.target.value))
+                  )
+                }
+              >
+                <option value="">상세 공연 선택</option>
+                {show?.schedule.map((sch) => (
+                  <option key={sch.id} value={sch.id}>
+                    {sch.order}공 {sch.date} {sch.time} {sch.cost}{" "}
+                    {sch.applyPeople}/{sch.maxPeople}
+                  </option>
+                ))}
+              </select>
             </div>
-            
-            <button className="BookBtn" onClick={handleBooking}>예매하기</button>
+
+            <div className="LR">
+              <div className="LR_tic">
+                <div className="tic">
+                  <div>티켓 매수</div>
+                  <div className="ticketBtns">
+                    <button onClick={Decrese}>-</button>
+                    <span>{count}매</span>
+                    <button className="AddNum" onClick={Increse}>
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div className="total_tic">
+                  <div>총 금액</div>
+                  <div className="showPrice">
+                    <p>{(selectedSchedule?.cost || 0) * count}원</p>
+                  </div>
+                </div>
+              </div>
+
+              <button className="BookBtn" onClick={handleBooking}>
+                예매하기
+              </button>
+            </div>
           </div>
-        </div>
-        
-        {/* 공연소개 */}
+
+          {/* 공연소개 */}
           <div className="showInfoBox">
             <p>공연에 대한 소개</p>
             <div className="InfoBox">
-              <span>
-                {show.content}
-              </span>
+              <span>{show.content}</span>
             </div>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   );
 }
 
 export default PerformDetail;
-
 
 // import React, { useState, useEffect } from "react";
 // import "../pages/styles/PerformDetail.css";
@@ -166,7 +175,7 @@ export default PerformDetail;
 // import { useParams } from "react-router-dom";
 
 // function PerformDetail() {
-//   const { id } = useParams(); 
+//   const { id } = useParams();
 //   const [show, setShow] = useState(null);
 //   const [selectedSchedule, setSelectedSchedule] = useState(null);
 //   const [count, setCount] = useState(0);

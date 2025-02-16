@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import Card from "../components/Card";
 import axios from "axios";
 import "../components/styles/Main.css";
+import "../components/styles/carousel.css";
 
 function Main() {
   const [cards, setCards] = useState([]);
   const [banners, setBanners] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const carouselRef = useRef(null);
 
   const sample_data = {
     show_info: [
@@ -190,26 +192,46 @@ function Main() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
+  const handleThumbnailClick = (index) => {
+    if (carouselRef.current) {
+      carouselRef.current.moveTo(index); // 썸네일 클릭 시 해당 배너로 이동
+    }
+  };
+
   return (
     <div className="wrap">
       <div id="contents">
         <div id="banner">
           <Carousel
-            className="crsl"
+            ref={carouselRef}
             autoPlay
             infiniteLoop
+            interval={3000}
+            showThumbs={false}
+            showArrows={true}
+            showStatus={false}
             centerMode
-            interval={2000}
-            onClickThumb={(index) => handleThumbClick(index)}
+            centerSlidePercentage={33.3} // 화면에 3개 보이도록 설정
           >
             {banners.map((banner) => (
-              <img
-                key={banner.id}
-                src={banner.poster}
-                alt={`Banner ${banner.id}`}
-              />
+              <div key={banner.id} className="banner-item">
+                <img src={banner.poster} alt={`Banner ${banner.id}`} />
+              </div>
             ))}
           </Carousel>
+          <div id="thumbnail-container">
+            <div className="thumbnail-list">
+              {banners.map((banner, index) => (
+                <img
+                  key={banner.id}
+                  src={banner.poster}
+                  alt={`Thumbnail ${index + 1}`}
+                  className="thumbnail-item"
+                  onClick={() => handleThumbnailClick(index)} // 클릭 시 배너 이동
+                />
+              ))}
+            </div>
+          </div>
         </div>
         <div id="list-text">
           <p> 전체 공연 목록</p>
