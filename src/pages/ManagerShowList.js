@@ -43,7 +43,6 @@ function ManagerShowList() {
 
   return (
     <>
-      <SubHeader />
       <div className="manager-showlist-body">
         <div className="manager-showlist-box">
           <div className="manager-showlist-title-box">
