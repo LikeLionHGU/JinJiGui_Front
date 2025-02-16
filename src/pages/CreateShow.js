@@ -1,23 +1,36 @@
 import React from "react";
 import "../pages/styles/createshow.css"
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 
 function Create () {
 
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   
-  const handleDescirption = (e) => {
-    if(e.target.value.length <= 300){
-      setDescription(e.target.value);
+  const handletitle = (e) => {
+    if(e.target.value.length <= 14){
+      setTitle(e.target.value);
     }else{
-      alert("소개글은 300자를 초과 할 수 없습니다.")
+      Swal.fire("14글자를 초과할 수 없습니다.")
     }
   }
 
+/* 공연 소개란 */
+  const handleContent = (e) => {
+    if(e.target.value.length <= 300){
+      setContent(e.target.value);
+    }else{
+      Swal.fire("300자를 초과할 수 없습니다.")
+    }
+  }
+
+  
   return (
     <div>
       <div className="CreateBody">
+        <h3>공연 생성하기</h3>
         <div className="Create_Container">
           <div className="Detail_Entire_Box">
             <div className="SImage_Box">
@@ -41,7 +54,8 @@ function Create () {
             <div className="input_Boxs">
               <input
                 type="text"
-                placeholder="제목을 입력하시오"
+                placeholder="제목을 입력하시오 (최대14자)"
+                onChange={handletitle}
               />
               <input
                 type="text"
@@ -116,14 +130,14 @@ function Create () {
           <button> - </button>
         </div>
 
-        <div>
-          공연에 대한 소개
-          <div>
-            <input 
-              type="text"
-              value={description}
-              onChange={handleDescirption}
+        <div className="show_content_Entire">
+          <p>공연에 대한 소개</p>
+          <div className="show_content">
+            <textarea 
+              value={content}
+              onChange={handleContent}
             />
+            <p>( {content.length}/300 )</p>
           </div>
         </div>
       </div>
