@@ -1,0 +1,40 @@
+/* 배너 사이 간격 설정 */
+.banner-item {
+  margin-right: 30px;
+}
+
+.carousel .slide img {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-root {
+  margin-top: 3%;
+}
+
+/* 썸네일 스타일 */
+#thumbnail-container {
+  margin-top: 20px;
+  margin-left: 10%;
+  display: flex;
+  justify-content: left;
+}
+
+.thumbnail-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.thumbnail-item {
+  width: 61px;
+  height: 87px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail-item:hover {
+  border: solid white; /* 썸네일을 살짝 확대 */
+}
