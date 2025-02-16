@@ -45,7 +45,9 @@
 }
 
 #myreserv-detail-right-box {
+  align-items: baseline;
   width: 70%;
+  padding-left: 20px;
   color: #161616;
   background-color: #e8d5d1;
   border-top-right-radius: 10px;
