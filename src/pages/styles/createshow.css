@@ -1,4 +1,95 @@
 .CreateBody{
-  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  color: #ffff;
+  background-color: #161616;
+}
+.Create_Container{
+  border: 1px solid #fff;
+  width: 920px;
+  height: 960px;
+}
+.Detail_Entire_Box{
+  display: flex;
+}
+.SImage_Box{
+  border: 1px solid #fff;
+  width: 290px;
+  height: 415px;
+  margin: 70px 0 10px 80px;
+}
+.showImage{
+  width: 290px;
+  height: 415px;
+}
+.entir_Boxs{
+  display: flex;
+  justify-content: flex-start;
+}
+.Name_info{
+  margin: 80px 0 0 10px;
+  padding: 0;
+}
+.Name_info li{
+  width: 60px;
+  padding: 14px 15px 13px 15px;
+  margin: 10px;
+  background-color: #ffff;
+  color: #161616;
+  font-size: 15px;
+  font-weight: bold;
   
+  border-radius: 10px;
+  list-style-type: none;
+  list-style: none;
+  border: 1px solid #ffff;
+}
+.input_Boxs{
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-top: 80px;
+}
+.input_Boxs input{
+  padding: 15px 15px 15px 15px;
+  margin: 7px;
+  background-color: #161616;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  
+  border-radius: 10px;
+  list-style-type: none;
+  list-style: none;
+  border: 1px solid #ffff;
+}
+.input_Boxs select{
+  padding: 15px 15px 15px 15px;
+  margin: 5px;
+  background-color: #161616;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  
+  border-radius: 10px;
+  list-style-type: none;
+  list-style: none;
+  border: 1px solid #ffff;
+}
+.Start_To_End input{
+  width: 125px;
+  padding: 13px 15px 13px 15px;
+  margin: 5px;
+  background-color: #161616;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  
+  border-radius: 10px;
+  list-style-type: none;
+  list-style: none;
+  border: 1px solid #ffff;
 }
