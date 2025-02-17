@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import "./styles/Login.css";
 import GoogleLoginBtn from "../assets/GoogleLoginBtn.svg";
+import LoginLogo from "../assets/login_logo.svg";
 
 const GoogleLogin = () => {
   const handleGoogleLogin = () => {
@@ -39,11 +41,17 @@ const GoogleLogin = () => {
 
   return (
     <Wrapper>
-      <LoginBtn
-        src={GoogleLoginBtn}
-        alt="구글 로그인"
-        onClick={handleGoogleLogin}
-      />
+      <div id="loginBox">
+        <div id="loginTop">
+          <img id="loginLogo" src={LoginLogo} />
+          <h4 id="loginText">로그인 해서 모보까 만나러 가기</h4>
+        </div>
+        <LoginBtn
+          src={GoogleLoginBtn}
+          alt="구글 로그인"
+          onClick={handleGoogleLogin}
+        />
+      </div>
     </Wrapper>
   );
 };
