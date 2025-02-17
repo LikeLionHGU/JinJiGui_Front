@@ -9,7 +9,6 @@ function MyReservCard({
   order,
   date,
   time,
-  place,  // 주석 해제
   account,
   ticketNum,
   totalCost,
@@ -66,7 +65,6 @@ function MyReservCard({
           <div className="myreserv-detail-body">
             {formatDateTime(date, time)}
           </div>
-          <div className="myreserv-detail-body">{place}</div>
           <div className="myreserv-detail-body">{account}</div>
           <div className="myreserv-detail-body">
             {ticketNum}매 | {formatCost(totalCost)}
