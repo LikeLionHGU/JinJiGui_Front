@@ -13,22 +13,31 @@ function MyReservList() {
       setIsLoading(true);
       setError(null);
       const response = await fetch(
-        `https://jinjigui.info:443/mypage/reservation/`
+        // `https://jinjigui.info:443/myPage/reservation`
+        `http://localhost:3001/user_reservation_list`
       );
-      
-      if (!response.ok) {
-        throw new Error('예매 내역을 불러오는데 실패했습니다.');
-      }
+
+      // if (!response.ok) {
+      //   throw new Error('예매 내역을 불러오는데 실패했습니다.');
+      // }
 
       const json = await response.json();
-      setMyReservCards(json.user_reservation_list);
+
+      // 데이터 검증 추가
+      // if (!json || !json.user_reservation_list) {
+      //   throw new Error('예매 내역 데이터 형식이 올바르지 않습니다.');
+      // }
+
+      // setMyReservCards(json.user_reservation_list);
+      setMyReservCards(json);
+
     } catch (err) {
       setError(err.message);
+      setMyReservCards([]); // 오류 시 빈 배열로 설정
     } finally {
       setIsLoading(false);
     }
   };
-
   useEffect(() => {
     getMyReservCards();
   }, []);
@@ -73,14 +82,12 @@ function MyReservList() {
             <div className="myreservlist-page-title">공연 예매내역</div>
           </div>
           <div className="myreservlist-page-content-box">
-            {myReservCards.length === 0 ? (
-              <div className="no-reservations">
-                예매 내역이 없습니다.
-              </div>
+            {myReservCards && myReservCards.length === 0 ? (
+              <div className="no-reservations">예매 내역이 없습니다.</div>
             ) : (
               myReservCards.map((myReservCard) => (
-                <div 
-                  key={`${myReservCard.show.id}-${myReservCard.schedule.order}`} 
+                <div
+                  key={myReservCard.ticketNumber}
                   className="myreservlist-page-content"
                 >
                   <MyReservCard
@@ -90,7 +97,6 @@ function MyReservList() {
                     order={myReservCard.schedule.order}
                     date={myReservCard.schedule.date}
                     time={myReservCard.schedule.time}
-                    place={myReservCard.schedule.place}
                     account={myReservCard.show.accountNumber}
                     ticketNum={myReservCard.ticketNumber}
                     totalCost={myReservCard.totalCost}
