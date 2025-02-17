@@ -1,4 +1,4 @@
-.CreateBody{
+.CreateBody {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,163 +7,142 @@
   color: #ffff;
   background-color: #161616;
 }
-.CreateBody h3{
+
+.CreateBody h3 {
   margin-top: 60px;
 }
-.Create_Container{
+
+.Create_Container {
   border: 1px solid #fff;
   width: 920px;
-  height: 950px + auto;
+  min-height: 950px;
 }
-.Detail_Entire_Box{
+
+.Detail_Entire_Box {
   display: flex;
 }
-.SImage_Box{
+
+.SImage_Box {
   border: 1px solid #fff;
   width: 290px;
   height: 400px;
   margin: 70px 0 10px 80px;
 }
-.showImage{
-  width: 290px;
-  height: 415px;
-}
-.entir_Boxs{
+
+.entir_Boxs {
   display: flex;
   justify-content: flex-start;
 }
-.Name_info{
+
+.Name_info {
   margin: 80px 0 0 10px;
   padding: 0;
 }
-.Name_info li{
+
+.Name_info li {
   width: 60px;
-  padding: 14px 15px 13px 15px;
+  padding: 14px 15px;
   margin: 10px;
   background-color: #ffff;
   color: #161616;
   font-size: 15px;
   font-weight: bold;
-  
   border-radius: 10px;
-  list-style-type: none;
   list-style: none;
   border: 1px solid #ffff;
 }
-.input_Boxs{
+
+.input_Boxs {
   display: flex;
   flex-direction: column;
   width: 350px;
   margin-top: 80px;
 }
-.input_Boxs input{
-  padding: 15px 15px 15px 15px;
+
+.input_Boxs input,
+.input_Boxs select,
+.Start_To_End input {
+  padding: 15px;
   margin: 7px;
   background-color: #161616;
   color: #fff;
   font-size: 15px;
   font-weight: bold;
-  
   border-radius: 10px;
-  list-style-type: none;
-  list-style: none;
   border: 1px solid #ffff;
 }
-.input_Boxs select{
-  padding: 15px 15px 15px 15px;
-  margin: 5px;
-  background-color: #161616;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  
-  border-radius: 10px;
-  list-style-type: none;
-  list-style: none;
-  border: 1px solid #ffff;
+.Start_To_End input{
+  padding: 12px 10px; 
 }
-.Start_To_End{
+.Start_To_End {
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
-.Start_To_End input{
-  width: 125px;
-  padding: 13px 15px 13px 15px;
-  margin: 5px;
-  background-color: #161616;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  
-  border-radius: 10px;
-  list-style-type: none;
-  list-style: none;
-  border: 1px solid #ffff;
-}
 /* 상세 공연 만들기 */
-.Each_shows{
+.Each_shows {
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
   margin-top: 40px;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
 }
-.Each_shows_Name{
+
+.Each_shows_Name {
   display: flex;
   justify-content: center;
   gap: 70px;
   border-bottom: 1px solid #fff;
 }
-.Each_shows_Name div{
-  margin: 20px 0 20px 0;
+
+.Each_shows_Name div {
+  margin: 20px 0;
 }
-.Detail_show{
+
+.Detail_show {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
   border-bottom: 1px solid #fff;
 }
-.form{
-  width: 60px;
-  margin: 0 30px 10px 30px;
-}
-.form input{
-  width: 40px;
-}
-.show_inputs input{
-  margin-bottom: 20px;
-  width: 50px;
-}
-/* 상세 공연 입력란 */
-.Detail_show input{
+
+.Detail_show input {
   background-color: #161616;
   color: #fff;
   border: none;
-  padding: 0;
 }
 
-.add_show{
+.form_detail_show {
+  padding: 10px 5px;
+}
+
+.form_detail_date {
+  padding: 10px;
+  color: #fff;
+}
+
+.form_detail_time {
+  width: 90px;
+}
+
+.form_detail_price {
+  width: 50px;
+}
+
+/* 회차 추가 버튼 */
+.add_show {
   color: #EB5A3C;
   padding: 18px;
   border-bottom: 1px solid #fff;
-}
-.add_show:hover{
   cursor: pointer;
 }
-/* 공연에 대한 소개 */
 
-.show_content_Entire{
+/* 공연 소개 */
+.show_content_Entire {
   margin: 70px 0 30px 0;
 }
-/* .show_content{
-  background-color: #161616;
-  color: #fff;
-  border: 1px solid #fff;
-  width: 920px;
-  height: 300px;
-} */
-.show_content textarea{
+
+.show_content textarea {
   background-color: #161616;
   color: #fff;
   border: 1px solid #fff;
@@ -172,70 +151,70 @@
   height: 300px;
   resize: none;
 }
-.show_content p{
+
+.show_content p {
   display: flex;
   margin: -48px 30px 0 0;
   justify-content: flex-end;
   z-index: 10px;
 }
-/* 계좌 + 인당 최대 구매 수 */
-.Club_account{
-  width: 50%;
+
+/* 계좌 입력 */
+.Club_account {
   display: flex;
   align-items: flex-start;
-  margin-top: 10px;
-  margin-bottom: 15px;
+  margin: 10px 0 15px 0;
 }
-.Club_account_space{
+
+.Club_account_space {
+  margin-top: 8px;
   padding-right: 53px;
 }
-.last_input{
+
+.last_input {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin: 35px 70px;
 }
-.last_Detail_input input{
-  width: 200px;
+
+.last_Detail_input input,
+.last_Detail2_input input {
   background-color: #161616;
   color: #fff;
-  padding: 10px; 
+  padding: 10px;
   border: 1px solid gray;
   border-radius: 10px;
+}
+
+.last_Detail_input input {
+  width: 250px;
   margin-left: 30px;
 }
-.last_Detail2_input input{
-  width: 20px;
-  background-color: #161616;
-  color: #fff;
-  padding: 10px ;
-  border: 1px solid gray;
-  border-radius: 10px;
+
+.last_Detail2_input input {
+  width: 30px;
   margin-left: 30px;
 }
-/* 전체 */
-.Create_Container{
-  border: 1px solid #fff;
-  width: 920px;
-  min-height: 950px;
-}
-.delete_Btn button{
+
+/* 삭제 버튼 */
+.delete_Btn button {
   background-color: #161616;
   color: #fff;
   border: 1px solid #fff;
   border-radius: 3px;
+  padding: 5px 10px;
 }
-.make_show_submit{
+
+/* 생성 버튼 */
+.make_show_submit {
   width: 250px;
   height: 60px;
   background-color: #EB5A3C;
   border-radius: 10px;
   font-weight: bold;
   font-size: 18px;
-  margin-top: 40px;
-  margin-left: 650px;
-  margin-bottom: 100px;
-}
-.make_show_submit:hover{
+  margin: 30px auto 100px;
+  display: block;
   cursor: pointer;
 }

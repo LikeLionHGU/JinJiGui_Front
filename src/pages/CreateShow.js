@@ -232,7 +232,6 @@ function Create() {
                 </div>
                 <input
                   type="number"
-                  min='10'
                   // inputMode="numeric"
                   placeholder="공연 런타임을 입력하시오 (분)"
                   onChange={(e)=>setRunTime(e.target.value)}
@@ -255,11 +254,11 @@ function Create() {
 
           {/* 상세 공연 이름들 헤더 */}
           <div className="Each_shows_Name">
-            <div className="form">회차</div>
+            <div className="form">회차 (공)</div>
             <div>날짜</div>
             <div>시간</div>
-            <div>가격</div>
-            <div>수용인원</div>
+            <div>가격 (원)</div>
+            <div>수용인원 (명)</div>
             <div>삭제</div>
           </div>
 
@@ -269,42 +268,40 @@ function Create() {
               {/* 회차 입력란 */}
               <div className="form">
                 <input 
-                  type="number" 
-                  min='1'
+                  className="form_detail_show"
+                  type="number"
                   // inputMode="numeric" 
-                  placeholder="0공"
+                  // placeholder="0"
                   onChange={(e) => updateSchedule("order", e.target.value)}
                 />
               </div>
-              <div className="form">
+              <div>
                 <input 
+                  className="form_detail_date"
                   type="date" 
-                  placeholder="00월 00일"
                   onChange={(e) => updateSchedule("date", e.target.value)}
                 />
               </div>
-              <div className="form">
+              <div>
                 <input 
+                  className="form_detail_time"
                   type="time" 
-                  placeholder="00시 00분"
                   onChange={(e) => updateSchedule("time", e.target.value)}
                 />
               </div>
-              <div className="form">
+              <div>
                 <input 
-                  type="number" 
-                  min='0'
-                  // inputMode="numeric" 
-                  placeholder="0000원"
+                  className="form_detail_price"
+                  type="number"
                   onChange={(e) => updateSchedule("cost", e.target.value)}
                 />
               </div>
-              <div className="form">
+              <div>
                 <input 
+                  className="form_detail_maxPeople"
                   type="number"
-                  min='0'
                   // inputMode="numeric"
-                  placeholder="00명"
+                  placeholder="00"
                   onChange={(e) => updateSchedule("maxPeople", e.target.value)}
                 />
               </div>
@@ -335,9 +332,7 @@ function Create() {
               <label>인당 최대 구매수</label>
               <div className="last_Detail2_input">
                 <input 
-                  type="number" 
-                  min='1'
-                  max='20'
+                  type="number"
                   // inputMode="numeric" 
                   placeholder="00"
                   onChange={(e)=>setMaxTickets(e.target.value)}
