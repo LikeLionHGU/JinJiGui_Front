@@ -1,56 +1,61 @@
 {
-	"user_reservation_list" :[
-		{
-			  "show": {
-				  "id": "adasdafadsf",
-			    "title": "어스",
-			    "accountNumber": "123-456-789"
-			  },
-			  "schedule": {
-				  "order" : 1,
-			    "date": "2025-03-03",
-			    "time": "19:30"
-			  },
-			  "reservation": {
-			    "isDeposit": true
-			  },
-			  "totalCost": 50000,
-			  "poster": "https://design.co.kr/wp-content/uploads/2024/03/%ED%8C%8C%EB%AC%98_%EC%BA%90%EB%A6%AD%ED%84%B0-%ED%8F%AC%EC%8A%A4%ED%84%B0_%EC%B5%9C%EB%AF%BC%EC%8B%9D_%EC%A0%84%EB%8B%AC%EC%9A%A9-832x1189.jpg",
-			  "ticketNumber": 5
-		  },
-		  {
-			  "show": {
-			    "title": "멋사",
-			    "accountNumber": "123-456-789"
-			  },
-			  "schedule": {
-				  "order" : 1,
-			    "date": "2025-03-03",
-			    "time": "19:30"
-			  },
-			  "reservation": {
-			    "isDeposit": true
-			  },
-			  "totalCost": 50000,
-			  "poster": "https://i.namu.wiki/i/83QhQJRkrjYOgRlz8WBlerxOxWfSDjs0nEag90x03uiA6hIMS9rdFCFuC7aCRxP53zCadhmwMlUHhjJX570WRg.webp",
-			  "ticketNumber": 5
-		  },
-		  {
-			  "show": {
-			    "title": "원진",
-			    "accountNumber": "123-456-789"
-			  },
-			  "schedule": {
-				  "order" : 1,
-			    "date": "2025-03-03",
-			    "time": "19:30"
-			  },
-			  "reservation": {
-			    "isDeposit": true
-			  },
-			  "totalCost": 50000,
-			  "poster": "https://blog.kakaocdn.net/dn/bmIwxA/btrVE1Ql6YL/kfImMiXEd19Kch9ziopPj0/img.jpg",
-			  "ticketNumber": 5
-		  }
-	 ]
+  "user": {
+    "userName": "이하린",
+    "phoneNumber": "23301057513162",
+    "stdCode": "22300603"
+  },
+  "user_reservation_list": [
+    {
+      "show": {
+        "id": "adasdafadsf",
+        "title": "어스의 마지막 스토리",
+        "accountNumber": "123-4454-2134-21"
+      },
+      "schedule": {
+        "order": 1,
+        "date": "2025년 03월 03일",
+        "time": "19:30"
+      },
+      "reservation": {
+        "isDeposit": true
+      },
+      "totalCost": 50000,
+      "poster": "https://design.co.kr/wp-content/uploads/2024/03/%ED%8C%8C%EB%AC%98_%EC%BA%90%EB%A6%AD%ED%84%B0-%ED%8F%AC%EC%8A%A4%ED%84%B0_%EC%B5%9C%EB%AF%BC%EC%8B%9D_%EC%A0%84%EB%8B%AC%EC%9A%A9-832x1189.jpg",
+      "ticketNumber": 5
+    },
+    {
+      "show": {
+        "title": "멋사",
+        "accountNumber": "123-4454-2134-21"
+      },
+      "schedule": {
+        "order": 1,
+        "date": "2025년 03-03",
+        "time": "19:30"
+      },
+      "reservation": {
+        "isDeposit": true
+      },
+      "totalCost": 50000,
+      "poster": "https://i.namu.wiki/i/83QhQJRkrjYOgRlz8WBlerxOxWfSDjs0nEag90x03uiA6hIMS9rdFCFuC7aCRxP53zCadhmwMlUHhjJX570WRg.webp",
+      "ticketNumber": 5
+    },
+    {
+      "show": {
+        "title": "원진",
+        "accountNumber": "123-4454-2134-21"
+      },
+      "schedule": {
+        "order": 1,
+        "date": "2025년 03-03",
+        "time": "19:30"
+      },
+      "reservation": {
+        "isDeposit": true
+      },
+      "totalCost": 50000,
+      "poster": "https://blog.kakaocdn.net/dn/bmIwxA/btrVE1Ql6YL/kfImMiXEd19Kch9ziopPj0/img.jpg",
+      "ticketNumber": 5
+    }
+  ]
 }
