@@ -5,7 +5,7 @@ import axios from "axios";
 
 function Create() {
   const [title, setTitle] = useState("");
-  const [poster, setPoster] = useState("");
+  const [poster, setPoster] = useState(null);
   const [clubName, setClubName] = useState("");
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -28,6 +28,7 @@ function Create() {
       [key]: value
     }));
   };
+  
   const [shows, setShows] = useState([{ id: Date.now() }]);
 
   const makeShow = async () => {
@@ -35,8 +36,9 @@ function Create() {
       Swal.fire("제목을 입력해 주세요");
       return;
     }
-    if(!poster){
+    if(!poster || !(poster instanceof File)){
       Swal.fire("공연 이미지를 선택해 주세요");
+      console.log("포스터 파일 확인:",poster);
       return;
     }
     if(!clubName){
@@ -89,8 +91,8 @@ function Create() {
     }
     const requestData = {
       title,
+      clubName,
       location,
-      poster,
       startDate,
       endDate,
       runtime,
@@ -98,11 +100,32 @@ function Create() {
       content,
       maxTickets,
       schedule
-    };
+    }; 
+
+    const formData = new FormData();
+    formData.append("poster", poster);
+    formData.append("request", new Blob([JSON.stringify(requestData)], { type: "application/json" }));
+    // formData.append("title", title);
+    // formData.append("clubName", clubName);
+    // formData.append("location", location);
+    // formData.append("startDate", startDate);
+    // formData.append("endDate", endDate);
+    // formData.append("runtime", runtime);
+    // formData.append("account", account);
+    // formData.append("content", content);
+    // formData.append("maxTickets", maxTickets);
+    // formData.append("poster", poster);
+
+
+    console.log("폼 데이터 확인:");
+    for(let [key,value]of formData.entries()){
+      console.log(`${key}:`,value);
+    }
+    
     try{
       const response = await axios.post(
         `https://jinjigui.info:443/manager/create/save`,
-        JSON.stringify(requestData),
+        formData,
         {
           headers:{
             "Content-Type":"multipart/form-data"
@@ -113,7 +136,7 @@ function Create() {
       console.log("저장 성공",response.data);
     }catch(error){
       console.error("저장 오류",error);
-      Swal.fire("저장 실패","공연 생성에 실패하였습니다.","error");
+      Swal.fire("저장 실패",`서버 오류:${error.response?.data?.message || "알 수없는 오류"}`,"error");
     }
   };
 
@@ -124,6 +147,7 @@ function Create() {
       Swal.fire("14글자를 초과할 수 없습니다.");
     }
   };
+  
 
   // 공연 소개란
   const handleContent = (e) => {
@@ -202,8 +226,8 @@ function Create() {
                   />
                 </div>
                 <input
-                  type="text"
-                  inputMode="numeric"
+                  type="number"
+                  // inputMode="numeric"
                   placeholder="공연 런타임을 입력하시오 (분)"
                   onChange={(e)=>setRunTime(e.target.value)}
                 />
@@ -239,8 +263,8 @@ function Create() {
               {/* 회차 입력란 */}
               <div className="form">
                 <input 
-                  type="text" 
-                  inputMode="numeric" 
+                  type="number" 
+                  // inputMode="numeric" 
                   placeholder="0공"
                   onChange={(e) => updateSchedule("order", e.target.value)}
                 />
@@ -261,16 +285,16 @@ function Create() {
               </div>
               <div className="form">
                 <input 
-                  type="text" 
-                  inputMode="numeric" 
+                  type="number" 
+                  // inputMode="numeric" 
                   placeholder="0000원"
                   onChange={(e) => updateSchedule("cost", e.target.value)}
                 />
               </div>
               <div className="form">
                 <input 
-                  type="text"
-                  inputMode="numeric"
+                  type="number"
+                  // inputMode="numeric"
                   placeholder="00명"
                   onChange={(e) => updateSchedule("maxPeople", e.target.value)}
                 />
