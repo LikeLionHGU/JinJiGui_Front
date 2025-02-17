@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import "./styles/Main.css";
+import "../pages/styles/Main.css";
 
 const ShowLists = ({ cards }) => {
   return (

@@ -4,17 +4,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-
 import Main from "./pages/Main";
-import Login from "./pages/Login";
+import GoogleLogin from "./pages/loginPage.jsx";
 
 import MyReservList from "./pages/MyReservList.js";
 import UpdateProfile from "./pages/UpdateProfile.js";
 import PerformDetail from "./pages/PerformDetail.js";
 
-import ManagerShowList from "./pages/ManagerShowList.js"
+import ManagerShowList from "./pages/ManagerShowList.js";
 import ManageClub from "./pages/ManageClub.js";
-import HolderList from "./pages/HolderList.js"
+import HolderList from "./pages/HolderList.js";
 import CreateShow from "./pages/CreateShow.js";
 import UpdateShow from "./pages/UpdateShow.js";
 import AddInfo from "./pages/AddInfo.js";
@@ -29,7 +28,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<GoogleLogin />} />
           <Route path="/add-info" element={<AddInfo />} />
           <Route path="/mypage" element={<MyReservList />} />
           <Route path="/mypage/reservation" element={<MyReservList />} />

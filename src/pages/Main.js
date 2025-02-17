@@ -4,7 +4,9 @@ import Banner from "../components/Banner";
 import ShowLists from "../components/ShowList";
 import axios from "axios";
 
-import "../components/styles/Main.css";
+import loginLogo from "../assets/login_logo.svg";
+
+import "./styles/Main.css";
 import "../components/styles/Banner.css";
 
 function Main() {
@@ -91,7 +93,12 @@ function Main() {
     getCards();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div id="loading">
+        <img id="loging-logo" src={loginLogo} alt="loading" />
+      </div>
+    );
   if (error) return <p>{error}</p>;
 
   return (
