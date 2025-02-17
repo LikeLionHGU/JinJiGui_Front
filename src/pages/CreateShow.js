@@ -71,7 +71,8 @@ function Create() {
                   <input type="date" />
                 </div>
                 <input
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
                   placeholder="공연 런타임을 입력하시오 (분)"
                 />
                 <select>
