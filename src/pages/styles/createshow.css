@@ -212,11 +212,16 @@
   border-radius: 10px;
   margin-left: 30px;
 }
-
+/* 전체 */
 .Create_Container{
   border: 1px solid #fff;
   width: 920px;
   min-height: 950px;
 }
-
+.delete_Btn button{
+  background-color: #161616;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 3px;
+}
 
