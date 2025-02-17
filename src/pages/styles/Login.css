@@ -1,0 +1,35 @@
+#login-box {
+  display: flex;
+  flex-direction: row;
+
+  width: 920px;
+  height: 475px;
+
+  margin: 200px;
+  align-items: center;
+
+  border: solid #fff;
+}
+
+#login-top {
+  width: 920px;
+}
+
+#loginLogo {
+  width: 279px;
+  height: 60px;
+}
+
+#loginBtn {
+  width: 300px;
+  height: 62px;
+}
+
+#loginBtn:hover {
+  width: 300px;
+  height: 62px;
+}
+
+#loginText {
+  color: #fff;
+}
