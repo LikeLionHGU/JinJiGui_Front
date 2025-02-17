@@ -7,7 +7,7 @@ function ManagerShowList() {
 
   const getMyShowListCards = async () => {
     try {
-      const response = await fetch(`https://jinjigui.info:443/manager/show/`);
+      const response = await fetch(`https://jinjigui.info:443/manager/show`);
       const json = await response.json();
       setMyShowListCards(json.my_show_list); // json.my_show_list 데이터를 저장
     } catch (error) {

@@ -49,7 +49,6 @@ function MyReservCard({
           <div className="myreserv-detail-header">공연명</div>
           <div className="myreserv-detail-header">회차</div>
           <div className="myreserv-detail-header">날짜 | 시간</div>
-          <div className="myreserv-detail-header">장소</div>
           <div className="myreserv-detail-header">입금 계좌</div>
           <div className="myreserv-detail-header">티켓 매수 | 총액</div>
           <div className="myreserv-detail-header">입금 상태</div>

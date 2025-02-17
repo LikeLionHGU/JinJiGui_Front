@@ -13,7 +13,8 @@ function MyReservList() {
       setIsLoading(true);
       setError(null);
       const response = await fetch(
-        `https://jinjigui.info:443/myPage/reservation/`
+        // `https://jinjigui.info:443/myPage/reservation`
+        `http://localhost:3001/user_reservation_list`
       );
 
       // if (!response.ok) {
@@ -27,7 +28,9 @@ function MyReservList() {
       //   throw new Error('예매 내역 데이터 형식이 올바르지 않습니다.');
       // }
 
-      setMyReservCards(json.user_reservation_list);
+      // setMyReservCards(json.user_reservation_list);
+      setMyReservCards(json);
+
     } catch (err) {
       setError(err.message);
       setMyReservCards([]); // 오류 시 빈 배열로 설정
@@ -82,22 +85,22 @@ function MyReservList() {
             {myReservCards && myReservCards.length === 0 ? (
               <div className="no-reservations">예매 내역이 없습니다.</div>
             ) : (
-              myReservCards?.map((myReservCard) => (
+              myReservCards.map((myReservCard) => (
                 <div
-                  key={myReservCard?.ticketNumber}
+                  key={myReservCard.ticketNumber}
                   className="myreservlist-page-content"
                 >
                   <MyReservCard
-                    img_path={myReservCard?.poster}
-                    id={myReservCard?.show?.id}
-                    title={myReservCard?.show?.title}
-                    order={myReservCard?.schedule?.order}
-                    date={myReservCard?.schedule?.date}
-                    time={myReservCard?.schedule?.time}
-                    account={myReservCard?.show?.accountNumber}
-                    ticketNum={myReservCard?.ticketNumber}
-                    totalCost={myReservCard?.totalCost}
-                    isDeposit={myReservCard?.reservation?.isDeposit}
+                    img_path={myReservCard.poster}
+                    id={myReservCard.show.id}
+                    title={myReservCard.show.title}
+                    order={myReservCard.schedule.order}
+                    date={myReservCard.schedule.date}
+                    time={myReservCard.schedule.time}
+                    account={myReservCard.show.accountNumber}
+                    ticketNum={myReservCard.ticketNumber}
+                    totalCost={myReservCard.totalCost}
+                    isDeposit={myReservCard.reservation.isDeposit}
                   />
                 </div>
               ))
