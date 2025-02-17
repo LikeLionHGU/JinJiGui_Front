@@ -14,8 +14,15 @@ const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
         params: {
           credential: idToken,
         },
+        withCredentials: true,
       }
     );
+
+    // const request = await axios.post(
+    //   "https://jinjigui.info/api/auth/login",
+    //   { idToken },
+    //   { headers: { "Content-Type": "application/json" }, withCredentials: true }
+    // );
 
     // if (serverResponse.status === 200) {
     //   setLoginCheck(false); // 로그인 성공

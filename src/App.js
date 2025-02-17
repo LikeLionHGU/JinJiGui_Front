@@ -25,7 +25,6 @@ import Loading from "./pages/loading.jsx";
 function App() {
   return (
     <div className="App">
-      <Router>
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
@@ -45,7 +44,6 @@ function App() {
           <Route path="/loading" element={<Loading />} />
         </Routes>
         <Footer />
-      </Router>
     </div>
   );
 }
