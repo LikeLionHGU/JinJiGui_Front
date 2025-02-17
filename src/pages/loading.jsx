@@ -39,14 +39,14 @@ const Loading = () => {
 
   return (
     <div>
-      <LoginLoding>로그인 중입니다...</LoginLoding>
+      <Loding>로그인 중입니다...</Loding>
     </div>
   );
 };
 
 export default Loading;
 
-const LoginLoding = styled.div`
+const Loding = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

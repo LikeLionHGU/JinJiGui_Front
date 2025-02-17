@@ -1,18 +1,17 @@
-#login-box {
-  display: flex;
+#loginBox {
   flex-direction: row;
 
-  width: 920px;
+  width: 70%;
   height: 475px;
 
-  margin: 200px;
+  margin: 150px;
   align-items: center;
+  align-content: center;
 
   border: solid #fff;
 }
 
 #login-top {
-  width: 920px;
 }
 
 #loginLogo {
