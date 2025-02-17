@@ -4,77 +4,77 @@ import "./styles/MyReservCard.css";
 
 function MyReservCard({
   img_path,
+  id,
   title,
   order,
   date,
   time,
-  place,
+  place,  // 주석 해제
   account,
   ticketNum,
   totalCost,
   isDeposit,
 }) {
-  const getDepositStatus = () => {
-    return isDeposit ? (
-      <span style={{ color: "blue" }}>입금 완료</span>
-    ) : (
-      <span style={{ color: "red" }}>입금 전</span>
-    );
-  };
   const navigate = useNavigate();
 
-  const handleLinkClick = () => {
-    navigate(`/show/${title}`);
+  const getDepositStatus = () => (
+    <span className={`deposit-status ${isDeposit ? 'complete' : 'pending'}`}>
+      {isDeposit ? '입금 완료' : '입금 전'}
+    </span>
+  );
+
+  const handleShowDetail = () => {
+    navigate(`/show/${id}`);
+  };
+
+  const formatCost = (cost) => {
+    return parseInt(cost).toLocaleString() + '원';
+  };
+
+  const formatDateTime = (date, time) => {
+    return `${date} | ${time}`;
   };
 
   return (
-    <>
-      <div className="myreserv-card">
-        <div className="myreserv-poster-box">
-          <img
-            src={img_path}
-            id="myreserv-poster"
-            onClick={handleLinkClick}
-            style={{ cursor: "pointer" }}
-            alt="show_poster"
-          />
+    <div className="myreserv-card">
+      <div className="myreserv-poster-box">
+        <img
+          src={img_path}
+          className="myreserv-poster"
+          onClick={handleShowDetail}
+          alt={`${title} 공연 포스터`}
+        />
+      </div>
+      <div className="myreserv-detail-box">
+        <div className="myreserv-detail-column detail-headers">
+          <div className="myreserv-detail-header">공연명</div>
+          <div className="myreserv-detail-header">회차</div>
+          <div className="myreserv-detail-header">날짜 | 시간</div>
+          <div className="myreserv-detail-header">장소</div>
+          <div className="myreserv-detail-header">입금 계좌</div>
+          <div className="myreserv-detail-header">티켓 매수 | 총액</div>
+          <div className="myreserv-detail-header">입금 상태</div>
         </div>
-        <div className="myreserv-detail-box">
-          <div className="myreserv-detail-column" id="myreserv-detail-left-box">
-            <div className="myreserv-detail-header">공연명</div>
-            <div className="myreserv-detail-header">회차</div>
-            <div className="myreserv-detail-header">날짜 | 시간</div>
-            <div className="myreserv-detail-header">장소</div>
-            <div className="myreserv-detail-header">입금 계좌</div>
-            <div className="myreserv-detail-header">티켓 매수 | 총액</div>
-            <div className="myreserv-detail-header">입금 상태</div>
-          </div>
+        <div className="myreserv-detail-column detail-contents">
           <div
-            className="myreserv-detail-column"
-            id="myreserv-detail-right-box"
+            className="myreserv-detail-body show-title"
+            onClick={handleShowDetail}
           >
-            <div
-              className="myreserv-detail-body"
-              id="myreserv-show-title"
-              onClick={handleLinkClick}
-              style={{ cursor: "pointer" }}
-            >
-              {title} ▶
-            </div>
-            <div className="myreserv-detail-body">{order}공</div>
-            <div className="myreserv-detail-body">
-              {date} | {time}
-            </div>
-            <div className="myreserv-detail-body">{place}</div>
-            <div className="myreserv-detail-body">{account}</div>
-            <div className="myreserv-detail-body">
-              {ticketNum}매 | {totalCost}원
-            </div>
-            <div className="myreserv-detail-body">{getDepositStatus()}</div>
+            {title} ▶
           </div>
+          <div className="myreserv-detail-body">{order}공</div>
+          <div className="myreserv-detail-body">
+            {formatDateTime(date, time)}
+          </div>
+          <div className="myreserv-detail-body">{place}</div>
+          <div className="myreserv-detail-body">{account}</div>
+          <div className="myreserv-detail-body">
+            {ticketNum}매 | {formatCost(totalCost)}
+          </div>
+          <div className="myreserv-detail-body">{getDepositStatus()}</div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
