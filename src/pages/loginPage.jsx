@@ -42,7 +42,7 @@ const GoogleLogin = () => {
   return (
     <Wrapper>
       <div id="loginBox">
-        <div id="lodinTop">
+        <div id="loginTop">
           <img id="loginLogo" src={LoginLogo} />
           <h4 id="loginText">로그인 해서 모보까 만나러 가기</h4>
         </div>

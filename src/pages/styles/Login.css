@@ -1,17 +1,21 @@
 #loginBox {
   flex-direction: row;
 
-  width: 70%;
+  width: 65%;
   height: 475px;
 
-  margin: 150px;
+  margin: 8%;
   align-items: center;
   align-content: center;
+
+  box-shadow: 20px 20px 8px rgba(0, 0, 0, 0.25);
+  /* transform: matrix(-1, 0, 0, 1, 0, 0); */
 
   border: solid #fff;
 }
 
-#login-top {
+#loginTop {
+  margin-bottom: 10%;
 }
 
 #loginLogo {
@@ -31,4 +35,5 @@
 
 #loginText {
   color: #fff;
+  margin-top: 0px;
 }
