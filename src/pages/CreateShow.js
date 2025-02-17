@@ -14,7 +14,7 @@ function Create() {
   const [content, setContent] = useState("");
   const [account, setAccount] = useState("");
   const [maxTickets, setMaxTickets] = useState("");
-  const [schedule, setSchedule] = useState({
+  const [schedule, setSchedule] = useState({ 
     order: 0,
     date: "",
     time: "",
@@ -22,6 +22,7 @@ function Create() {
     maxPeople: ""
   });
   
+  //기존값 확인하고 새로 생긴 schedule 정보 받아옴
   const updateSchedule = (key, value) => {
     setSchedule((preSchedule) => ({
       ...preSchedule,
@@ -29,9 +30,11 @@ function Create() {
     }));
   };
   
+  //schedule 추가 초기 state 설정정
   const [shows, setShows] = useState([{ id: Date.now() }]);
 
-  const makeShow = async () => {
+  //모든 입력란을 받아야 submit 가능 + 빈칸이 어디인지 알려줌
+  const makeShow = async () => { 
     if(!title){
       Swal.fire("제목을 입력해 주세요");
       return;
@@ -89,6 +92,7 @@ function Create() {
       Swal.fire(schedule.order+"공의 시작시간을 입력해 주세요");
       return;
     }
+    //보내주어야 하는 전체 데이터
     const requestData = {
       title,
       clubName,
@@ -104,7 +108,7 @@ function Create() {
 
     const formData = new FormData();
     formData.append("poster", poster);
-    formData.append("request", new Blob([JSON.stringify(requestData)], { type: "application/json" }));
+    formData.append("request", new Blob([JSON.stringify(requestData)], { type: "application/json" })); //request는 모두 application으로 긔긔
     // formData.append("title", title);
     // formData.append("clubName", clubName);
     // formData.append("location", location);
@@ -116,12 +120,12 @@ function Create() {
     // formData.append("maxTickets", maxTickets);
     // formData.append("poster", poster);
 
-
+    //폼 데이터 확인 보내졌는지 check
     console.log("폼 데이터 확인:");
     for(let [key,value]of formData.entries()){
       console.log(`${key}:`,value);
     }
-    
+    // api연결
     try{
       const response = await axios.post(
         `https://jinjigui.info:443/manager/create/save`,
@@ -140,6 +144,7 @@ function Create() {
     }
   };
 
+  //제목 글자 수 limit
   const handletitle = (e) => {
     if (e.target.value.length <= 14) {
       setTitle(e.target.value);
@@ -149,7 +154,7 @@ function Create() {
   };
   
 
-  // 공연 소개란
+  // 공연 소개란 limit
   const handleContent = (e) => {
     if (e.target.value.length <= 500) {
       setContent(e.target.value);
@@ -227,6 +232,7 @@ function Create() {
                 </div>
                 <input
                   type="number"
+                  min='10'
                   // inputMode="numeric"
                   placeholder="공연 런타임을 입력하시오 (분)"
                   onChange={(e)=>setRunTime(e.target.value)}
@@ -264,6 +270,7 @@ function Create() {
               <div className="form">
                 <input 
                   type="number" 
+                  min='1'
                   // inputMode="numeric" 
                   placeholder="0공"
                   onChange={(e) => updateSchedule("order", e.target.value)}
@@ -286,6 +293,7 @@ function Create() {
               <div className="form">
                 <input 
                   type="number" 
+                  min='0'
                   // inputMode="numeric" 
                   placeholder="0000원"
                   onChange={(e) => updateSchedule("cost", e.target.value)}
@@ -294,6 +302,7 @@ function Create() {
               <div className="form">
                 <input 
                   type="number"
+                  min='0'
                   // inputMode="numeric"
                   placeholder="00명"
                   onChange={(e) => updateSchedule("maxPeople", e.target.value)}
@@ -315,8 +324,8 @@ function Create() {
               <label className="Club_account_space">계좌번호</label>
               <div className="last_Detail_input">
                 <input
-                  type="text"
-                  inputMode="numeric"
+                  type="number"
+                  // inputMode="numeric"
                   placeholder="입금받을 계좌번호를 입력하시오."
                   onChange={(e)=>setAccount(e.target.value)}
                 />
@@ -326,8 +335,10 @@ function Create() {
               <label>인당 최대 구매수</label>
               <div className="last_Detail2_input">
                 <input 
-                  type="text" 
-                  inputMode="numeric" 
+                  type="number" 
+                  min='1'
+                  max='20'
+                  // inputMode="numeric" 
                   placeholder="00"
                   onChange={(e)=>setMaxTickets(e.target.value)}
                 />
@@ -341,17 +352,17 @@ function Create() {
           <p>공연에 대한 소개</p>
           <div className="show_content">
             <textarea
-              value={content}
               placeholder="공연에 대한 소개를 작성하세요"
               onChange={handleContent}
             />
             <p>( {content.length}/500 )</p>
           </div>
         </div>
+        
+        <button className="make_show_submit" onClick={makeShow}>
+          생성하기
+        </button>
       </div>
-      <button className="make_show_submit" onClick={makeShow}>
-        생성하기
-      </button>
     </div>
   );
 }

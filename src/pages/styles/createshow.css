@@ -174,8 +174,9 @@
 }
 .show_content p{
   display: flex;
-  margin: 0 17px 0 0;
+  margin: -48px 30px 0 0;
   justify-content: flex-end;
+  z-index: 10px;
 }
 /* 계좌 + 인당 최대 구매 수 */
 .Club_account{
@@ -224,4 +225,17 @@
   border: 1px solid #fff;
   border-radius: 3px;
 }
-
+.make_show_submit{
+  width: 250px;
+  height: 60px;
+  background-color: #EB5A3C;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 40px;
+  margin-left: 650px;
+  margin-bottom: 100px;
+}
+.make_show_submit:hover{
+  cursor: pointer;
+}
