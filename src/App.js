@@ -20,6 +20,7 @@ import AddInfo from "./pages/AddInfo.js";
 import BookTicket from "./pages/BookTicket";
 
 import "../src/App.css";
+import Loading from "./pages/loading.jsx";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/manager/update" element={<UpdateShow />} />
           <Route path="/bookticket" element={<BookTicket />} />
           <Route path="/show/:id" element={<PerformDetail />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
         <Footer />
       </Router>
