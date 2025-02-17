@@ -3,16 +3,16 @@ import axios from "axios";
 const sendAccessTokenToBackend = async (idToken) => {
   console.log(idToken);
   try {
-    axios.post("https://jinjigui.info/api/auth/google/session", null, {
-      params: { credential: idToken },
-    });
+    //   axios.post("https://jinjigui.info/api/auth/google/session", null, {
+    //     params: { credential: idToken },
+    //   });
 
     const serverResponse = await axios.post(
       `https://jinjigui.info/api/auth/google/session`,
       {},
       {
         params: {
-          credential: { idToken },
+          credential: idToken,
         },
       }
     );
