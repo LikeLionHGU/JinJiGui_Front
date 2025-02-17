@@ -13,8 +13,7 @@ function MyReservList() {
       setIsLoading(true);
       setError(null);
       const response = await fetch(
-        // `https://jinjigui.info:443/myPage/reservation`
-        `http://localhost:3001/user_reservation_list`
+        `https://jinjigui.info:443/myPage/reservation`
       );
 
       // if (!response.ok) {
@@ -28,8 +27,7 @@ function MyReservList() {
       //   throw new Error('예매 내역 데이터 형식이 올바르지 않습니다.');
       // }
 
-      // setMyReservCards(json.user_reservation_list);
-      setMyReservCards(json);
+      setMyReservCards(json.user_reservation_list);
 
     } catch (err) {
       setError(err.message);
