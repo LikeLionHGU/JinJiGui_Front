@@ -1,17 +1,18 @@
 import axios from "axios";
 
 const sendAccessTokenToBackend = async (idToken) => {
+  console.log(idToken);
   try {
-    axios.post("https://jinjigui.info:443/api/auth/google/session", null, {
+    axios.post("https://jinjigui.info/api/auth/google/session", null, {
       params: { credential: idToken },
     });
 
     const serverResponse = await axios.post(
-      `https://jinjigui.info:443/api/auth/google/session`,
+      `https://jinjigui.info/api/auth/google/session`,
       {},
       {
-        headers: {
-          Authorization: `Bearer ${idToken}`,
+        params: {
+          credential: { idToken },
         },
       }
     );
