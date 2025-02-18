@@ -4,11 +4,6 @@ import GoogleLoginBtn from "../assets/GoogleLoginBtn.svg";
 import LoginLogo from "../assets/login_logo.svg";
 
 const GoogleLogin = () => {
-  const REACT_APP_GOOGLE_AUTH_CLIENT_ID =
-    "740844917655-2t0gq4d5usoqt5qmuffbde9gal1f1u0r.apps.googleusercontent.com";
-  const REACT_APP_GOOGLE_AUTH_REDIRECT_URI =
-    "https://jin-ji-gui-front.vercel.app/loading";
-
   const handleGoogleLogin = () => {
     // CSRF 방지를 위한 state 생성
     const state = Math.random().toString(36).substring(2);
@@ -20,15 +15,18 @@ const GoogleLogin = () => {
 
     // URL 파라미터 설정
     const authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
-    console.log("id: " + REACT_APP_GOOGLE_AUTH_CLIENT_ID);
-    console.log("uri: " + REACT_APP_GOOGLE_AUTH_REDIRECT_URI);
-    console.log("id: " + REACT_APP_GOOGLE_AUTH_CLIENT_ID);
+    console.log("id: " + process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID);
+    console.log("uri: " + process.env.REACT_APP_GOOGLE_AUTH_REDIRECT_URI);
+    console.log("id: " + process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID);
 
     // 환경변수에서 값을 가져와 URL에 추가
-    authUrl.searchParams.append("client_id", REACT_APP_GOOGLE_AUTH_CLIENT_ID);
+    authUrl.searchParams.append(
+      "client_id",
+      process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID
+    );
     authUrl.searchParams.append(
       "redirect_uri",
-      REACT_APP_GOOGLE_AUTH_REDIRECT_URI
+      process.env.REACT_APP_GOOGLE_AUTH_REDIRECT_URI
     );
     authUrl.searchParams.append("response_type", "id_token");
     authUrl.searchParams.append("scope", "email profile openid");
