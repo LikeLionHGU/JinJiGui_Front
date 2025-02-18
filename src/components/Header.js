@@ -58,13 +58,17 @@ function Header() {
             <span className="Header_Link" onClick={loginEnter}>
               로그인
             </span>
-            <span>회원가입</span>
+            <span className="Header_Link" onClick={loginEnter}>
+              회원가입
+            </span>
           </div>
         ) : manager ? (
           <div className="Header_Right">
             <NavLink
               className="Header_Link"
-              style={({ isActive }) => (isActive ? activeStyle : {color: "white"})}
+              style={({ isActive }) =>
+                isActive ? activeStyle : { color: "white" }
+              }
               to="/manager"
             >
               <span>내 공연 관리</span>
@@ -94,9 +98,7 @@ function Header() {
             <span className="Header_Link" onClick={homeEnter}>
               홈
             </span>
-            <span className="Header_Link" onClick={loginEnter}>
-              로그아웃
-            </span>
+            <span className="Header_Link">로그아웃</span>
             <NavLink
               className="Header_Link"
               style={() =>
