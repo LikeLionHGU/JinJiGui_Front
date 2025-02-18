@@ -50,14 +50,15 @@ function Main() {
   const getBanners = async () => {
     try {
       const response = await axios.get(`https://jinjigui.info:443/main`);
-
+  
       console.log("API 호출 성공:", response.data);
       const showInfo = response.data.show_info || [];
       const formattedBanners = showInfo.map((info) => ({
         id: info.show.id,
         poster: info.show.poster,
+        title: info.show.title, // 제목 정보 추가
       }));
-      console.log(showInfo);
+      console.log(formattedBanners);
       setBanners(formattedBanners);
     } catch (error) {
       console.error("배너를 불러오지 못했습니다.", error);
@@ -106,6 +107,7 @@ function Main() {
     <div className="wrap">
       <div id="contents">
         <Banner
+          id={banners.id}
           banners={banners}
           selectedIndex={selectedIndex}
           setSelectedIndex={setSelectedIndex}
