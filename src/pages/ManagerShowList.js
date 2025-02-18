@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import "./styles/ManagerShowList.css";
 import MyShowListCard from "../components/MyShowListCard";
 
 function ManagerShowList() {
   const [MyShowListCards, setMyShowListCards] = useState([]); // 여기가 문제였습니다
+  const navigate = useNavigate();
+
+  const createEnter = () => {
+    navigate("/manager/create");
+  };
 
   const getMyShowListCards = async () => {
     try {
@@ -26,7 +32,7 @@ function ManagerShowList() {
           <div className="manager-showlist-title">공연 관리</div>
         </div>
         <div className="manager-showlist-createButton-box">
-          <div className="manager-showlist-createButton">
+          <div className="manager-showlist-createButton" onClick={createEnter}>
             새로운 공연 추가하기
           </div>
         </div>

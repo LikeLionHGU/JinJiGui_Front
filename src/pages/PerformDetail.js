@@ -13,7 +13,7 @@ function PerformDetail() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({
     available: "false",
-    qrImg: "",
+    qrImage: "",
     totalCost: "",
     account: "",
     remain_tickets: "",
@@ -62,17 +62,17 @@ function PerformDetail() {
   useEffect(() => {
     if (data.available === true) {
       Swal.fire({
+        icon: "success",
         title: "예매 성공!",
+        imageUrl: data.qrImage,
+        imageHeight: 300,
+        imageAlt: "송금 QR",
         text: "성공적으로 예매되었습니다.",
-        imageUrl: data.qrImg,
-        imageHeight: 1500,
-        imageAlt: "A tall image",
         html:
           data.account +
           "로 " +
           data.totalCost +
-          "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
-        icon: "success",
+          "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>위 송금 QR을 스캔해서 송금하실 수도 있습니다.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
       });
     }
   }, [data]);
@@ -150,17 +150,17 @@ function PerformDetail() {
       if (responseData.available === true) {
         setIsDisable(false);
         Swal.fire({
-          title: "예매 성공!",
-          text: "성공적으로 예매되었습니다.",
-          imageUrl: responseData.qrImg,
-          imageHeight: 1500,
-          imageAlt: "A tall image",
-          html:
-            responseData.account +
-            "로 " +
-            responseData.totalCost +
-            "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
           icon: "success",
+          title: "예매 성공!",
+          imageUrl: responseData.qrImage,
+          imageHeight: 250,
+          imageAlt: "송금 QR",
+          text: "성공적으로 예매되었습니다.",
+          html:
+            `<strong>${responseData.account}</strong>` +
+            "(으)로 " +
+            `<strong>${responseData.totalCost}원</strong>` +
+            "을 입금해주세요.<br>위 QR을 스캔하여 송금하실 수도 있습니다.<br>입금자명은 <strong>❗️학번+이름❗️</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
         });
       }
     } catch (error) {
