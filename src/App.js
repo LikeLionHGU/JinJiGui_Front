@@ -25,25 +25,25 @@ import Loading from "./pages/loading.jsx";
 function App() {
   return (
     <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<GoogleLogin />} />
-          <Route path="/add-info" element={<AddInfo />} />
-          <Route path="/mypage" element={<MyReservList />} />
-          <Route path="/mypage/reservation" element={<MyReservList />} />
-          <Route path="/mypage/update" element={<UpdateProfile />} />
-          <Route path="/manager" element={<ManagerShowList />} />
-          <Route path="/manager/show" element={<ManagerShowList />} />
-          <Route path="/manager/club" element={<ManageClub />} />
-          <Route path="/manager/holder" element={<HolderList />} />
-          <Route path="/manager/create" element={<CreateShow />} />
-          <Route path="/manager/update" element={<UpdateShow />} />
-          <Route path="/bookticket" element={<BookTicket />} />
-          <Route path="/show/:id" element={<PerformDetail />} />
-          <Route path="/loading" element={<Loading />} />
-        </Routes>
-        <Footer />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<GoogleLogin />} />
+        <Route path="/add-info" element={<AddInfo />} />
+        <Route path="/mypage" element={<MyReservList />} />
+        <Route path="/mypage/reservation" element={<MyReservList />} />
+        <Route path="/mypage/update" element={<UpdateProfile />} />
+        <Route path="/manager" element={<ManagerShowList />} />
+        <Route path="/manager/show" element={<ManagerShowList />} />
+        <Route path="/manager/club" element={<ManageClub />} />
+        <Route path="/manager/holder" element={<HolderList />} />
+        <Route path="/manager/create" element={<CreateShow />} />
+        <Route path="/manager/update" element={<UpdateShow />} />
+        <Route path="/bookticket" element={<BookTicket />} />
+        <Route path="/show/:id" element={<PerformDetail />} />
+        <Route path="/loading" element={<Loading />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
