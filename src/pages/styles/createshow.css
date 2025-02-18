@@ -1,3 +1,22 @@
+.runtime_shows input[type="number"],
+.form_detail_price_2 input[type="number"],
+.form_detail_maxPeople_2 input[type="number"],
+.shows_line input[type="number"]   {
+  -moz-appearance: textfield; 
+  appearance: none; 
+}
+.runtime_shows input[type="number"]::-webkit-outer-spin-button,
+.runtime_shows input[type="number"]::-webkit-inner-spin-button,
+.form_detail_price_2 input[type="number"]::-webkit-outer-spin-button,
+.form_detail_price_2 input[type="number"]::-webkit-inner-spin-button,
+.form_detail_maxPeople_2 input[type="number"]::-webkit-outer-spin-button,
+.form_detail_maxPeople_2 input[type="number"]::-webkit-inner-spin-button,
+.shows_line input[type="number"]::-webkit-outer-spin-button,
+.shows_line input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .CreateBody {
   display: flex;
   justify-content: center;
@@ -97,11 +116,17 @@
 .Each_shows_Name div {
   margin: 20px 0;
 }
-
+.runtime_shows input{
+  width:303px;
+  height: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 .Detail_show {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-top: 20px;
   border-bottom: 1px solid #fff;
 }
@@ -111,22 +136,63 @@
   color: #fff;
   border: none;
 }
-
-.form_detail_show {
-  padding: 10px 5px;
+/*회차 (공)*/
+.shows_line{
+  margin-top: 3px;
+  margin-left: 150px;
+  /* border: 1px solid #fff; */
 }
-
+.form_detail_show {
+  width: 10px;
+  outline: none;
+}
+/* 상세 날짜 */
+.form_detail_date_2{
+  margin: -3px 0 15px 38px;
+  /* border: 1px solid #fff; */
+}
 .form_detail_date {
   padding: 10px;
   color: #fff;
+  outline: none;
 }
-
+/* 상세 시간 */
+/* .form_detail_time_2{
+  border: 1px solid #fff;
+} */
 .form_detail_time {
-  width: 90px;
+  width: 110px;
+  outline: none;
 }
-
+/* 상세 금액 */
+.form_detail_price_2{
+  margin-top: 2px;
+  margin-left: 10px;
+  /* border: 1px solid #fff; */
+}
 .form_detail_price {
-  width: 50px;
+  width: 40px;
+  outline: none;
+}
+/* 상세 인원 */
+.form_detail_maxPeople_2{
+  margin-left: 90px;
+  margin-top: 3px;
+  /* border: 1px solid #fff; */
+}
+.form_detail_maxPeople{
+  width: 25px;
+  outline: none;
+}
+/* 삭제 버튼 */
+.delete_Btn button {
+  background-color: #161616;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin-top: 3px;
+  margin-left: 98px;
 }
 
 /* 회차 추가 버튼 */
@@ -136,6 +202,7 @@
   border-bottom: 1px solid #fff;
   cursor: pointer;
 }
+
 
 /* 공연 소개 */
 .show_content_Entire {
@@ -195,15 +262,6 @@
 .last_Detail2_input input {
   width: 30px;
   margin-left: 30px;
-}
-
-/* 삭제 버튼 */
-.delete_Btn button {
-  background-color: #161616;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 3px;
-  padding: 5px 10px;
 }
 
 /* 생성 버튼 */

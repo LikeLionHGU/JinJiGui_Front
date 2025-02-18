@@ -230,12 +230,14 @@ function Create() {
                     onChange={(e)=>setEndDate(e.target.value)}
                   />
                 </div>
-                <input
-                  type="number"
-                  // inputMode="numeric"
-                  placeholder="공연 런타임을 입력하시오 (분)"
-                  onChange={(e)=>setRunTime(e.target.value)}
-                />
+                <div className="runtime_shows">
+                  <input
+                    type="number"
+                    // inputMode="numeric"
+                    placeholder="공연 런타임을 입력하시오(분)"
+                    onChange={(e)=>setRunTime(e.target.value)}
+                  />
+                </div>
                 <select>
                   <option value="">공연 카테고리를 선택하세요</option>
                   <option value="밴드">밴드</option>
@@ -266,37 +268,40 @@ function Create() {
           {shows.map((show) => (
             <div key={show.id} className="Detail_show">
               {/* 회차 입력란 */}
-              <div className="form">
+              <div className="shows_line">
                 <input 
                   className="form_detail_show"
                   type="number"
                   // inputMode="numeric" 
-                  // placeholder="0"
+                  placeholder="0"
                   onChange={(e) => updateSchedule("order", e.target.value)}
                 />
+                공
               </div>
-              <div>
+              <div className="form_detail_date_2">
                 <input 
                   className="form_detail_date"
                   type="date" 
                   onChange={(e) => updateSchedule("date", e.target.value)}
                 />
               </div>
-              <div>
+              <div className="form_detail_time_2">
                 <input 
                   className="form_detail_time"
                   type="time" 
                   onChange={(e) => updateSchedule("time", e.target.value)}
                 />
               </div>
-              <div>
+              <div className="form_detail_price_2">
                 <input 
                   className="form_detail_price"
                   type="number"
+                  placeholder="00000"
                   onChange={(e) => updateSchedule("cost", e.target.value)}
                 />
+                원
               </div>
-              <div>
+              <div className="form_detail_maxPeople_2">
                 <input 
                   className="form_detail_maxPeople"
                   type="number"
@@ -304,6 +309,7 @@ function Create() {
                   placeholder="00"
                   onChange={(e) => updateSchedule("maxPeople", e.target.value)}
                 />
+                명
               </div>
               <div className="delete_Btn">
                 <button onClick={() => handleRemoveRow(show.id)}> - </button>
