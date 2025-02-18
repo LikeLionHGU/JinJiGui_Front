@@ -53,6 +53,7 @@ function AddInfo() {
     }));
   };
 
+  // eslint-disable-next-line
   const saveProfile = async (e) => {
     e.preventDefault();
 

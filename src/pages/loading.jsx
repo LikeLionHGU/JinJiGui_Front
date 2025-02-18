@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import sendAccessTokenToBackend from "../apis/sendAccessTokenToBackend";
 import styled from "styled-components";
 import loginLogo from "../assets/login_logo.svg";
@@ -40,8 +40,7 @@ const Loading = () => {
 
   return (
     <Loding>
-      <img id="loging-logo" src={loginLogo} alt="loading" />
-      {/* <p> 로그인 중입니다.. </p> */}
+      <img id="loging-logo" src={loginLogo} alt="loading" />\{" "}
     </Loding>
   );
 };
@@ -64,21 +63,21 @@ const Loding = styled.div`
   color: #fff;
 `;
 
-const LoadingText = styled.div`
- display: flex;
- justify-content: center;
- align-items: center;
- font-size: 30px;
- font-weight: 500;
- color: #333;
-`;
+// const LoadingText = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 30px;
+//   font-weight: 500;
+//   color: #333;
+// `;
 
-const ErrorText = styled.div`
- display: flex;
- justify-content: center;
- align-items: center;
- font-size: 24px;
- color: #e74c3c;
- text-align: center;
- padding: 20px;
-`;
+// const ErrorText = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 24px;
+//   color: #e74c3c;
+//   text-align: center;
+//   padding: 20px;
+// `;
