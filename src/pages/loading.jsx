@@ -40,7 +40,7 @@ const Loading = () => {
 
   return (
     <Loding>
-      <img id="loging-logo" src={loginLogo} alt="loading" />\{" "}
+      <img id="loging-logo" src={loginLogo} alt="loading" />
     </Loding>
   );
 };
