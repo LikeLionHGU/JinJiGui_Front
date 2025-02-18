@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./styles/Login.css";
 import GoogleLoginBtn from "../assets/GoogleLoginBtn.svg";
 import LoginLogo from "../assets/login_logo.svg";
 
 const GoogleLogin = () => {
-  const [loginCheck, setLoginCheck] = useState(false); // 로그인 상태 체크
   const REACT_APP_GOOGLE_AUTH_CLIENT_ID =
     "740844917655-2t0gq4d5usoqt5qmuffbde9gal1f1u0r.apps.googleusercontent.com";
   const REACT_APP_GOOGLE_AUTH_REDIRECT_URI =
@@ -46,7 +44,7 @@ const GoogleLogin = () => {
     <Wrapper>
       <div id="loginBox">
         <div id="loginTop">
-          <img id="loginLogo" src={LoginLogo} />
+          <img id="loginLogo" src={LoginLogo} alt="loginLogo" />
           <h4 id="loginText">로그인 해서 모보까 만나러 가기</h4>
         </div>
         <LoginBtn

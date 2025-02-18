@@ -5,7 +5,9 @@ import "../components/styles/Header.css";
 import main_logo from "../assets/main_logo.svg";
 
 function Header() {
+  // eslint-disable-next-line
   const [notLoggedIn, setNotLoggedIn] = useState(true);
+  // eslint-disable-next-line
   const [manager, setManager] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,12 +18,12 @@ function Header() {
   const homeEnter = () => {
     navigate("/");
   };
-  const myPage = () => {
-    navigate("/mypage");
-  };
-  const ManagerPage = () => {
-    navigate("/manager");
-  };
+  // const myPage = () => {
+  //   navigate("/mypage");
+  // };
+  // const ManagerPage = () => {
+  //   navigate("/manager");
+  // };
 
   const activeStyle = {
     color: "#EB5A3C",
@@ -104,7 +106,7 @@ function Header() {
               style={() =>
                 isMyPageActive() ? activeStyle : { color: "white" }
               }
-              to="/mypage"
+              to="/mypage/reservation"
             >
               <span>마이페이지</span>
             </NavLink>

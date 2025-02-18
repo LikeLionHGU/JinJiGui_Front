@@ -122,6 +122,7 @@ function HolderList() {
   useEffect(() => {
     console.log(holderList_data);
     getHolderListCards();
+    // eslint-disable-next-line
   }, []);
 
   return (
