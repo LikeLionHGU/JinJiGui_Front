@@ -115,8 +115,15 @@ function Create() {
       account,
       content,
       maxTickets,
-      schedule,
-    };
+      // scheduleList:[schedule]
+      schedule: shows.map(show => ({
+        order: show.order,
+        date: show.date,
+        time: show.time,
+        cost: show.cost,
+        maxPeople: show.maxPeople
+      }))
+    }; 
 
     const formData = new FormData();
     formData.append("poster", poster);
@@ -135,13 +142,18 @@ function Create() {
     // formData.append("maxTickets", maxTickets);
     // formData.append("poster", poster);
 
-    //폼 데이터 확인 보내졌는지 check
     console.log("폼 데이터 확인:");
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
+    for(let [key, value] of formData.entries()) {
+      if (key === "request") {
+        value.text().then(text => console.log(`${key}:`, JSON.parse(text)));
+      } else if (key === "poster") {
+        console.log(`${key}:`, value.name); // 파일 이름 출력
+      } else {
+        console.log(`${key}:`, value);
     }
-    // api연결
-    try {
+}
+
+    try{
       const response = await axios.post(
         `https://jinjigui.info:443/manager/create/save`,
         formData,
