@@ -5,7 +5,9 @@ import "../components/styles/Header.css";
 import main_logo from "../assets/main_logo.svg";
 
 function Header() {
+  // eslint-disable-next-line
   const [notLoggedIn, setNotLoggedIn] = useState(true);
+  // eslint-disable-next-line
   const [manager, setManager] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,12 +18,12 @@ function Header() {
   const homeEnter = () => {
     navigate("/");
   };
-  const myPage = () => {
-    navigate("/mypage");
-  };
-  const ManagerPage = () => {
-    navigate("/manager");
-  };
+  // const myPage = () => {
+  //   navigate("/mypage");
+  // };
+  // const ManagerPage = () => {
+  //   navigate("/manager");
+  // };
 
   const activeStyle = {
     color: "#EB5A3C",
@@ -58,13 +60,17 @@ function Header() {
             <span className="Header_Link" onClick={loginEnter}>
               로그인
             </span>
-            <span>회원가입</span>
+            <span className="Header_Link" onClick={loginEnter}>
+              회원가입
+            </span>
           </div>
         ) : manager ? (
           <div className="Header_Right">
             <NavLink
               className="Header_Link"
-              style={({ isActive }) => (isActive ? activeStyle : {color: "white"})}
+              style={({ isActive }) =>
+                isActive ? activeStyle : { color: "white" }
+              }
               to="/manager"
             >
               <span>내 공연 관리</span>
@@ -94,15 +100,13 @@ function Header() {
             <span className="Header_Link" onClick={homeEnter}>
               홈
             </span>
-            <span className="Header_Link" onClick={loginEnter}>
-              로그아웃
-            </span>
+            <span className="Header_Link">로그아웃</span>
             <NavLink
               className="Header_Link"
               style={() =>
                 isMyPageActive() ? activeStyle : { color: "white" }
               }
-              to="/mypage"
+              to="/mypage/reservation"
             >
               <span>마이페이지</span>
             </NavLink>

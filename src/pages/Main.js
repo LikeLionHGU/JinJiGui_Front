@@ -24,15 +24,16 @@ function Main() {
 
       const showInfo = response.data.show_info || []; // 응답 데이터가 비어있거나 null일 때 대비
       const formattedCards = showInfo.map((info) => ({
-        id: info.show.id,
-        poster: info.show.poster,
-        title: info.show.title,
-        startDate: info.show.startDate,
-        endDate: info.show.endDate,
-        clubId: info.club.id,
-        clubName: info.club.name,
-        category: info.club.category,
+        id: info?.show?.id || null,
+        poster: info?.show?.poster || "",
+        title: info?.show?.title || "제목 없음",
+        startDate: info?.show?.startDate || "",
+        endDate: info?.show?.endDate || "",
+        clubId: info?.club?.id || null,
+        clubName: info?.club?.name || "이름 없음",
+        category: info?.club?.category || "카테고리 없음",
       }));
+
       setCards(formattedCards);
     } catch (error) {
       console.error("API 호출 실패:", error.message);

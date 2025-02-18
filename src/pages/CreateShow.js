@@ -1,10 +1,9 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import "../pages/styles/createshow.css";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 function Create() {
-
   const [title, setTitle] = useState("");
   const [poster, setPoster] = useState(null);
   const [clubName, setClubName] = useState("");
@@ -15,94 +14,94 @@ function Create() {
   const [content, setContent] = useState("");
   const [account, setAccount] = useState("");
   const [maxTickets, setMaxTickets] = useState("");
-  const [schedule, setSchedule] = useState({ 
+  const [schedule, setSchedule] = useState({
     order: 0,
     date: "",
     time: "",
     cost: "",
-    maxPeople: ""
+    maxPeople: "",
   });
-  const [previewURL , setPreviewURL] = useState(null);
-  
+  const [previewURL, setPreviewURL] = useState(null);
+
   //기존값 확인하고 새로 생긴 schedule 정보 받아옴
   const updateSchedule = (key, value) => {
     setSchedule((preSchedule) => ({
       ...preSchedule,
-      [key]: value
+      [key]: value,
     }));
   };
-  
+
   //schedule 추가 초기 state 설정정
   const [shows, setShows] = useState([{ id: Date.now() }]);
 
   /* 사진 미리보기 기능 */
   const handleImg = (e) => {
     const file = e.target.files[0];
-    if(file){
+    if (file) {
       setPoster(file);
       setPreviewURL(URL.createObjectURL(file)); //미리 보기 url 생성
     }
   };
-  const triggerFileInput = () =>{
-    document.getElementById("fileUpload").click();
-  };
+  // const triggerFileInput = () => {
+  //   document.getElementById("fileUpload").click();
+  // };
   //모든 입력란을 받아야 submit 가능 + 빈칸이 어디인지 알려줌
-  const makeShow = async () => { 
-    if(!title){
+  const makeShow = async () => {
+    if (!title) {
       Swal.fire("제목을 입력해 주세요");
       return;
     }
-    if(!poster || !(poster instanceof File)){
+    if (!poster || !(poster instanceof File)) {
       Swal.fire("공연 이미지를 선택해 주세요");
-      console.log("포스터 파일 확인:",poster);
+      console.log("포스터 파일 확인:", poster);
       return;
     }
-    if(!clubName){
+    if (!clubName) {
       Swal.fire("동아리명을 입력해 주세요");
       return;
     }
-    if(!location){
+    if (!location) {
       Swal.fire("장소를 입력해 주세요");
       return;
     }
-    if(!startDate){
+    if (!startDate) {
       Swal.fire("시작날짜를 입력해 주세요");
       return;
     }
-    if(!endDate){
+    if (!endDate) {
       Swal.fire("끝 날짜를 입력해 주세요");
       return;
     }
-    if(!runtime){
+    if (!runtime) {
       Swal.fire("런타임을을 입력해 주세요");
       return;
     }
-    if(!account){
+    if (!account) {
       Swal.fire("계좌를 입력해 주세요");
       return;
     }
-    if(!maxTickets){
+    if (!maxTickets) {
       Swal.fire("인당 최대 구매가능 티켓수를 입력해 주세요");
       return;
     }
-    if(schedule.order < 0){
+    if (schedule.order < 0) {
       Swal.fire("회차 공연을 추가해 주세요");
       return;
     }
-    if(!schedule.date){
-      Swal.fire(schedule.order+"공의 날짜를 입력해 주세요");
+    if (!schedule.date) {
+      Swal.fire(schedule.order + "공의 날짜를 입력해 주세요");
       return;
     }
-    if(!schedule.time){
-      Swal.fire(schedule.order+"공의 시작시간을 입력해 주세요");
+    if (!schedule.time) {
+      Swal.fire(schedule.order + "공의 시작시간을 입력해 주세요");
       return;
     }
-    if(!schedule.cost){
-      Swal.fire(schedule.order+"공의 가격을 입력해 주세요");
+    if (!schedule.cost) {
+      Swal.fire(schedule.order + "공의 가격을 입력해 주세요");
       return;
     }
-    if(!schedule.maxPeople){
-      Swal.fire(schedule.order+"공의 시작시간을 입력해 주세요");
+    if (!schedule.maxPeople) {
+      Swal.fire(schedule.order + "공의 시작시간을 입력해 주세요");
       return;
     }
     //보내주어야 하는 전체 데이터
@@ -128,7 +127,10 @@ function Create() {
 
     const formData = new FormData();
     formData.append("poster", poster);
-    formData.append("request", new Blob([JSON.stringify(requestData)], { type: "application/json" })); //request는 모두 application으로 긔긔
+    formData.append(
+      "request",
+      new Blob([JSON.stringify(requestData)], { type: "application/json" })
+    ); //request는 모두 application으로 긔긔
     // formData.append("title", title);
     // formData.append("clubName", clubName);
     // formData.append("location", location);
@@ -156,16 +158,20 @@ function Create() {
         `https://jinjigui.info:443/manager/create/save`,
         formData,
         {
-          headers:{
-            "Content-Type":"multipart/form-data"
-          }
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       Swal.fire("저장이 완료되었습니다.");
-      console.log("저장 성공",response.data);
-    }catch(error){
-      console.error("저장 오류",error);
-      Swal.fire("저장 실패",`서버 오류:${error.response?.data?.message || "알 수없는 오류"}`,"error");
+      console.log("저장 성공", response.data);
+    } catch (error) {
+      console.error("저장 오류", error);
+      Swal.fire(
+        "저장 실패",
+        `서버 오류:${error.response?.data?.message || "알 수없는 오류"}`,
+        "error"
+      );
     }
   };
 
@@ -177,7 +183,6 @@ function Create() {
       Swal.fire("14글자를 초과할 수 없습니다.");
     }
   };
-  
 
   // 공연 소개란 limit
   const handleContent = (e) => {
@@ -203,7 +208,6 @@ function Create() {
   //   setPoster(e.target.files[0]);
   // };
 
-  
   return (
     <div>
       <div className="CreateBody">
@@ -213,8 +217,8 @@ function Create() {
             <div className="SImage_Box">
               <img src={previewURL} alt="미리보기" />
               <div className="img_show">
-                <input 
-                  type="file" 
+                <input
+                  type="file"
                   id="fileUpload"
                   accept="image/*"
                   onChange={handleImg}
@@ -240,25 +244,25 @@ function Create() {
                   value={title}
                   onChange={handletitle}
                 />
-                <input 
+                <input
                   type="text"
                   placeholder="동아리 이름을 입력하시오"
-                  onChange={(e)=>setClubName(e.target.value)}
+                  onChange={(e) => setClubName(e.target.value)}
                 />
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="장소를 입력하시오"
-                  onChange={(e)=>setLocation(e.target.value)}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
                 <div className="Start_To_End">
-                  <input 
+                  <input
                     type="date"
-                    onChange={(e)=>setStartDate(e.target.value)}
+                    onChange={(e) => setStartDate(e.target.value)}
                   />
                   ~
-                  <input 
+                  <input
                     type="date"
-                    onChange={(e)=>setEndDate(e.target.value)}
+                    onChange={(e) => setEndDate(e.target.value)}
                   />
                 </div>
                 <div className="runtime_shows">
@@ -266,7 +270,7 @@ function Create() {
                     type="number"
                     // inputMode="numeric"
                     placeholder="공연 런타임을 입력하시오(분)"
-                    onChange={(e)=>setRunTime(e.target.value)}
+                    onChange={(e) => setRunTime(e.target.value)}
                   />
                 </div>
                 <select>
@@ -281,9 +285,6 @@ function Create() {
                 </select>
               </div>
             </div>
-
-            
-
           </div>
 
           <div className="Each_shows">상세 공연 만들기</div>
@@ -303,31 +304,31 @@ function Create() {
             <div key={show.id} className="Detail_show">
               {/* 회차 입력란 */}
               <div className="shows_line">
-                <input 
+                <input
                   className="form_detail_show"
                   type="number"
-                  // inputMode="numeric" 
+                  // inputMode="numeric"
                   placeholder="0"
                   onChange={(e) => updateSchedule("order", e.target.value)}
                 />
                 공
               </div>
               <div className="form_detail_date_2">
-                <input 
+                <input
                   className="form_detail_date"
-                  type="date" 
+                  type="date"
                   onChange={(e) => updateSchedule("date", e.target.value)}
                 />
               </div>
               <div className="form_detail_time_2">
-                <input 
+                <input
                   className="form_detail_time"
-                  type="time" 
+                  type="time"
                   onChange={(e) => updateSchedule("time", e.target.value)}
                 />
               </div>
               <div className="form_detail_price_2">
-                <input 
+                <input
                   className="form_detail_price"
                   type="number"
                   placeholder="00000"
@@ -336,7 +337,7 @@ function Create() {
                 원
               </div>
               <div className="form_detail_maxPeople_2">
-                <input 
+                <input
                   className="form_detail_maxPeople"
                   type="number"
                   // inputMode="numeric"
@@ -364,24 +365,24 @@ function Create() {
                   type="number"
                   // inputMode="numeric"
                   placeholder="입금받을 계좌번호를 입력하시오."
-                  onChange={(e)=>setAccount(e.target.value)}
+                  onChange={(e) => setAccount(e.target.value)}
                 />
               </div>
             </div>
             <div className="Club_account">
               <label>인당 최대 구매수</label>
               <div className="last_Detail2_input">
-                <input 
+                <input
                   type="number"
-                  // inputMode="numeric" 
+                  // inputMode="numeric"
                   placeholder="00"
-                  onChange={(e)=>setMaxTickets(e.target.value)}
+                  onChange={(e) => setMaxTickets(e.target.value)}
                 />
               </div>
             </div>
           </div>
         </div>
-        
+
         {/* 공연소개란 */}
         <div className="show_content_Entire">
           <p>공연에 대한 소개</p>
@@ -393,7 +394,7 @@ function Create() {
             <p>( {content.length}/500 )</p>
           </div>
         </div>
-        
+
         <button className="make_show_submit" onClick={makeShow}>
           생성하기
         </button>

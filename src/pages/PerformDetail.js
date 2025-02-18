@@ -1,4 +1,4 @@
-import React, { use } from "react";
+// import React, { use } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import "../pages/styles/PerformDetail.css";
@@ -21,13 +21,13 @@ function PerformDetail() {
   const [isDisable, setIsDisable] = useState(false);
 
   const fetchData = async () => {
-    try{
+    try {
       const response = await axios.get(`https://jinjigui.info:443/show/${id}`);
       console.log("API 응답 데이터:", response.data);
-      if(response.data && response.data.show){
+      if (response.data && response.data.show) {
         setShow(response.data.show);
-        console.log("api전체",show);
-      }else{
+        console.log("api전체", show);
+      } else {
         console.error("API응답에 'show'데이터가 없습니다.");
         setShow(null);
       }
@@ -35,13 +35,14 @@ function PerformDetail() {
       console.error("Error fetching data:", error);
       Swal.fire("데이터를 불러오는 중 오류가 발생했습니다.");
       setShow(null);
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [id]);
 
   useEffect(() => {
@@ -58,6 +59,7 @@ function PerformDetail() {
   }, [data]);
 
   if(loading){
+
     return <p>로딩중...</p>;
   }
   /* 티켓 UP DOWN */
@@ -85,6 +87,7 @@ function PerformDetail() {
     }
     console.log("선택된 스케줄 ID:", selectedSchedule.id);
     const requestData = {
+      userId: sessionStorage.getItem("serverResponse"),
       ticketNumber: count,
       scheduleId: selectedSchedule.id,
       showId: show.id,
@@ -92,7 +95,9 @@ function PerformDetail() {
     console.log("Request Data:", requestData);
   
     try {
+      console.log(requestData);
       const response = await axios.post(
+
         `https://jinjigui.info:443/show/reservation`,
         requestData
       );  
@@ -168,12 +173,14 @@ function PerformDetail() {
                 <ul className="Each_ExBox">
                   <li>{show?.location || "장소 정보 없음"}</li>
                   <li>
-                    {show?.startDate || "시작날짜 정보 없음"} ~ {show?.endDate || "종료날짜 정보 없음"}
+                    {show?.startDate || "시작날짜 정보 없음"} ~{" "}
+                    {show?.endDate || "종료날짜 정보 없음"}
                   </li>
                   <li>{show?.runTime || "런타임 정보 없음"}분</li>
                   <li>{show?.category || "카테고리 정보 없음"}</li>
                   <li>
-                    {show?.user?.phoneNumber || "연락처 없음"} ({show?.user?.name || "이름 없음"})
+                    {show?.user?.phoneNumber || "연락처 없음"} (
+                    {show?.user?.name || "이름 없음"})
                   </li>
                 </ul>
               </div>

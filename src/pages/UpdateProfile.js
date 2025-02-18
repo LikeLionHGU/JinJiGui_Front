@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./styles/UpdateProfile.css";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 function UpdateProfile() {
   const [formData, setFormData] = useState({

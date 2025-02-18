@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./styles/Login.css";
 import GoogleLoginBtn from "../assets/GoogleLoginBtn.svg";
 import LoginLogo from "../assets/login_logo.svg";
 
 const GoogleLogin = () => {
-  const [loginCheck, setLoginCheck] = useState(false); // 로그인 상태 체크
-
   const handleGoogleLogin = () => {
     // CSRF 방지를 위한 state 생성
     const state = Math.random().toString(36).substring(2);
@@ -45,7 +42,7 @@ const GoogleLogin = () => {
     <Wrapper>
       <div id="loginBox">
         <div id="loginTop">
-          <img id="loginLogo" src={LoginLogo} />
+          <img id="loginLogo" src={LoginLogo} alt="loginLogo" />
           <h4 id="loginText">로그인 해서 모보까 만나러 가기</h4>
         </div>
         <LoginBtn
