@@ -10,7 +10,8 @@ function MyShowListCard({ title, order, applyPeople, maxPeople, showId, schedule
   const navigate = useNavigate();
 
   const handleWatchIconClick = () => {
-    navigate(`/manager/holder/${showId}/${scheduleId}`);
+    navigate(`/manager/holder/${scheduleId}`);
+    
   };
 
   const handleDeleteIconClick = () => {
@@ -34,7 +35,7 @@ function MyShowListCard({ title, order, applyPeople, maxPeople, showId, schedule
   };
 
   return (
-    <div className="manager-showlist-row">
+    <>
       <div className="manager-showlist-cell">{title}</div>
       <div className="manager-showlist-cell">{order}</div>
       <div className="manager-showlist-cell">
@@ -46,7 +47,7 @@ function MyShowListCard({ title, order, applyPeople, maxPeople, showId, schedule
       <div className="manager-showlist-cell">
         <img className="function_icon" src={delete_icon} onClick={handleDeleteIconClick} alt="삭제" />
       </div>
-    </div>
+    </>
   );
 }
 
