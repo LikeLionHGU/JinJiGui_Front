@@ -12,6 +12,13 @@ function PerformDetail() {
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({
+    avaliable:"false",
+    totalCost:"",
+    account:"",
+    remain_tickets:""
+  });
+  const [isDisable, setIsDisable] = useState(false);
 
   const fetchData = async () => {
     try{
@@ -37,9 +44,23 @@ function PerformDetail() {
     fetchData();
   }, [id]);
 
+  useEffect(() => {
+    if (data.avaliable === true) {
+      Swal.fire({
+        title: "예매 성공!",
+        html: "성공적으로 예매 되었습니다.<br><br>" +
+          show.user.account + "로 " +
+          (selectedSchedule?.cost || 0) * count +
+          "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
+        icon: "success"
+      });
+    }
+  }, [data]);
+
   if(loading){
     return <p>로딩중...</p>;
   }
+  /* 티켓 UP DOWN */
   const Decrese = () => {
     if (count > 0) {
       setCount(count - 1);
@@ -62,28 +83,61 @@ function PerformDetail() {
       Swal.fire("최소 1장 이상 예매해야 합니다.");
       return;
     }
+    console.log("선택된 스케줄 ID:", selectedSchedule.id);
     const requestData = {
       ticketNumber: count,
-      showId: selectedSchedule.id,
+      scheduleId: selectedSchedule.id,
+      showId: show.id,
     };
+    console.log("Request Data:", requestData);
+  
     try {
       const response = await axios.post(
-        `https://jinjigui.info/show/${id}/reservation`,
+        `https://jinjigui.info:443/show/reservation`,
         requestData
-      );
-      Swal.fire({
-        title:"예매 성공!",
-        html: "성공적으로 예매 되었습니다.<br><br>"+show.user.account+"로 "+(show.selectedSchedule?.cost || 0 )*count+"원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
-        icon:"success"
+      );  
+      console.log("예매 데이터 보내기 성공", response.data);
+      reservationData();
+
+    }catch (error) {
+      console.error("예매 데이터 보내기 실패", error);
+      
+      if (error.response) {
+        console.error("서버 응답 데이터:", error.response.data);
+        Swal.fire(`오류 발생: ${error.response.data.message || "서버 오류"}`);
+      } else {
+        Swal.fire("서버 응답이 없습니다. 네트워크 문제일 수 있습니다.");
       }
-    );    
-      console.log("예매 성공", response.data);
-    } catch (error) {
-      console.error("예매 오류", error);
-      Swal.fire("예매 실패", "예매에 실패했습니다.", "error");
     }
   };
   
+  const reservationData = async () => {
+    try{
+      const response = await axios.get(`https://jinjigui.info:443/show/${id}/reservation`);
+      console.log(`가져온 데이터:`,response.data);
+
+      if(response.data && response.data){
+        setData(response.data);
+        console.log("api전체",data);
+      }else{
+        console.error("API응답에 'show'데이터가 없습니다.");
+        setShow(null);
+      }
+      if(data.avaliable === true){
+        setIsDisable(true);
+        Swal.fire({
+          title:"예매 성공!",
+          html: "성공적으로 예매 되었습니다.<br><br>"+show.user.account+"로 "+(show.selectedSchedule?.cost || 0 )*count+"원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
+          icon:"success"
+        });  
+      }
+    }catch(error){
+      console.error('가져오기 ERROR:',error);
+    }finally{
+      setLoading(false);
+    }
+  }
+
   return (
     <div>
       <div className="DetailBody">
@@ -167,8 +221,8 @@ function PerformDetail() {
                 </div>
               </div>
 
-              <button className="BookBtn" onClick={handleBooking}>
-                예매하기
+              <button className="BookBtn" onClick={handleBooking} disabled={isDisable}>
+                {isDisable ? "예매하기":"이벤트 참여 비활성화"}
               </button>
             </div>
           </div>
