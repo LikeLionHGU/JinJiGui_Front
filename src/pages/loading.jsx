@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import sendAccessTokenToBackend from "../apis/sendAccessTokenToBackend";
 import styled from "styled-components";
+import loginLogo from "../assets/login_logo.svg";
 import { useNavigate } from "react-router-dom";
 
 /*
@@ -28,6 +29,7 @@ const Loading = () => {
         console.log(idToken);
 
         await sendAccessTokenToBackend(idToken);
+
         navigate("/");
       } catch (error) {
         console.error("로그인 과정에서 에러가 발생했습니다.", error);
@@ -38,18 +40,27 @@ const Loading = () => {
   }, [navigate]);
 
   return (
-    <div>
-      <Loding>로그인 중입니다...</Loding>
-    </div>
+    <Loding>
+      <img id="loging-logo" src={loginLogo} alt="loading" />
+      {/* <p> 로그인 중입니다.. </p> */}
+    </Loding>
   );
 };
 
 export default Loading;
 
 const Loding = styled.div`
-  display: flex;
+  display:flex;
+  flex-direction: row;
+
+  width: 500px;
+  font-family: "Noto Sans KR", "Noto Sans", serif;
+
+  width: 100%;
+  height: 100%;
+
   justify-content: center;
-  align-items: center;
+  align-content: center
   font-size: 30px;
-  margin-top: 100px;
+  color: #fff;
 `;

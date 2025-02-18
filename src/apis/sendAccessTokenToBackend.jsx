@@ -14,6 +14,7 @@ const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
         params: {
           credential: idToken,
         },
+        withCredentials: true,
       }
     );
 
