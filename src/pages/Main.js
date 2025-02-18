@@ -98,7 +98,8 @@ function Main() {
   if (loading)
     return (
       <div id="loading">
-        <img id="loging-logo" src={loginLogo} alt="loading" />
+        <img id="loading-logo" src={loginLogo} alt="loading" />
+        <div style={{color: "white"}}>로딩중...</div>
       </div>
     );
   if (error) return <p>{error}</p>;

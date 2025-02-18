@@ -122,7 +122,7 @@ function PerformDetail() {
         requestData
       );
       console.log("예매 데이터 보내기 성공", response.data);
-      reservationData();
+      reservationData(response.data);
     } catch (error) {
       console.error("예매 데이터 보내기 실패", error);
 
@@ -141,29 +141,17 @@ function PerformDetail() {
     }
   };
 
-  const reservationData = async () => {
+  const reservationData = async (responseData) => {
     try {
-      const response = await axios.get(
-        `https://jinjigui.info:443/show/${id}/reservation`
-      );
-      console.log(`가져온 데이터:`, response.data);
-
-      if (response.data && response.data) {
-        setData(response.data);
-        console.log("api전체", data);
-      } else {
-        console.error("API응답에 'show'데이터가 없습니다.");
-        setShow(null);
-      }
-      if (response.data.avaliable === true) {
-        setIsDisable(true);
+      if (responseData.available === true) {
+        setIsDisable(false);
         Swal.fire({
           title: "예매 성공!",
           html:
             "성공적으로 예매 되었습니다.<br><br>" +
-            show.user.account +
+            responseData.account +
             "로 " +
-            (show.selectedSchedule?.cost || 0) * count +
+            responseData.totalCost +
             "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
           icon: "success",
         });
