@@ -64,12 +64,14 @@ function PerformDetail() {
       return;
     }
     const requestData = {
+      userId: sessionStorage.getItem("serverResponse"),
       ticketNumber: count,
-      showId: selectedSchedule.id,
+      scheduleId: selectedSchedule.id,
     };
     try {
+      console.log(requestData);
       const response = await axios.post(
-        `https://jinjigui.info/show/${id}/reservation`,
+        `https://jinjigui.info/show/reservation`,
         requestData
       );
       Swal.fire({
