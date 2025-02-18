@@ -123,7 +123,7 @@ function PerformDetail() {
         console.error("API응답에 'show'데이터가 없습니다.");
         setShow(null);
       }
-      if(data.avaliable === true){
+      if(response.data.avaliable === true){
         setIsDisable(true);
         Swal.fire({
           title:"예매 성공!",
@@ -222,7 +222,7 @@ function PerformDetail() {
               </div>
 
               <button className="BookBtn" onClick={handleBooking} disabled={isDisable}>
-                {isDisable ? "예매하기":"이벤트 참여 비활성화"}
+                {isDisable ? "예매 완료": "예매하기"}
               </button>
             </div>
           </div>
