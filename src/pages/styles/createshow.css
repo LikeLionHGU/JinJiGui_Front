@@ -42,12 +42,19 @@
 }
 
 .SImage_Box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 1px solid #fff;
   width: 290px;
   height: 400px;
   margin: 70px 0 10px 80px;
+  /* display: none; */
 }
-
+.SImage_Box input{
+  width: 70px;
+}
 .entir_Boxs {
   display: flex;
   justify-content: flex-start;

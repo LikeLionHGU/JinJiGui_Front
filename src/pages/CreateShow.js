@@ -185,6 +185,7 @@ function Create() {
           <div className="Detail_Entire_Box">
             <div className="SImage_Box">
               <input 
+                // class="uil--plus"
                 type="file" 
                 accept="image/*"
                 onChange={handleImage}
