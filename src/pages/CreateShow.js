@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 function Create() {
+
   const [title, setTitle] = useState("");
   const [poster, setPoster] = useState(null);
   const [clubName, setClubName] = useState("");
@@ -21,6 +22,7 @@ function Create() {
     cost: "",
     maxPeople: ""
   });
+  const [previewURL , setPreviewURL] = useState(null);
   
   //기존값 확인하고 새로 생긴 schedule 정보 받아옴
   const updateSchedule = (key, value) => {
@@ -33,6 +35,17 @@ function Create() {
   //schedule 추가 초기 state 설정정
   const [shows, setShows] = useState([{ id: Date.now() }]);
 
+  /* 사진 미리보기 기능 */
+  const handleImg = (e) => {
+    const file = e.target.files[0];
+    if(file){
+      setPoster(file);
+      setPreviewURL(URL.createObjectURL(file)); //미리 보기 url 생성
+    }
+  };
+  const triggerFileInput = () =>{
+    document.getElementById("fileUpload").click();
+  };
   //모든 입력란을 받아야 submit 가능 + 빈칸이 어디인지 알려줌
   const makeShow = async () => { 
     if(!title){
@@ -173,10 +186,12 @@ function Create() {
     setShows(shows.filter((show) => show.id !== id));
   };
 
-  const handleImage = (e) => {
-    setPoster(e.target.files[0]);
-  };
+  /* 기존의 사진을 받아온 방식 */
+  // const handleImage = (e) => {
+  //   setPoster(e.target.files[0]);
+  // };
 
+  
   return (
     <div>
       <div className="CreateBody">
@@ -184,12 +199,15 @@ function Create() {
         <div className="Create_Container">
           <div className="Detail_Entire_Box">
             <div className="SImage_Box">
-              <input 
-                // class="uil--plus"
-                type="file" 
-                accept="image/*"
-                onChange={handleImage}
-              />
+              <img src={previewURL} alt="미리보기" />
+              <div className="img_show">
+                <input 
+                  type="file" 
+                  id="fileUpload"
+                  accept="image/*"
+                  onChange={handleImg}
+                />
+              </div>
             </div>
 
             <div className="entir_Boxs">
@@ -251,6 +269,9 @@ function Create() {
                 </select>
               </div>
             </div>
+
+            
+
           </div>
 
           <div className="Each_shows">상세 공연 만들기</div>
