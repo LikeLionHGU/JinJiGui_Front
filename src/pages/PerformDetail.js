@@ -12,7 +12,8 @@ function PerformDetail() {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({
-    avaliable: "false",
+    available: "false",
+    qrImg: "",
     totalCost: "",
     account: "",
     remain_tickets: "",
@@ -59,14 +60,17 @@ function PerformDetail() {
   }, [id]);
 
   useEffect(() => {
-    if (data.avaliable === true) {
+    if (data.available === true) {
       Swal.fire({
         title: "예매 성공!",
+        text: "성공적으로 예매되었습니다.",
+        imageUrl: data.qrImg,
+        imageHeight: 1500,
+        imageAlt: "A tall image",
         html:
-          "성공적으로 예매 되었습니다.<br><br>" +
-          show.user.account +
+          data.account +
           "로 " +
-          (selectedSchedule?.cost || 0) * count +
+          data.totalCost +
           "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
         icon: "success",
       });
@@ -147,8 +151,11 @@ function PerformDetail() {
         setIsDisable(false);
         Swal.fire({
           title: "예매 성공!",
+          text: "성공적으로 예매되었습니다.",
+          imageUrl: responseData.qrImg,
+          imageHeight: 1500,
+          imageAlt: "A tall image",
           html:
-            "성공적으로 예매 되었습니다.<br><br>" +
             responseData.account +
             "로 " +
             responseData.totalCost +
@@ -179,7 +186,9 @@ function PerformDetail() {
             <div className="Titles">
               <div className="names">
                 <h1>{show?.title || "공연정보 없음"}</h1>
-                <p style={{marginLeft: "5px"}}>{show?.clubName || "동아리 정보 없음"}</p>
+                <p style={{ marginLeft: "5px" }}>
+                  {show?.clubName || "동아리 정보 없음"}
+                </p>
               </div>
 
               <div className="Infos">
@@ -208,8 +217,10 @@ function PerformDetail() {
           </div>
 
           <div className="Box_LR">
-            <div className="LR" style={{borderBottomLeftRadius: "20px"}}>
-              <div style={{fontSize: "20px", fontWeight:"bold"}}>상세 공연 선택</div>
+            <div className="LR" style={{ borderBottomLeftRadius: "20px" }}>
+              <div style={{ fontSize: "20px", fontWeight: "bold" }}>
+                상세 공연 선택
+              </div>
 
               <select
                 className="chosePerformBox"
@@ -229,7 +240,7 @@ function PerformDetail() {
               </select>
             </div>
 
-            <div className="LR" style={{borderBottomRightRadius: "20px"}}>
+            <div className="LR" style={{ borderBottomRightRadius: "20px" }}>
               <div className="LR_tic">
                 <div className="tic">
                   <div>티켓 매수</div>
@@ -266,11 +277,11 @@ function PerformDetail() {
             <div className="InfoBox">
               <span>{show?.content || "공연소개글 정보 없음"}</span>
               <img
-              style={{marginTop: "50px", marginBottom: "50px"}}
-              src={show?.showPic || ""}
-              width={500}
-              alt="show_image"
-            />
+                style={{ marginTop: "50px", marginBottom: "50px" }}
+                src={show?.showPic || ""}
+                width={500}
+                alt="show_image"
+              />
             </div>
           </div>
         </div>
