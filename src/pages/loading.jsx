@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import sendAccessTokenToBackend from "../apis/sendAccessTokenToBackend";
 import styled from "styled-components";
 import loginLogo from "../assets/login_logo.svg";
@@ -12,7 +12,6 @@ URLSearchParams를 통해 url에 있는 토큰을 추출하고 그 토큰을 axi
 
 이후 성공하면 navigate를 통해 메인화면으로 보낸다. 
 실패하면 에러처리 (알아서 ~)
-
 */
 
 const Loading = () => {
@@ -63,4 +62,23 @@ const Loding = styled.div`
   align-content: center
   font-size: 30px;
   color: #fff;
+`;
+
+const LoadingText = styled.div`
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 30px;
+ font-weight: 500;
+ color: #333;
+`;
+
+const ErrorText = styled.div`
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 24px;
+ color: #e74c3c;
+ text-align: center;
+ padding: 20px;
 `;
