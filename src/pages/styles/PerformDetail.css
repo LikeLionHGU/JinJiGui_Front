@@ -1,61 +1,67 @@
-.DetailBody{
+/* Existing CSS remains the same */
+.DetailBody {
   width: auto;
   height: auto;
   color: #ffff;
   background-color: #161616;
 }
-.PerformDetail_Container{
+.PerformDetail_Container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.PerformDetail_Container h3{
-  margin: 70px 0 40px 0;
+.PerformDetail_Container h2 {
+  margin: 30px 0 50px 0;
 }
-.Box_LR{
+.showInfoBox h2 {
+  margin: 100px 0 50px 0;
+}
+.Box_LR {
   display: flex;
   flex-direction: row;
 }
-.Perform_Box_Pic{
+.Perform_Box_Pic {
   width: 270px;
   height: 350px;
-  margin: 58px 30px 80px 80px ;
-  border: 1px solid #ffff;
+  margin: 58px 30px 80px 80px;
+  border-radius: 10px;
 }
-.Perform_Box_Info{
+.Perform_Box_Info {
   display: flex;
   width: 920px;
   height: 470px;
   border: 1px solid #ffff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 /* 공연 정보 (제목, 장소, 날짜 ...)*/
-.names{
+.names {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-left: 10px;
 }
-.names h1{
-  margin: 50px 0 0 ;
+.names h1 {
+  margin: 50px 0 0;
   padding: 0;
 }
-.names p{
+.names p {
   font-size: 18px;
   margin: 0;
   padding: 0;
-  color: #EB5A3C;
+  color: #eb5a3c;
 }
-.Infos{
+.Infos {
   display: flex;
 }
-.Titles{
+.Titles {
   padding: 0;
 }
-.Titles ul{
+.Titles ul {
   padding: 0;
 }
-.ExBox_name li{
+.ExBox_name li {
   padding: 10px 15px 10px 15px;
   margin: 10px;
   background-color: #ffff;
@@ -63,100 +69,203 @@
   font-size: 15px;
   font-weight: bold;
 
-  border-radius: 10px;
+  border-radius: 20px;
   list-style-type: none;
   list-style: none;
-  border: 1px solid #ffff;
 }
-.Each_ExBox li{
-  padding: 10px 130px 10px 20px;
+.Each_ExBox li {
+  padding: 10px 130px 10px 0;
   margin: 10px;
   font-size: 15px;
   font-weight: bold;
   display: flex;
   align-items: flex-start;
-  border-radius: 10px;
   list-style-type: none;
   list-style: none;
-  border: 1px solid #ffff;
 }
-.tic{
+.tic,
+.total_tic {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 10px 50px 10px 110px;
+  margin: 10px 20px;
+  width: 45%;
+  height: 100px; /* 고정 높이 설정 */
 }
-.total_tic{
+
+.tic > div:first-child,
+.total_tic > div:first-child {
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #fff;
+  height: 20px; /* 레이블 높이 통일 */
+}
+.inside_tic {
   display: flex;
-  justify-content: center;
+}
+.ticketBtns {
+  display: flex;
   align-items: center;
-  flex-direction: column;
-  margin: 10px 100px 10px 60px;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 8px;
+  height: 45px; /* 높이 고정 */
 }
-.inside_tic{
-  display: flex;
-}
-.ticketBtns button{
-  background-color: #161616;
-  border: none;
-  color: #ffff;
+
+.ticketBtns button {
+  background-color: rgba(235, 90, 60, 0.2);
+  border: 1px solid #eb5a3c;
+  color: #fff;
   font-size: 20px;
   font-weight: bold;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
-.LR{
+
+.ticketBtns button:hover {
+  background-color: rgba(235, 90, 60, 0.4);
+  transform: scale(1.05);
+}
+
+.ticketBtns button:active {
+  transform: scale(0.95);
+}
+
+.ticketBtns span {
+  min-width: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+.LR {
   border: 1px solid #ffff;
   width: 460px;
-  height: 170px;
-}
-.LR_tic{
-  display: flex;
-  margin-top: 15px;
-}
-.chosePerformBox{
-  margin-top: 55px;
-  padding: 23px ;
-  border-radius: 7px;
-  border: 1px solid #ffff;
-  background-color: #161616;
-  color: #ffff;
-  font-size: 15px;
-}
-.showPrice{
+  height: 250px;
+  /* Add these properties to center contents */
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.showPrice p{
+.LR_tic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px; /* 전체 컨테이너 높이 설정 */
+}
+.chosePerformBox {
+  margin-top: 30px;
+  padding: 23px 40px 23px 23px; /* 오른쪽 패딩 증가로 텍스트와 화살표 사이 간격 확보 */
+  border-radius: 25px;
+  border: 1px solid #eb5a3c;
+  background-color: #161616;
+  color: #ffff;
+  font-size: 13px;
+
+  /* 기본 화살표 제거 */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23EB5A3C' d='M6 8.825L1.175 4 2.05 3.125 6 7.075 9.95 3.125 10.825 4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 15px) center;
+  background-size: 12px;
+
+  width: 80%;
+  max-width: 380px;
+}
+.showPrice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 8px;
+  height: 45px; /* 티켓 버튼과 동일한 높이 */
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.showPrice p {
   margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #eb5a3c;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.5px;
+}
+.showPrice p:hover {
+  transform: scale(1.05);
 }
 /*공연 소개란 */
-.showInfoBox p{
+.showInfoBox p {
   padding: 70px 70px 10px 70px;
 }
 
-.InfoBox{
+.InfoBox {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-bottom: 100px;
   width: 920px;
-  height: 300px;
+  height: 100%;
   border: 1px solid #ffff;
+  border-radius: 20px;
 }
-.InfoBox span{
+.InfoBox span {
   margin: 20px;
 }
 /*예매하기 버튼*/
-.BookBtn{
+.BookBtn {
   width: 360px;
   height: 58px;
-  background-color: #EB5A3C;
+  background-color: #eb5a3c;
   border-radius: 30px;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 8px rgba(235, 90, 60, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Remove any positioning that might be causing issues */
+  margin-left: auto;
+  margin-right: auto;
 }
+
 .BookBtn:hover {
   cursor: pointer;
+  background-color: #d94e33;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(235, 90, 60, 0.4);
 }
+
+.BookBtn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(235, 90, 60, 0.2);
+}
+
 /* + */
 .uil--plus {
   display: inline-block;

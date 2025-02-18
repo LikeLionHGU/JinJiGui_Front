@@ -1,4 +1,3 @@
-// import React, { use } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import "../pages/styles/PerformDetail.css";
@@ -13,12 +12,26 @@ function PerformDetail() {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({
-    avaliable:"false",
-    totalCost:"",
-    account:"",
-    remain_tickets:""
+    avaliable: "false",
+    totalCost: "",
+    account: "",
+    remain_tickets: "",
   });
   const [isDisable, setIsDisable] = useState(false);
+
+  // 시간 포맷 함수: HH:MM:SS 형식을 HH:MM 형식으로 변환
+  const formatTime = (timeString) => {
+    if (!timeString) return timeString;
+
+    if (timeString.includes(":")) {
+      const timeParts = timeString.split(":");
+      if (timeParts.length >= 2) {
+        return `${timeParts[0]}:${timeParts[1]}`;
+      }
+    }
+
+    return timeString;
+  };
 
   const fetchData = async () => {
     try {
@@ -49,17 +62,18 @@ function PerformDetail() {
     if (data.avaliable === true) {
       Swal.fire({
         title: "예매 성공!",
-        html: "성공적으로 예매 되었습니다.<br><br>" +
-          show.user.account + "로 " +
+        html:
+          "성공적으로 예매 되었습니다.<br><br>" +
+          show.user.account +
+          "로 " +
           (selectedSchedule?.cost || 0) * count +
           "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
-        icon: "success"
+        icon: "success",
       });
     }
   }, [data]);
 
-  if(loading){
-
+  if (loading) {
     return <p>로딩중...</p>;
   }
   /* 티켓 UP DOWN */
@@ -72,6 +86,13 @@ function PerformDetail() {
   const Increse = () => {
     if (show && count < show.maxTickets) {
       setCount(count + 1);
+    } else {
+      Swal.fire({
+        title: "경고",
+        text:
+          "인당 구매 가능한 최대 티켓 수는 " + show.maxTickets + "매입니다!",
+        icon: "warning",
+      });
     }
   };
 
@@ -93,61 +114,72 @@ function PerformDetail() {
       showId: show.id,
     };
     console.log("Request Data:", requestData);
-  
+
     try {
       console.log(requestData);
       const response = await axios.post(
-
         `https://jinjigui.info:443/show/reservation`,
         requestData
-      );  
+      );
       console.log("예매 데이터 보내기 성공", response.data);
       reservationData();
-
-    }catch (error) {
+    } catch (error) {
       console.error("예매 데이터 보내기 실패", error);
-      
+
       if (error.response) {
         console.error("서버 응답 데이터:", error.response.data);
-        Swal.fire(`오류 발생: ${error.response.data.message || "서버 오류"}`);
+        Swal.fire({
+          title: `에러`,
+          text: `${
+            error.response.data.message || "서버 오류 또는 로그인 필요"
+          }`,
+          icon: "error",
+        });
       } else {
         Swal.fire("서버 응답이 없습니다. 네트워크 문제일 수 있습니다.");
       }
     }
   };
-  
-  const reservationData = async () => {
-    try{
-      const response = await axios.get(`https://jinjigui.info:443/show/${id}/reservation`);
-      console.log(`가져온 데이터:`,response.data);
 
-      if(response.data && response.data){
+  const reservationData = async () => {
+    try {
+      const response = await axios.get(
+        `https://jinjigui.info:443/show/${id}/reservation`
+      );
+      console.log(`가져온 데이터:`, response.data);
+
+      if (response.data && response.data) {
         setData(response.data);
-        console.log("api전체",data);
-      }else{
+        console.log("api전체", data);
+      } else {
         console.error("API응답에 'show'데이터가 없습니다.");
         setShow(null);
       }
-      if(response.data.avaliable === true){
+      if (response.data.avaliable === true) {
         setIsDisable(true);
         Swal.fire({
-          title:"예매 성공!",
-          html: "성공적으로 예매 되었습니다.<br><br>"+show.user.account+"로 "+(show.selectedSchedule?.cost || 0 )*count+"원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
-          icon:"success"
-        });  
+          title: "예매 성공!",
+          html:
+            "성공적으로 예매 되었습니다.<br><br>" +
+            show.user.account +
+            "로 " +
+            (show.selectedSchedule?.cost || 0) * count +
+            "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
+          icon: "success",
+        });
       }
-    }catch(error){
-      console.error('가져오기 ERROR:',error);
-    }finally{
+    } catch (error) {
+      console.error("가져오기 ERROR:", error);
+    } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div>
       <div className="DetailBody">
         <div className="PerformDetail_Container">
-          <h3>공연 상세 페이지</h3>
+          <h2>공연 예매</h2>
 
           <div className="Perform_Box_Info">
             <img
@@ -159,7 +191,7 @@ function PerformDetail() {
             <div className="Titles">
               <div className="names">
                 <h1>{show?.title || "공연정보 없음"}</h1>
-                <p>{show?.clubName || "동아리 정보 없음"}</p>
+                <p style={{marginLeft: "5px"}}>{show?.clubName || "동아리 정보 없음"}</p>
               </div>
 
               <div className="Infos">
@@ -188,7 +220,9 @@ function PerformDetail() {
           </div>
 
           <div className="Box_LR">
-            <div className="LR">
+            <div className="LR" style={{borderBottomLeftRadius: "20px"}}>
+              <div style={{fontSize: "20px", fontWeight:"bold"}}>상세 공연 선택</div>
+
               <select
                 className="chosePerformBox"
                 onChange={(e) =>
@@ -197,17 +231,17 @@ function PerformDetail() {
                   )
                 }
               >
-                <option value="">상세 공연 선택</option>
+                <option value="">회차를 선택해주세요</option>
                 {show?.schedule.map((sch) => (
                   <option key={sch.id} value={sch.id}>
-                    {sch.order}공 {sch.date} {sch.time} {sch.cost}
-                    {sch.applyPeople}/{sch.maxPeople}
+                    {sch.order}공 | {sch.date} | {formatTime(sch.time)} |{" "}
+                    {sch.cost}원 | 현재: {sch.applyPeople}/{sch.maxPeople}
                   </option>
                 ))}
               </select>
             </div>
 
-            <div className="LR">
+            <div className="LR" style={{borderBottomRightRadius: "20px"}}>
               <div className="LR_tic">
                 <div className="tic">
                   <div>티켓 매수</div>
@@ -223,22 +257,32 @@ function PerformDetail() {
                 <div className="total_tic">
                   <div>총 금액</div>
                   <div className="showPrice">
-                    <p>{(selectedSchedule?.cost || 0) * count}원</p>
+                    <p>₩ {(selectedSchedule?.cost || 0) * count}</p>
                   </div>
                 </div>
               </div>
 
-              <button className="BookBtn" onClick={handleBooking} disabled={isDisable}>
-                {isDisable ? "예매 완료": "예매하기"}
+              <button
+                className="BookBtn"
+                onClick={handleBooking}
+                disabled={isDisable}
+              >
+                {isDisable ? "예매 완료" : "예매하기"}
               </button>
             </div>
           </div>
 
           {/* 공연소개 */}
           <div className="showInfoBox">
-            <p>공연에 대한 소개</p>
+            <h2>공연에 대한 소개</h2>
             <div className="InfoBox">
               <span>{show?.content || "공연소개글 정보 없음"}</span>
+              <img
+              style={{marginTop: "50px", marginBottom: "50px"}}
+              src={show?.showPic || ""}
+              width={500}
+              alt="show_image"
+            />
             </div>
           </div>
         </div>
@@ -248,173 +292,3 @@ function PerformDetail() {
 }
 
 export default PerformDetail;
-
-// import React, { useState, useEffect } from "react";
-// import "../pages/styles/PerformDetail.css";
-// import Swal from "sweetalert2";
-// import { useParams } from "react-router-dom";
-
-// function PerformDetail() {
-//   const { id } = useParams();
-//   const [show, setShow] = useState(null);
-//   const [selectedSchedule, setSelectedSchedule] = useState(null);
-//   const [count, setCount] = useState(0);
-
-//   const fetchData = () => {
-//     const dummyData = {
-//       showPic: "https://via.placeholder.com/150",
-//       title: "더미 공연",
-//       clubName: "더미 클럽",
-//       location: "서울 아트홀",
-//       startDate: "2025-03-01",
-//       endDate: "2025-03-10",
-//       runtime: 120,
-//       category: "뮤지컬",
-//       user: {
-//         phoneNumber: "010-1234-5678",
-//         name: "홍길동",
-//       },
-//       schedule: [
-//         {
-//           id: 1,
-//           order: 1,
-//           date: "2025-03-02",
-//           time: "19:00",
-//           cost: 30000,
-//           applyPeople: 20,
-//           maxPeople: 100,
-//         },
-//         {
-//           id: 2,
-//           order: 2,
-//           date: "2025-03-05",
-//           time: "20:00",
-//           cost: 40000,
-//           applyPeople: 50,
-//           maxPeople: 120,
-//         },
-//       ],
-//       maxTickets: 5,
-//       content: "이 공연은 더미 데이터로 구성된 예제입니다.",
-//     };
-//     setShow(dummyData);
-//   };
-
-//   useEffect(() => {
-//     fetchData();
-//   }, [id]);
-
-//   const Decrese = () => {
-//     if (count > 0) {
-//       setCount(count - 1);
-//     }
-//   };
-
-//   const Increse = () => {
-//     if (show && count < show.maxTickets) {
-//       setCount(count + 1);
-//     }
-//   };
-
-//   /* 예매 버튼 */
-//   const handleBooking = () => {
-//     if (!selectedSchedule) {
-//       Swal.fire("공연 시간을 선택해 주세요.");
-//       return;
-//     }
-//     if (count === 0) {
-//       Swal.fire("최소 1장 이상 예매해야 합니다.");
-//       return;
-//     }
-
-//     Swal.fire("예매 성공!", "성공적으로 예매 되었습니다.", "success");
-//     console.log("예매 성공", {
-//       userId: 1,
-//       ticketNumber: count,
-//       showId: selectedSchedule.id,
-//     });
-//   };
-
-//   return (
-//     <div>
-//       <div className="DetailBody">
-//         <div className="PerformDetail_Container">
-//           <h3>공연 상세 페이지</h3>
-
-//           <div className="Perform_Box_Info">
-//             <img className="Perform_Box_Pic" src={show?.showPic || ""} alt="show_image" />
-//             <div className="Titles">
-//               <div className="names">
-//                 <h1>{show?.title}</h1>
-//                 <p>{show?.clubName}</p>
-//               </div>
-//               <div className="Infos">
-//                 <ul className="ExBox_name">
-//                   <li>장소</li>
-//                   <li>날짜</li>
-//                   <li>런타임</li>
-//                   <li>카테고리</li>
-//                   <li>담당자</li>
-//                 </ul>
-//                 <ul className="Each_ExBox">
-//                   <li>{show?.location}</li>
-//                   <li>{show?.startDate} ~ {show?.endDate}</li>
-//                   <li>{show?.runtime}분</li>
-//                   <li>{show?.category}</li>
-//                   <li>{show?.user.phoneNumber} ({show?.user.name})</li>
-//                 </ul>
-//               </div>
-//             </div>
-//           </div>
-
-//           <div className="Box_LR">
-//             <div className="LR">
-//               <select
-//                 className="chosePerformBox"
-//                 onChange={(e) =>
-//                   setSelectedSchedule(show?.schedule.find((s) => s.id === Number(e.target.value)))
-//                 }
-//               >
-//                 <option value="">상세 공연 선택</option>
-//                 {show?.schedule.map((sch) => (
-//                   <option key={sch.id} value={sch.id}>
-//                     {sch.order}공 | {sch.date} | {sch.time} | {sch.cost}원 | {sch.applyPeople}/{sch.maxPeople}
-//                   </option>
-//                 ))}
-//               </select>
-//             </div>
-
-//             <div className="LR">
-//               <div className="LR_tic">
-//                 <div className="tic">
-//                   <div>티켓 매수</div>
-//                   <div className="ticketBtns">
-//                     <button onClick={Decrese}>-</button>
-//                     <span>{count}매</span>
-//                     <button className="AddNum" onClick={Increse}>+</button>
-//                   </div>
-//                 </div>
-//                 <div className="total_tic">
-//                   <div>총 금액</div>
-//                   <div className="showPrice">
-//                     <p>{(selectedSchedule?.cost || 0) * count}원</p>
-//                   </div>
-//                 </div>
-//               </div>
-//               <button className="BookBtn" onClick={handleBooking}>예매하기</button>
-//             </div>
-//           </div>
-
-//           <div className="showInfoBox">
-//             <p>공연에 대한 소개</p>
-//             <div className="InfoBox">
-//               <span>{show?.content}</span>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default PerformDetail;
