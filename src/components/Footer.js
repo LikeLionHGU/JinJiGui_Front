@@ -7,7 +7,12 @@ function Footer() {
     <div className="Footer">
       <div className="Footer_Space"></div>
       <div className="Footer_Container">
-        <span className="Footer_Content">회사명: MOBOGGA | 연락처: 010-1234-1234</span>
+        <span className="Footer_Content">
+          동아리장은 22100130@handong.ac.kr 에 문의 주세요
+        </span>
+        <span className="Footer_Content">
+          회사명: MOBOGGA | 연락처: 010-1234-1234
+        </span>
         <span className="Footer_Content">
           주소: 경상북도 포항시 북구 흥해읍 한동로 558, 한동대학교
         </span>

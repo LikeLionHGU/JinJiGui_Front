@@ -32,9 +32,6 @@ function Main() {
         endDate: info?.show?.endDate || "",
         clubName: info?.show?.name || "이름 없음",
         category: info?.show?.category || "카테고리 없음",
-
-        clubName: info?.show?.clubName || "이름 없음",
-        category: info?.club?.category || "카테고리 없음",
       }));
 
       setCards(formattedCards);
@@ -52,7 +49,7 @@ function Main() {
 
   const getBanners = async () => {
     try {
-      const response = await axios.get(`https://jinjigui.info:443/main`);
+      const response = await axios.get(`https://jinjigui.info:443/main/banner`);
 
       console.log("API 호출 성공:", response.data);
       const showInfo = response.data.show_info || [];
@@ -61,7 +58,8 @@ function Main() {
         poster: info.show.poster,
         title: info.show.title, // 제목 정보 추가
       }));
-      console.log(formattedBanners);
+      console.log("banner", formattedBanners);
+
       setBanners(formattedBanners);
     } catch (error) {
       console.error("배너를 불러오지 못했습니다.", error);
