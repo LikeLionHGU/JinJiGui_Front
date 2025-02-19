@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import "./styles/AddInfo.css";
 
@@ -102,11 +103,15 @@ function AddInfo() {
         throw new Error(errorData.message || "저장에 실패했습니다.");
       }
 
-      alert("저장되었습니다!");
+      Swal.fire("저장되었습니다!");
       navigate(`/`);
     } catch (error) {
       console.error("Error saving profile:", error);
-      alert("저장 중 오류가 발생했습니다.");
+      Swal.fire({
+        title: `에러`,
+        text: `${error.response.data.message || "저장에 실패했습니다."}`,
+        icon: "error",
+      });
     }
   };
 

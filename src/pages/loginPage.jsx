@@ -43,7 +43,7 @@ const GoogleLogin = () => {
       <div id="loginBox">
         <div id="loginTop">
           <img id="loginLogo" src={LoginLogo} alt="loginLogo" />
-          <h4 id="loginText">모보까 로그인하고 모보까</h4>
+          <h4 id="loginText">모보까 로그인하고 공연보까</h4>
         </div>
         <LoginBtn
           src={GoogleLoginBtn}
