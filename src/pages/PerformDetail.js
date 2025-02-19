@@ -161,6 +161,7 @@ function PerformDetail() {
     }
   };
 
+  
   return (
     <div>
       <div className="DetailBody">
