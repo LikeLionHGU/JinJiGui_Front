@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./styles/UpdateProfile.css";
+import Swal from "sweetalert2";
 // import Swal from "sweetalert2";
 
 function UpdateProfile() {
@@ -11,7 +12,6 @@ function UpdateProfile() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const userId = sessionStorage.getItem("serverResponse");
-
 
   // 사용자 정보 조회
   useEffect(() => {
@@ -60,17 +60,17 @@ function UpdateProfile() {
 
     // 데이터 유효성 검사
     if (!formData.userName?.toString()) {
-      alert("이름을 입력해주세요.");
+      Swal.fire("이름을 입력해주세요.");
       return;
     }
 
     if (!formData.phoneNumber?.toString()) {
-      alert("전화번호를 입력해주세요.");
+      Swal.fire("전화번호를 입력해주세요.");
       return;
     }
 
     if (!formData.stdCode?.toString()) {
-      alert("학번을 입력해주세요.");
+      Swal.fire("학번을 입력해주세요.");
       return;
     }
 
@@ -99,11 +99,19 @@ function UpdateProfile() {
         throw new Error(errorData.message || "저장에 실패했습니다.");
       }
 
-      alert("저장되었습니다!");
+      await Swal.fire({
+        title: "저장 성공!",
+        text: `성공적으로 정보를 수정했습니다.`,
+        icon: "success",
+      });
       window.location.reload();
     } catch (error) {
       console.error("Error saving profile:", error);
-      alert("저장 중 오류가 발생했습니다.");
+      Swal.fire({
+        title: `에러`,
+        text: `${error.response.data.message || "저장에 실패했습니다"}`,
+        icon: "error",
+      });
     }
   };
 

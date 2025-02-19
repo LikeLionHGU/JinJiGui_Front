@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
 import "../components/styles/Header.css";
 import main_logo from "../assets/main_logo.svg";
+import Swal from "sweetalert2";
 // import { useRecoilValue } from "recoil";
 // import { sessionState } from "../atom/atom";
 
@@ -32,7 +33,7 @@ function Header() {
 
   const logoutEnter = () => {
     sessionStorage.clear();
-    alert("로그아웃 되었습니다!");
+    Swal.fire("로그아웃 되었습니다!");
     navigate("/");
   };
 
