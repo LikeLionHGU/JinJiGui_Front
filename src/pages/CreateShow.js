@@ -14,6 +14,7 @@ function Create() {
   const [content, setContent] = useState("");
   const [account, setAccount] = useState("");
   const [maxTickets, setMaxTickets] = useState("");
+  const [category, setCategory] = useState("");
   const [schedule, setSchedule] = useState({
     order: 0,
     date: "",
@@ -135,6 +136,7 @@ function Create() {
       location,
       startDate,
       endDate,
+      category,
       runtime,
       account,
       content,
@@ -308,7 +310,9 @@ function Create() {
                     onChange={(e) => setRunTime(e.target.value)}
                   />
                 </div>
-                <select>
+                <select
+                  onChange={(e) => setCategory(e.target.value)}
+                >
                   <option value="">공연 카테고리를 선택하세요</option>
                   <option value="밴드">밴드</option>
                   <option value="춤">춤</option>
