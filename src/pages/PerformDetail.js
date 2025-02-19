@@ -11,7 +11,8 @@ function PerformDetail() {
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState({
+  // const [data, setData] 
+  const [data] = useState({
     available: "false",
     qrImage: "",
     totalCost: "",
@@ -59,24 +60,6 @@ function PerformDetail() {
     // eslint-disable-next-line
   }, [id]);
 
-  useEffect(() => {
-    if (data.available === true) {
-      setIsDisable(true);
-      Swal.fire({
-        icon: "success",
-        title: "예매 성공!",
-        imageUrl: data.qrImage,
-        imageHeight: 300,
-        imageAlt: "송금 QR",
-        text: "성공적으로 예매되었습니다.",
-        html:
-          data.account +
-          "로 " +
-          data.totalCost +
-          "원 입금 해주세요.<br> 입금자명은 <strong>학번+이름</strong>으로 해주세요.<br>위 송금 QR을 스캔해서 송금하실 수도 있습니다.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
-      });
-    }
-  }, [data]);
 
   if (loading) {
     return <p>로딩중...</p>;
@@ -95,7 +78,7 @@ function PerformDetail() {
       Swal.fire({
         title: "경고",
         text:
-          "인당 구매 가능한 최대 티켓 수는 " + show.maxTickets + "매입니다!",
+          `인당 구매 가능한 최대 티켓 수는 ${show.maxTickets}매입니다!`,
         icon: "warning",
       });
     }
@@ -158,14 +141,21 @@ function PerformDetail() {
           imageAlt: "송금 QR",
           text: "성공적으로 예매되었습니다.",
           html:
-            `<strong>${responseData.account}</strong>` +
-            "(으)로 " +
-            `<strong>${responseData.totalCost}원</strong>` +
-            "을 입금해주세요.<br>위 QR을 스캔하여 송금하실 수도 있습니다.<br>입금자명은 <strong>❗️학번+이름❗️</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.",
+            `<strong>${data.account}</strong>
+            로 
+            <strong>${data.totalCost}원</strong>
+            을 입금해주세요.<br>위 QR을 스캔하여 송금하실 수도 있습니다.<br>입금자명은 <strong>❗️학번+이름❗️</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.`,
         });
       }
     } catch (error) {
       console.error("가져오기 ERROR:", error);
+      Swal.fire({
+        icon:"error",
+        title:"예매 실패!",
+        text:"예매에 실패하였습니다.",
+        html:
+          `남은 티켓은 <strong>${responseData.remain_tickets}장 입니다.`
+      })
     } finally {
       setLoading(false);
     }
