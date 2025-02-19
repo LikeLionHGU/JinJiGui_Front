@@ -61,6 +61,7 @@ function PerformDetail() {
 
   useEffect(() => {
     if (data.available === true) {
+      setIsDisable(true);
       Swal.fire({
         icon: "success",
         title: "예매 성공!",
@@ -148,7 +149,7 @@ function PerformDetail() {
   const reservationData = async (responseData) => {
     try {
       if (responseData.available === true) {
-        setIsDisable(false);
+        setIsDisable(true);
         Swal.fire({
           icon: "success",
           title: "예매 성공!",
