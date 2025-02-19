@@ -21,12 +21,18 @@
 #showLists {
   display: flex;
   align-content: center;
-  justify-content: left;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
   margin: auto;
   padding-top: 53px;
-  width: 940px;
+  width: 100%;
+  max-width: 940px;
+}
+
+#showLists .card {
+  flex: 0 1 calc(30% - 16px); /* 한 줄에 3개 배치 */
+  box-sizing: border-box;
 }
 
 #list-text {
@@ -60,4 +66,23 @@
 #loading-logo {
   width: 500px;
   margin: 200px;
+}
+
+#showLists .card {
+  flex: 0 1 calc(30% - 16px); /* 기본: 한 줄에 3개 */
+  box-sizing: border-box;
+  aspect-ratio: 3 / 4; /* 비율 유지 (예: 3:4 비율) */
+}
+
+@media (max-width: 1024px) {
+  #showLists {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+@media (max-width: 768px) {
+  #showLists {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }

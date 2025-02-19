@@ -2,6 +2,7 @@ import styled from "styled-components";
 import "./styles/Login.css";
 import GoogleLoginBtn from "../assets/GoogleLoginBtn.svg";
 import LoginLogo from "../assets/login_logo.svg";
+import { sessionState } from "../atom/atom";
 
 const GoogleLogin = () => {
   const handleGoogleLogin = () => {

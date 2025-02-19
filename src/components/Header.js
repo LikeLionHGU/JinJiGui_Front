@@ -1,16 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../components/styles/Header.css";
 import main_logo from "../assets/main_logo.svg";
+// import { useRecoilValue } from "recoil";
+// import { sessionState } from "../atom/atom";
 
 function Header() {
   // eslint-disable-next-line
-  const [notLoggedIn, setNotLoggedIn] = useState(true);
+  // const [notLoggedIn, setNotLoggedIn] = useState(false);
   // eslint-disable-next-line
-  const [manager, setManager] = useState(true);
+  const [manager, setManager] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const userInfo = sessionStorage.getItem("serverResponse:Id");
+  const userAuth = sessionStorage.getItem("serverResponse:Authority");
+
+  // const sessionValue = useRecoilValue(sessionState);
+
+  useEffect(() => {
+    // console.log("sessionValue", sessionValue);
+    // console.log("sessionState", sessionState);
+    if (userAuth === "2") {
+      setManager(true);
+      const parsedUserInfo = JSON.parse(userInfo);
+      if (parsedUserInfo.isManager) {
+        setManager(true);
+      }
+    }
+  }, [userAuth, userInfo]);
+
+  const logoutEnter = () => {
+    sessionStorage.clear();
+    alert("로그아웃 되었습니다!");
+    navigate("/");
+  };
 
   const loginEnter = () => {
     navigate("/login");
@@ -25,11 +49,8 @@ function Header() {
   //   navigate("/manager");
   // };
 
-  const activeStyle = {
-    color: "#EB5A3C",
-  };
-
   // 마이페이지 경로 체크 함수
+  // eslint-disable-next-line
   const isMyPageActive = () => {
     return location.pathname.startsWith("/mypage");
   };
@@ -46,70 +67,34 @@ function Header() {
           />
         </div>
 
-        {notLoggedIn ? (
+        {userInfo ? (
           <div className="Header_Right">
-            <NavLink
-              className="Header_Link"
-              style={({ isActive }) =>
-                isActive ? activeStyle : { color: "white" }
-              }
-              to="/"
-            >
+            {manager && (
+              <Link className="Header_Link" to="/manager">
+                <span>내 공연 관리</span>
+              </Link>
+            )}
+            <span className="Header_Link" onClick={homeEnter}>
+              홈
+            </span>
+            <span className="Header_Link" onClick={logoutEnter}>
+              로그아웃
+            </span>
+            <Link className="Header_Link" to="/mypage/reservation">
+              <span>마이페이지</span>
+            </Link>
+          </div>
+        ) : (
+          <div className="Header_Right">
+            <Link className="Header_Link" to="/">
               <span>홈</span>
-            </NavLink>
+            </Link>
             <span className="Header_Link" onClick={loginEnter}>
               로그인
             </span>
             <span className="Header_Link" onClick={loginEnter}>
               회원가입
             </span>
-          </div>
-        ) : manager ? (
-          <div className="Header_Right">
-            <NavLink
-              className="Header_Link"
-              style={({ isActive }) =>
-                isActive ? activeStyle : { color: "white" }
-              }
-              to="/manager"
-            >
-              <span>내 공연 관리</span>
-            </NavLink>
-            <NavLink
-              className="Header_Link"
-              style={({ isActive }) =>
-                isActive ? activeStyle : { color: "white" }
-              }
-              to="/"
-            >
-              <span>홈</span>
-            </NavLink>
-            <span>로그아웃</span>
-            <NavLink
-              className="Header_Link"
-              style={() =>
-                isMyPageActive() ? activeStyle : { color: "white" }
-              }
-              to="/mypage"
-            >
-              <span>마이페이지</span>
-            </NavLink>
-          </div>
-        ) : (
-          <div className="Header_Right">
-            <span className="Header_Link" onClick={homeEnter}>
-              홈
-            </span>
-            <span className="Header_Link">로그아웃</span>
-            <NavLink
-              className="Header_Link"
-              style={() =>
-                isMyPageActive() ? activeStyle : { color: "white" }
-              }
-              to="/mypage/reservation"
-            >
-              <span>마이페이지</span>
-            </NavLink>
           </div>
         )}
       </div>

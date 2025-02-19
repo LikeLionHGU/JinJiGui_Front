@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import Banner from "../components/Banner";
 import ShowLists from "../components/ShowList";
-import axios from "axios";
-
-import loginLogo from "../assets/login_logo.svg";
+import { Filter } from "../components/Filter";
 
 import "./styles/Main.css";
 import "../components/styles/Banner.css";
+import Loading from "./loading";
 
 function Main() {
   const [cards, setCards] = useState([]);
@@ -15,6 +15,7 @@ function Main() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("all"); // state의 기본값은 전체보기(all)
 
   const getCards = async () => {
     try {
@@ -29,6 +30,9 @@ function Main() {
         title: info?.show?.title || "제목 없음",
         startDate: info?.show?.startDate || "",
         endDate: info?.show?.endDate || "",
+        clubName: info?.show?.name || "이름 없음",
+        category: info?.show?.category || "카테고리 없음",
+
         clubName: info?.show?.clubName || "이름 없음",
         category: info?.club?.category || "카테고리 없음",
       }));
@@ -49,7 +53,7 @@ function Main() {
   const getBanners = async () => {
     try {
       const response = await axios.get(`https://jinjigui.info:443/main`);
-  
+
       console.log("API 호출 성공:", response.data);
       const showInfo = response.data.show_info || [];
       const formattedBanners = showInfo.map((info) => ({
@@ -89,18 +93,17 @@ function Main() {
   //   }
   // };
 
+  const filteredList =
+    selectedCategory === "all"
+      ? cards
+      : cards.filter((item) => item.category === selectedCategory);
+
   useEffect(() => {
     getBanners();
     getCards();
   }, []);
 
-  if (loading)
-    return (
-      <div id="loading">
-        <img id="loading-logo" src={loginLogo} alt="loading" />
-        <div style={{color: "white"}}>로딩중...</div>
-      </div>
-    );
+  if (loading) return <Loading />;
   if (error) return <p>{error}</p>;
 
   return (
@@ -115,7 +118,13 @@ function Main() {
         <div id="list-text">
           <p> 전체 공연 목록</p>
         </div>
-        <ShowLists cards={cards} />
+        <Filter
+          setSelectedCategory={setSelectedCategory} // setState 전달
+          selectedCategory={selectedCategory} // state 전달
+        />
+        <div id="show-list">
+          <ShowLists cards={filteredList} />
+        </div>
       </div>
     </div>
   );

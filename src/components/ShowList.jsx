@@ -3,6 +3,8 @@ import Card from "./Card";
 import "../pages/styles/Main.css";
 
 const ShowLists = ({ cards }) => {
+  console.log("cate", cards.category);
+
   return (
     <div id="showLists">
       {cards.map((card) => (
