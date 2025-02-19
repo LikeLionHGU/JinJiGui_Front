@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import HolderListCard from "../components/HolderListCard";
+import excel_icon from "../assets/excel_icon.png";
 import "./styles/HolderList.css";
 import Swal from "sweetalert2";
 
@@ -8,6 +9,7 @@ function HolderList() {
   const navigate = useNavigate();
   const { scheduleId } = useParams();
   const [HolderListCards, setHolderListCards] = useState([]);
+  // const [HolderCSV, setHolderCSV] = useState([]);
   const [selectedHolders, setSelectedHolders] = useState({});
 
   const getHolderListCards = async () => {
@@ -24,6 +26,62 @@ function HolderList() {
         initialSelected[holder.reservation.id] = false;
       });
       setSelectedHolders(initialSelected);
+    } catch (error) {
+      console.error("Error fetching holder list:", error);
+    }
+  };
+
+  const downloadCSV = async () => {
+    try {
+      const response = await fetch(
+        `https://jinjigui.info:443/manager/holder/${scheduleId}`
+      );
+      const json = await response.json();
+      const jsonData = JSON.stringify(json.csv_json);
+      let arrData = JSON.parse(jsonData);
+      console.log(arrData);
+
+      let CSV = "";
+      // CSV += "전체 예매 명단 목록" + "\r\n\n";
+      // CSV += `${json.title} ${json.order} 예매 명단 목록` + "\r\n\n";
+
+      let row = "";
+      const arrKey = [
+        "순번",
+        "입금 확인",
+        "총 금액",
+        "학번",
+        "이름",
+        "매수",
+        "전화번호 ",
+      ];
+      for (let index in arrKey) {
+        row += arrKey[index] + ",";
+      }
+      row = row.substring(0, row.length - 1);
+      row = row.slice(0, -1);
+      CSV += row + "\r\n";
+
+      for (let i = 0; i < arrData.length; i++) {
+        let row = i + 1 + ", ";
+        for (let index in arrData[i]) {
+          row += arrData[i][index] + ",";
+        }
+        row = row.substring(0, row.length - 1);
+        row.slice(0, row.length - 1);
+        CSV += row + "\r\n";
+      }
+
+      let uri = "data:text/csv;charset=utf-8,\uFEFF" + encodeURI(CSV);
+      let link = document.createElement("a");
+      link.href = uri;
+      link.style = "visibility:hidden";
+      // link.download = "전체 예매 명단.csv"
+      link.download = json.title + " " + json.order + "공 예매 명단.csv";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (error) {
       console.error("Error fetching holder list:", error);
     }
@@ -173,17 +231,34 @@ function HolderList() {
             <div className="manager-holderlist-title">예매명단관리</div>
           </div>
           <div className="manager-holderlist-button-box">
-            <div
-              className="manager-holderlist-confirmButton"
-              onClick={handleConfirmDepositClick}
-            >
-              입금여부 확정하기
+            <div className="manager-holderlist-button-left-box">
+              <div
+                type="primary"
+                className="manager-holderlist-exportButton"
+                onClick={downloadCSV}
+              >
+                  <img
+                    src={excel_icon}
+                    height={20}
+                    style={{"marginRight": "5px"}}
+                    className="manager-holderlist-excel-icon"
+                  />
+                전체 명단 CSV 추출
+              </div>
             </div>
-            <div
-              className="manager-holderlist-deleteButton"
-              onClick={handleDeleteButtonClick}
-            >
-              삭제하기
+            <div className="manager-holderlist-button-right-box">
+              <div
+                className="manager-holderlist-confirmButton"
+                onClick={handleConfirmDepositClick}
+              >
+                입금여부 확정
+              </div>
+              <div
+                className="manager-holderlist-deleteButton"
+                onClick={handleDeleteButtonClick}
+              >
+                삭제
+              </div>
             </div>
           </div>
           <div className="manager-holderlist-content-box">
@@ -193,7 +268,7 @@ function HolderList() {
               <div className="manager-holderlist-header">총 금액</div>
               <div className="manager-holderlist-header">이름</div>
               <div className="manager-holderlist-header">학번</div>
-              {/* <div className="manager-holderlist-header">매수</div> */}
+              <div className="manager-holderlist-header">매수</div>
               <div className="manager-holderlist-header">전화번호</div>
             </div>
             <div className="manager-holderlist-content">
@@ -205,7 +280,7 @@ function HolderList() {
                   totalCost={holder.totalCost}
                   name={holder.user.name}
                   stdNum={holder.user.stdNumber}
-                  // ticketNum={holder.reservation.ticketNumber}
+                  ticketNum={holder.reservation.ticketNumber}
                   phoneNum={holder.user.phoneNumber}
                   isSelected={selectedHolders[holder.reservation.id] || false}
                   onCheckboxChange={handleCheckboxChange}

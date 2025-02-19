@@ -7,7 +7,7 @@ function HolderListCard({
   totalCost,
   name,
   stdNum,
-  // ticketNum,
+  ticketNum,
   phoneNum,
   isSelected,
   onCheckboxChange,
@@ -39,7 +39,7 @@ function HolderListCard({
       </div>
       <div className="manager-holderlist-header">{name}</div>
       <div className="manager-holderlist-header">{stdNum}</div>
-      {/* <div className="manager-holderlist-header">{ticketNum}</div> */}
+      <div className="manager-holderlist-header">{ticketNum}</div>
       <div className="manager-holderlist-header">{phoneNum}</div>
     </>
   );
