@@ -21,7 +21,7 @@ function Header() {
   useEffect(() => {
     // console.log("sessionValue", sessionValue);
     // console.log("sessionState", sessionState);
-    if (userAuth === "1") {
+    if (userAuth === "1" || userAuth === "2") {
       setManager(true);
       const parsedUserInfo = JSON.parse(userInfo);
       if (parsedUserInfo.isManager) {
