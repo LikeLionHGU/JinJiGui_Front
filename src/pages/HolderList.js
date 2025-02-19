@@ -149,6 +149,62 @@ function HolderList() {
     }
   };
 
+  const handleCancelDepositClick = async () => {
+    // 선택된 예약 ID 배열 생성
+    const selectedIds = Object.keys(selectedHolders)
+      .filter((id) => selectedHolders[id])
+      .map((id) => parseInt(id));
+
+    if (selectedIds.length === 0) {
+      Swal.fire({
+        title: "선택된 예약이 없습니다",
+        icon: "warning",
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
+    try {
+      // 입금 확인 API 요청 - 형식에 맞게 변환
+      const requestBody = selectedIds.map((id) => ({ reservationId: id }));
+      console.log(requestBody);
+
+      const response = await fetch(
+        `https://jinjigui.info:443/manager/holder/cancel`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            credentials: "include",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      console.log(requestBody);
+
+      if (response.ok) {
+        Swal.fire({
+          title: "입금 확인 처리가 취소되었습니다",
+          icon: "success",
+          confirmButtonText: "확인",
+        }).then(() => {
+          // 목록 다시 불러오기
+          getHolderListCards();
+        });
+      } else {
+        throw new Error("Server responded with an error");
+      }
+    } catch (error) {
+      console.error("Error confirming deposits:", error);
+      Swal.fire({
+        title: "입금 확인 처리 중 오류가 발생했습니다",
+        icon: "error",
+        confirmButtonText: "확인",
+      });
+    }
+  };
+
   const handleDeleteButtonClick = () => {
     const selectedIds = Object.keys(selectedHolders)
       .filter((id) => selectedHolders[id])
@@ -254,6 +310,12 @@ function HolderList() {
                 입금여부 확정
               </div>
               <div
+                className="manager-holderlist-cancelButton"
+                onClick={handleCancelDepositClick}
+              >
+                입금여부 취소
+              </div>
+              <div
                 className="manager-holderlist-deleteButton"
                 onClick={handleDeleteButtonClick}
               >
@@ -274,7 +336,7 @@ function HolderList() {
             <div className="manager-holderlist-content">
               {HolderListCards.map((holder) => (
                 <HolderListCard
-                  key={holder.reservation.id}
+                  key={holder.primary}
                   id={holder.reservation.id}
                   isDeposit={holder.reservation.isDeposit}
                   totalCost={holder.totalCost}

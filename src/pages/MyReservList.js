@@ -106,6 +106,7 @@ function MyReservList() {
             ) : (
               myReservCards.map((myReservCard) => {
                 console.log("예매 카드 렌더링:", myReservCard.ticketNumber);
+                console.log(myReservCard);
                 return (
                   <div
                     key={myReservCard.ticketNumber}
@@ -113,7 +114,7 @@ function MyReservList() {
                   >
                     <MyReservCard
                       img_path={myReservCard.poster}
-                      id={myReservCard.show.id}
+                      id={myReservCard.primary}
                       title={myReservCard.show.title}
                       order={myReservCard.schedule.order}
                       date={myReservCard.schedule.date}
@@ -121,7 +122,7 @@ function MyReservList() {
                       account={myReservCard.show.accountNumber}
                       ticketNum={myReservCard.ticketNumber}
                       totalCost={myReservCard.totalCost}
-                      isDeposit={myReservCard.reservation.isDeposit}
+                      isDeposit={myReservCard.reservation.deposit}
                     />
                   </div>
                 );
