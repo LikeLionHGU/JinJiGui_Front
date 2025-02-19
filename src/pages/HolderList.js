@@ -198,7 +198,7 @@ function HolderList() {
     } catch (error) {
       console.error("Error confirming deposits:", error);
       Swal.fire({
-        title: "입금 확인 처리 중 오류가 발생했습니다",
+        title: "입금 취소 처리 중 오류가 발생했습니다",
         icon: "error",
         confirmButtonText: "확인",
       });
@@ -313,7 +313,7 @@ function HolderList() {
                 className="manager-holderlist-cancelButton"
                 onClick={handleCancelDepositClick}
               >
-                입금여부 취소
+                입금확정 취소
               </div>
               <div
                 className="manager-holderlist-deleteButton"

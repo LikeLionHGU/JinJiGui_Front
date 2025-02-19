@@ -157,12 +157,12 @@
   border: none;
   border-radius: 20px;
   color: #161616;
-  background-color: #0eed6e;
+  background-color: #cecece;
   font-size: 0.8rem;
 
   &:hover {
     cursor: pointer;
-    background-color: #a33b26;
+    background-color: #8d8d8d;
   }
 
   &:active {
