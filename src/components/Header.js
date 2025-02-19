@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../components/styles/Header.css";
 import main_logo from "../assets/main_logo.svg";
 // import { useRecoilValue } from "recoil";
@@ -21,7 +21,7 @@ function Header() {
   useEffect(() => {
     // console.log("sessionValue", sessionValue);
     // console.log("sessionState", sessionState);
-    if (userAuth === "2") {
+    if (userAuth === "1") {
       setManager(true);
       const parsedUserInfo = JSON.parse(userInfo);
       if (parsedUserInfo.isManager) {
@@ -70,9 +70,9 @@ function Header() {
         {userInfo ? (
           <div className="Header_Right">
             {manager && (
-              <Link className="Header_Link" to="/manager">
+              <NavLink className="Header_Link" to="/manager">
                 <span>내 공연 관리</span>
-              </Link>
+              </NavLink>
             )}
             <span className="Header_Link" onClick={homeEnter}>
               홈
@@ -80,15 +80,15 @@ function Header() {
             <span className="Header_Link" onClick={logoutEnter}>
               로그아웃
             </span>
-            <Link className="Header_Link" to="/mypage/reservation">
+            <NavLink className="Header_Link" to="/mypage/reservation">
               <span>마이페이지</span>
-            </Link>
+            </NavLink>
           </div>
         ) : (
           <div className="Header_Right">
-            <Link className="Header_Link" to="/">
+            <NavLink className="Header_Link" to="/">
               <span>홈</span>
-            </Link>
+            </NavLink>
             <span className="Header_Link" onClick={loginEnter}>
               로그인
             </span>

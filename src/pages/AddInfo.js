@@ -1,8 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./styles/AddInfo.css";
 
 function AddInfo() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     userName: "",
     phoneNumber: "",
@@ -10,13 +13,14 @@ function AddInfo() {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const userId = sessionStorage.getItem("serverResponse");
 
   // 사용자 정보 조회
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const response = await fetch(
-          "https://jinjigui.info:443/mypage/update",
+          `https://jinjigui.info:443/mypage/update/${userId}`,
           {
             credentials: "include",
           }
@@ -74,21 +78,24 @@ function AddInfo() {
     }
 
     try {
-      const response = await fetch("https://jinjigui.info:443/mypage/save", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          user: {
-            userName: formData.userName?.toString() || "",
-            phoneNumber: formData.phoneNumber?.toString() || "",
-            stdCode: formData.stdCode?.toString() || "",
+      const response = await fetch(
+        `https://jinjigui.info:443/mypage/save/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
           },
-        }),
-      });
+          credentials: "include",
+          body: JSON.stringify({
+            user: {
+              userName: formData.userName?.toString() || "",
+              phoneNumber: formData.phoneNumber?.toString() || "",
+              stdCode: formData.stdCode?.toString() || "",
+            },
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -96,7 +103,7 @@ function AddInfo() {
       }
 
       alert("저장되었습니다!");
-      window.location.reload();
+      navigate(`/`);
     } catch (error) {
       console.error("Error saving profile:", error);
       alert("저장 중 오류가 발생했습니다.");
@@ -118,7 +125,7 @@ function AddInfo() {
           <div className="add-page-title-box">
             <div className="add-page-title">추가정보 기입</div>
           </div>
-          <div className="add-page-content-box">
+          <form onSubmit={saveProfile} className="add-page-content-box">
             <div className="add-page-content" id="add-my-name">
               <input
                 type="text"
@@ -126,7 +133,7 @@ function AddInfo() {
                 value={formData.userName}
                 onChange={handleInputChange}
                 placeholder="이름"
-              />{" "}
+              />
             </div>
             <div className="add-page-content" id="add-my-phone">
               <input
@@ -155,7 +162,7 @@ function AddInfo() {
                 저장
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>
