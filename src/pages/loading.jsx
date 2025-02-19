@@ -39,15 +39,16 @@ const Loading = () => {
   }, [navigate]);
 
   return (
-    <Loding>
+    <div id="loading">
       <img id="loging-logo" src={loginLogo} alt="loading" />
-    </Loding>
+      <div style={{ color: "white" }}>로딩중...</div>
+    </div>
   );
 };
 
 export default Loading;
 
-const Loding = styled.div`
+const LoadingText = styled.div`
   display:flex;
   flex-direction: row;
 

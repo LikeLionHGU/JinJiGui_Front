@@ -1,9 +1,35 @@
+/* 캐러셀 전체 컨테이너에 여유 공간 확보 */
+#banner {
+  padding: 30px 0;
+  overflow: visible;
+}
+
 /* 배너 사이 간격 설정 */
 .banner-item {
   margin-right: 30px;
   cursor: pointer;
   z-index: 1;
   pointer-events: auto;
+  position: relative; /* 제목 위치 지정을 위해 필요 */
+  transition: all 0.3s ease;
+}
+
+/* 제목 스타일 - 새로 추가 */
+.banner-title {
+  position: absolute;
+  bottom: -3%;
+  left: -50%;
+  right: 0;
+  text-shadow: 5px 5px 10px black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  z-index: 10;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  opacity: 1 !important; /* dim 처리에도 제목은 선명하게 유지 */
 }
 
 .carousel .slide img {
@@ -13,11 +39,17 @@
 
 .carousel-root {
   margin-top: 3%;
+  overflow: visible;
+}
+
+/* 캐러셀 슬라이더에 여유 공간 확보 */
+.carousel .slider-wrapper {
+  overflow: visible !important; /* 중요: 오버플로우를 visible로 설정 */
 }
 
 /* 썸네일 스타일 */
 #thumbnail-container {
-  margin-top: 20px;
+  margin-top: 3%;
   margin-left: 10%;
   display: flex;
   justify-content: left;
@@ -36,10 +68,12 @@
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  border: 1px solid transparent; /* 투명한 테두리 추가 */
 }
 
 .thumbnail-item:hover {
-  border: solid white; /* 썸네일을 살짝 확대 */
+  border: 1px solid white; /* 테두리만 변경, 크기 변화 없음 */
+  /* transform 제거 */
 }
 
 /* Carousel 이미지 dim 처리 */
@@ -53,16 +87,30 @@
   z-index: 1;
 }
 
-/* 가운데 슬라이드는 밝게 처리 */
-.carousel .slide.selected img {
-  opacity: 1 !important;
+/* 중앙(선택된) 슬라이드는 밝고 크게 처리 - 확대 시 잘림 방지 */
+.carousel .slide.selected {
+  z-index: 10;
+  overflow: visible !important;
 }
 
-/* 양옆 슬라이드는 dim 처리 */
+/* 양옆 슬라이드는 dim 처리 및 크기 축소 */
 .carousel .slide img {
-  width: 75%;
+  width: 65%; /* 기본 크기를 더 작게 조정 */
   opacity: 0.5;
-  transition: opacity 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+/* 중앙(선택된) 슬라이드는 밝고 크게 처리 */
+.carousel .slide.selected img {
+  opacity: 1 !important;
+  transform: scale(1); /* 중앙 이미지를 20% 크게 */
+  max-height: none;
+}
+
+/* dim 클래스 - 선택되지 않은 배너 처리 */
+.banner-item.dim img {
+  opacity: 0.5;
+  transform: scale(0.6); /* dim 처리된 이미지 50% 축소 */
 }
 
 /* 화살표 스타일 */
@@ -74,8 +122,16 @@
   height: 50px;
 }
 
+/* control-dots 위치 조정 - 아래로 이동 */
+.carousel .control-dots {
+  position: relative;
+  margin-top: 20px !important;
+  padding-bottom: 15px;
+}
+
 .carousel .carousel-slider {
   display: flex;
+  overflow: visible !important; /* 중요: 오버플로우를 visible로 설정 */
 }
 
 .custom-carousel .control-arrow {

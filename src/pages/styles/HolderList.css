@@ -28,7 +28,7 @@
 
 .manager-holderlist-header-box {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
   gap: 20px;
   width: 100%;
   border-bottom: 2px solid white;
@@ -43,7 +43,7 @@
 
 .manager-holderlist-content {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
   gap: 20px;
   width: 100%;
 }

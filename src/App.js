@@ -36,7 +36,7 @@ function App() {
         <Route path="/manager" element={<ManagerShowList />} />
         <Route path="/manager/show" element={<ManagerShowList />} />
         <Route path="/manager/club" element={<ManageClub />} />
-        <Route path="/manager/holder" element={<HolderList />} />
+        <Route path="/manager/holder/:scheduleId" element={<HolderList />} />
         <Route path="/manager/create" element={<CreateShow />} />
         <Route path="/manager/update" element={<UpdateShow />} />
         <Route path="/bookticket" element={<BookTicket />} />

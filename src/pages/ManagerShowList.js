@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import "./styles/ManagerShowList.css";
 import MyShowListCard from "../components/MyShowListCard";
 
 function ManagerShowList() {
   const [MyShowListCards, setMyShowListCards] = useState([]); // 여기가 문제였습니다
+  const navigate = useNavigate();
+  const userid = sessionStorage.getItem("serverResponse");
+
+  const createEnter = () => {
+    navigate("/manager/create");
+  };
 
   const getMyShowListCards = async () => {
     try {
-      const response = await fetch(`https://jinjigui.info:443/manager/show`);
+      const response = await fetch(`https://jinjigui.info:443/manager/show/${userid}`);
       const json = await response.json();
       setMyShowListCards(json.my_show_list); // json.my_show_list 데이터를 저장
     } catch (error) {
@@ -16,7 +23,9 @@ function ManagerShowList() {
   };
 
   useEffect(() => {
+    console.log(userid);
     getMyShowListCards();
+    console.log(MyShowListCards);
   }, []);
 
   return (
@@ -26,7 +35,7 @@ function ManagerShowList() {
           <div className="manager-showlist-title">공연 관리</div>
         </div>
         <div className="manager-showlist-createButton-box">
-          <div className="manager-showlist-createButton">
+          <div className="manager-showlist-createButton" onClick={createEnter}>
             새로운 공연 추가하기
           </div>
         </div>
@@ -39,7 +48,7 @@ function ManagerShowList() {
             <div className="manager-showlist-header">삭제</div>
           </div>
           <div className="manager-showlist-content">
-            {MyShowListCards?.map((show) =>
+            {MyShowListCards.map((show) =>
               show.schedule.map((schedule, index) => (
                 <MyShowListCard
                   key={`${show.id}-${index}`}
