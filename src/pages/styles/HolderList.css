@@ -28,7 +28,7 @@
 
 .manager-holderlist-header-box {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
   gap: 20px;
   width: 100%;
   border-bottom: 2px solid white;
@@ -43,7 +43,7 @@
 
 .manager-holderlist-content {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
   gap: 20px;
   width: 100%;
 }
@@ -54,11 +54,51 @@
 
 .manager-holderlist-button-box {
   display: flex;
-  align-items: end;
+  flex-direction: row;
   margin-bottom: 30px;
   width: 100%;
   justify-content: flex-end;
   padding-left: 10px;
+}
+
+.manager-holderlist-button-left-box {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+}
+
+.manager-holderlist-button-right-box {
+  display: flex;
+  align-items: end;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.manager-holderlist-exportButton {
+  display: flex;
+  flex-direction: row;
+  justify-self: start;
+  align-self: self-start;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  border-radius: 20px;
+  color: #161616;
+  background-color: #FFFFFF;
+  font-size: 0.8rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: gray;
+  }
+
+  &:active {
+    top: 1px;
+    border-color: #481910 #481910 #481910;
+    box-shadow: 0 1px 0 #481910, 0 1px rgba(0, 0, 0, 0.05) inset;
+    position: relative;
+  }
 }
 
 .manager-holderlist-deleteButton {
@@ -86,6 +126,7 @@
 
 .manager-holderlist-confirmButton {
   margin-right: 10px;
+  margin-left: 10px;
   padding: 5px;
   padding-left: 20px;
   padding-right: 20px;
