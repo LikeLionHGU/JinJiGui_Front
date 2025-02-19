@@ -12,13 +12,7 @@ function PerformDetail() {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   // const [data, setData] 
-  const [data] = useState({
-    available: "false",
-    qrImage: "",
-    totalCost: "",
-    account: "",
-    remain_tickets: "",
-  });
+
   const [isDisable, setIsDisable] = useState(false);
 
   // 시간 포맷 함수: HH:MM:SS 형식을 HH:MM 형식으로 변환
@@ -78,7 +72,7 @@ function PerformDetail() {
       Swal.fire({
         title: "경고",
         text:
-          `인당 구매 가능한 최대 티켓 수는 ${show.maxTickets}매입니다!`,
+          "인당 구매 가능한 최대 티켓 수는"+ show.maxTickets + "매입니다!",
         icon: "warning",
       });
     }
@@ -141,11 +135,21 @@ function PerformDetail() {
           imageAlt: "송금 QR",
           text: "성공적으로 예매되었습니다.",
           html:
-            `<strong>${data.account}</strong>
-            로 
-            <strong>${data.totalCost}원</strong>
-            을 입금해주세요.<br>위 QR을 스캔하여 송금하실 수도 있습니다.<br>입금자명은 <strong>❗️학번+이름❗️</strong>으로 해주세요.<br>계좌번호는 마이페이지에서 확인 가능합니다.`,
+            `<strong>${responseData.account}</strong>로
+            <strong>${responseData.totalCost}원</strong>을 입금해주세요.<br>
+            위 QR을 스캔하여 송금하실 수도 있습니다.<br>
+            입금자명은 <strong>❗️학번+이름❗️</strong>으로 해주세요.<br>
+            계좌번호는 마이페이지에서 확인 가능합니다.`,
         });
+        
+      }else{
+        Swal.fire({
+          icon:"error",
+          title:"예매 실패!",
+          text:"예매에 실패하였습니다.",
+          html:
+            `남은 티켓은<strong>${responseData.remain_tickets}<strong>장 입니다.`
+        })
       }
     } catch (error) {
       console.error("가져오기 ERROR:", error);
@@ -154,7 +158,7 @@ function PerformDetail() {
         title:"예매 실패!",
         text:"예매에 실패하였습니다.",
         html:
-          `남은 티켓은 <strong>${responseData.remain_tickets}장 입니다.`
+          `남은 티켓은<strong>${responseData.remain_tickets}<strong>장 입니다.`
       })
     } finally {
       setLoading(false);

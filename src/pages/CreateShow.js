@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "../pages/styles/createshow.css";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 function Create() {
+
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [poster, setPoster] = useState(null);
   const [qrImage, setQrImage] = useState(null);
@@ -43,16 +47,19 @@ function Create() {
     if (file) {
       setPoster(file);
       setPreviewURL(URL.createObjectURL(file)); //미리 보기 url 생성
+    }else {
+      setQrImage(null);
     }
   };
 
-  const handleQr = (e) => {
+  const handleQrImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setQrImage(file);
+    } else {
+      setQrImage(null);
     }
   };
-  
 
   //모든 입력란을 받아야 submit 가능 + 빈칸이 어디인지 알려줌
   const makeShow = async () => {
@@ -115,7 +122,12 @@ function Create() {
         return;
       }
     }
-    
+
+    const fileInput = document.getElementById("handleQr");
+    if(fileInput && fileInput.files.length === 0){
+      console.log("QR 파일이 선택 되지 않았습니다.");
+      setQrImage(null);
+    }
 
     console.log("show : ",shows);
     console.log("Schedule : ", schedule);
@@ -145,10 +157,16 @@ function Create() {
     const formData = new FormData();
     formData.append("poster", poster);
 
+    // if (qrImage && qrImage instanceof File) {
+    //   formData.append("qrImage", qrImage);
+    // } else {
+    //   console.warn("qrImage가 존재하지 않거나 파일이 아닙니다:", qrImage);
+    // }
     if (qrImage && qrImage instanceof File) {
       formData.append("qrImage", qrImage);
-    } else {
-      console.warn("qrImage가 존재하지 않거나 파일이 아닙니다:", qrImage);
+    }else{
+      console.log("QR 이미지 없음, formData에 추가되지 않음");
+      formData.delete("qrImage");
     }
 
     formData.append(
@@ -187,9 +205,18 @@ function Create() {
           },
         }
       );
-      Swal.fire("저장이 완료되었습니다.");
+
       console.log("저장 성공", response.data);
-    } catch (error) {
+
+      if (response.data.status === true) {
+        Swal.fire("저장이 완료되었습니다.").then(() => {
+          navigate("/");
+        });
+      } else {
+        Swal.fire("저장은 되었지만, 문제가 발생했습니다.");
+      }
+      
+    }catch (error) {
       console.error("저장 오류", error);
       Swal.fire(
         "저장 실패",
@@ -413,7 +440,8 @@ function Create() {
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={handleQr}
+                  id='handleQr'
+                  onChange={handleQrImageChange}
                 />
               </div>
             </div>
