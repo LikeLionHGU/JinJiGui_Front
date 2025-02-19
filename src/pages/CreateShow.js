@@ -6,6 +6,7 @@ import axios from "axios";
 function Create() {
   const [title, setTitle] = useState("");
   const [poster, setPoster] = useState(null);
+  const [qrImage, setQrImage] = useState(null);
   const [clubName, setClubName] = useState("");
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -25,21 +26,6 @@ function Create() {
   const [previewURL, setPreviewURL] = useState(null);
 
   //기존값 확인하고 새로 생긴 schedule 정보 받아옴
-  // const updateSchedule = (key, value) => {
-  //   setSchedule((preSchedule) => ({
-  //     ...preSchedule,
-  //     [key]: value,
-  //   }));
-  // };
-
-  // const updateSchedule = (id, key, value) => {
-  //   setShows((prevShows) =>
-  //     prevShows.map((show) =>
-  //       show.id === id ? { ...show, [key]: value } : show
-  //     )
-  //   );
-  // };
-
   const updateSchedule = (id, key, value) => {
     setShows((prevShows) =>
       prevShows.map((show, index) =>
@@ -59,9 +45,15 @@ function Create() {
       setPreviewURL(URL.createObjectURL(file)); //미리 보기 url 생성
     }
   };
-  // const triggerFileInput = () => {
-  //   document.getElementById("fileUpload").click();
-  // };
+
+  const handleQr = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setQrImage(file);
+    }
+  };
+  
+
   //모든 입력란을 받아야 submit 가능 + 빈칸이 어디인지 알려줌
   const makeShow = async () => {
     if (!title) {
@@ -152,6 +144,13 @@ function Create() {
     }; 
     const formData = new FormData();
     formData.append("poster", poster);
+
+    if (qrImage && qrImage instanceof File) {
+      formData.append("qrImage", qrImage);
+    } else {
+      console.warn("qrImage가 존재하지 않거나 파일이 아닙니다:", qrImage);
+    }
+
     formData.append(
       "request",
       new Blob([JSON.stringify(requestData)], { type: "application/json" })
@@ -171,9 +170,9 @@ function Create() {
     for(let [key, value] of formData.entries()) {
       if (key === "request") {
         value.text().then(text => console.log(`${key}:`, JSON.parse(text)));
-      } else if (key === "poster") {
+      } else if (value instanceof File) {
         console.log(`${key}:`, value.name); // 파일 이름 출력
-      } else {
+        } else {
         console.log(`${key}:`, value);
     }
   }
@@ -401,10 +400,20 @@ function Create() {
               <label className="Club_account_space">계좌번호</label>
               <div className="last_Detail_input">
                 <input
-                  type="number"
+                  type="text"
                   // inputMode="numeric"
-                  placeholder="입금받을 계좌번호를 입력하시오."
+                  placeholder="입금받을 계좌번호와 은행을 입력하시오."
                   onChange={(e) => setAccount(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="Club_account">
+              <label className="Club_account_space2">카카오페이 QR</label>
+              <div className="qrImage">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleQr}
                 />
               </div>
             </div>
