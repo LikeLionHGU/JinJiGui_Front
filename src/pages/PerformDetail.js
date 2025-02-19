@@ -55,6 +55,7 @@ function PerformDetail() {
     }
   };
 
+  //useEffet
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line
@@ -161,7 +162,7 @@ function PerformDetail() {
     }
   };
 
-  
+
   return (
     <div>
       <div className="DetailBody">
