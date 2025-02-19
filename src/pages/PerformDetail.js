@@ -31,7 +31,6 @@ function PerformDetail() {
         return `${timeParts[0]}:${timeParts[1]}`;
       }
     }
-
     return timeString;
   };
 
@@ -55,6 +54,7 @@ function PerformDetail() {
     }
   };
 
+  //useEffet
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line
@@ -160,6 +160,7 @@ function PerformDetail() {
       setLoading(false);
     }
   };
+
 
   return (
     <div>

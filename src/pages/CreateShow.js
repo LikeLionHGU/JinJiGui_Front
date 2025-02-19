@@ -14,6 +14,7 @@ function Create() {
   const [content, setContent] = useState("");
   const [account, setAccount] = useState("");
   const [maxTickets, setMaxTickets] = useState("");
+  const [category, setCategory] = useState("");
   const [schedule, setSchedule] = useState({
     order: 0,
     date: "",
@@ -24,11 +25,27 @@ function Create() {
   const [previewURL, setPreviewURL] = useState(null);
 
   //기존값 확인하고 새로 생긴 schedule 정보 받아옴
-  const updateSchedule = (key, value) => {
-    setSchedule((preSchedule) => ({
-      ...preSchedule,
-      [key]: value,
-    }));
+  // const updateSchedule = (key, value) => {
+  //   setSchedule((preSchedule) => ({
+  //     ...preSchedule,
+  //     [key]: value,
+  //   }));
+  // };
+
+  // const updateSchedule = (id, key, value) => {
+  //   setShows((prevShows) =>
+  //     prevShows.map((show) =>
+  //       show.id === id ? { ...show, [key]: value } : show
+  //     )
+  //   );
+  // };
+
+  const updateSchedule = (id, key, value) => {
+    setShows((prevShows) =>
+      prevShows.map((show, index) =>
+        show.id === id ? { ...show, [key]: value, order: index+1 } : show
+      )
+    );
   };
 
   //schedule 추가 초기 state 설정정
@@ -84,39 +101,48 @@ function Create() {
       Swal.fire("인당 최대 구매가능 티켓수를 입력해 주세요");
       return;
     }
-    if (schedule.order < 0) {
-      Swal.fire("회차 공연을 추가해 주세요");
+    if (shows.length === 0) {
+      Swal.fire("최소 한 개 이상의 회차 정보를 입력해야 합니다.");
       return;
     }
-    if (!schedule.date) {
-      Swal.fire(schedule.order + "공의 날짜를 입력해 주세요");
-      return;
+    for (let i = 0; i < shows.length; i++) {
+      if (!shows[i].date) {
+        Swal.fire(`${i + 1}공의 날짜를 입력해 주세요`);
+        return;
+      }
+      if (!shows[i].time) {
+        Swal.fire(`${i + 1}공의 시작시간을 입력해 주세요`);
+        return;
+      }
+      if (!shows[i].cost) {
+        Swal.fire(`${i + 1}공의 가격을 입력해 주세요`);
+        return;
+      }
+      if (!shows[i].maxPeople) {
+        Swal.fire(`${i + 1}공의 수용 인원을 입력해 주세요`);
+        return;
+      }
     }
-    if (!schedule.time) {
-      Swal.fire(schedule.order + "공의 시작시간을 입력해 주세요");
-      return;
-    }
-    if (!schedule.cost) {
-      Swal.fire(schedule.order + "공의 가격을 입력해 주세요");
-      return;
-    }
-    if (!schedule.maxPeople) {
-      Swal.fire(schedule.order + "공의 시작시간을 입력해 주세요");
-      return;
-    }
+    
+
+    console.log("show : ",shows);
+    console.log("Schedule : ", schedule);
+
     //보내주어야 하는 전체 데이터
     const requestData = {
+      userId: sessionStorage.getItem("serverResponse"),
       title,
       clubName,
       location,
       startDate,
       endDate,
+      category,
       runtime,
       account,
       content,
       maxTickets,
       // scheduleList:[schedule]
-      schedule: shows.map(show => ({
+      schedule: shows.map((show) => ({
         order: show.order,
         date: show.date,
         time: show.time,
@@ -124,7 +150,6 @@ function Create() {
         maxPeople: show.maxPeople
       }))
     }; 
-
     const formData = new FormData();
     formData.append("poster", poster);
     formData.append(
@@ -151,7 +176,7 @@ function Create() {
       } else {
         console.log(`${key}:`, value);
     }
-}
+  }
 
     try{
       const response = await axios.post(
@@ -195,7 +220,19 @@ function Create() {
 
   // 회차 행 추가
   const handleAddRow = () => {
-    setShows([...shows, { id: Date.now() }]);
+    // const newArr = [{...schedule}, {id: Date.now()}];
+    // console.log(newArr);
+    setShows( (prevShow) => [
+      ...prevShow, 
+      { 
+        id: Date.now(),
+        order:prevShow.length + 1,
+        date:"",
+        time:"",
+        cost:"",
+        maxPeople:"",
+      },
+    ]);
   };
 
   // 해당 행 삭제
@@ -273,7 +310,9 @@ function Create() {
                     onChange={(e) => setRunTime(e.target.value)}
                   />
                 </div>
-                <select>
+                <select
+                  onChange={(e) => setCategory(e.target.value)}
+                >
                   <option value="">공연 카테고리를 선택하세요</option>
                   <option value="밴드">밴드</option>
                   <option value="춤">춤</option>
@@ -309,7 +348,7 @@ function Create() {
                   type="number"
                   // inputMode="numeric"
                   placeholder="0"
-                  onChange={(e) => updateSchedule("order", e.target.value)}
+                  onChange={(e) => updateSchedule(show.id,"order", e.target.value)}
                 />
                 공
               </div>
@@ -317,14 +356,14 @@ function Create() {
                 <input
                   className="form_detail_date"
                   type="date"
-                  onChange={(e) => updateSchedule("date", e.target.value)}
+                  onChange={(e) => updateSchedule(show.id,"date", e.target.value)}
                 />
               </div>
               <div className="form_detail_time_2">
                 <input
                   className="form_detail_time"
                   type="time"
-                  onChange={(e) => updateSchedule("time", e.target.value)}
+                  onChange={(e) => updateSchedule(show.id,"time", e.target.value)}
                 />
               </div>
               <div className="form_detail_price_2">
@@ -332,7 +371,7 @@ function Create() {
                   className="form_detail_price"
                   type="number"
                   placeholder="00000"
-                  onChange={(e) => updateSchedule("cost", e.target.value)}
+                  onChange={(e) => updateSchedule(show.id,"cost", e.target.value)}
                 />
                 원
               </div>
@@ -342,7 +381,7 @@ function Create() {
                   type="number"
                   // inputMode="numeric"
                   placeholder="00"
-                  onChange={(e) => updateSchedule("maxPeople", e.target.value)}
+                  onChange={(e) => updateSchedule(show.id,"maxPeople", e.target.value)}
                 />
                 명
               </div>
