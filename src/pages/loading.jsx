@@ -3,6 +3,8 @@ import sendAccessTokenToBackend from "../apis/sendAccessTokenToBackend";
 import styled from "styled-components";
 import loginLogo from "../assets/login_logo.svg";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { sessionState } from "../atom/atom";
 
 /*
 사용자의 토큰을 받는 페이지
@@ -17,6 +19,9 @@ URLSearchParams를 통해 url에 있는 토큰을 추출하고 그 토큰을 axi
 const Loading = () => {
   const navigate = useNavigate();
 
+  const setSessioState = useSetRecoilState(sessionState);
+  console.log("sessionState", sessionState);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,19 +33,21 @@ const Loading = () => {
         console.log(idToken);
 
         await sendAccessTokenToBackend(idToken);
-
+        setSessioState(true);
         navigate("/");
       } catch (error) {
-        console.error("로그인 과정에서 에러가 발생했습니다.", error);
+        console.error("에러가 발생했습니다.", error);
       }
     };
 
     fetchData();
-  }, [navigate]);
+  }, [navigate("/")]);
 
   return (
     <div id="loading">
-      <img id="loging-logo" src={loginLogo} alt="loading" />
+      <LoadingImage>
+        <img id="loging-logo" src={loginLogo} alt="loading" />
+      </LoadingImage>
       <div style={{ color: "white" }}>로딩중...</div>
     </div>
   );
@@ -48,12 +55,13 @@ const Loading = () => {
 
 export default Loading;
 
-const LoadingText = styled.div`
+const LoadingImage = styled.div`
   display:flex;
   flex-direction: row;
 
-  width: 500px;
-  font-family: "Noto Sans KR", "Noto Sans", serif;
+  margin-top: 200px;
+
+  width: 1000px;
 
   width: 100%;
   height: 100%;

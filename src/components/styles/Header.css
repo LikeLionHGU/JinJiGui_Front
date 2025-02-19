@@ -1,9 +1,9 @@
 .Header_Container {
   display: flex;
-  padding: 40px 400px 40px 400px;
+  padding: 30px 100px 10px 100px;
   justify-content: space-between;
   align-items: flex-start;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid #727272;
   font-size: 15px;
   font-weight: bold;
   color: #ffffff;
@@ -11,6 +11,7 @@
 }
 .Header_Right {
   align-items: flex-end;
+  padding-top: 10px;
 }
 .Header_Right span {
   margin: 30px 0 30px 30px;
@@ -22,7 +23,12 @@
   cursor: pointer;
   text-decoration: none;
   color: #ffffff;
+  width: 200px;
 }
+
+/* .Header_Link img {
+  width: 200px;
+} */
 
 .Header_Link :active {
   color: #eb5a3c;

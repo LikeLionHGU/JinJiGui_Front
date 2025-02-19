@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "../components/styles/Card.css";
 
-function Card({ id, img_path, title, startDate, endDate, clubName }) {
+function Card({ id, img_path, title, startDate, endDate, clubName, category }) {
+  console.log("cate", category);
   return (
     <div id="list-card">
       <div id="list-image-box">

@@ -55,11 +55,14 @@ const Banner = ({ banners, selectedIndex, setSelectedIndex }) => {
             onClick={() => handleBannerClick(banner.id, index)} // 배너 클릭 시 중앙에 위치시키거나 상세 페이지로 이동
           >
             <img src={banner.poster} alt={`Banner ${banner.id}`} />
-            {index === selectedIndex && (
-              <div className="banner-title">
-                {banners[index]?.title || ""}
-              </div>
-            )}
+            {
+              index === selectedIndex
+              // && (
+              //   <div className="banner-title">
+              //     {banners[index]?.title || ""}
+              //   </div>
+              // )
+            }
           </div>
         ))}
       </Carousel>
