@@ -12,6 +12,7 @@ function UpdateProfile() {
   const [error, setError] = useState(null);
   const userId = sessionStorage.getItem("serverResponse");
 
+
   // 사용자 정보 조회
   useEffect(() => {
     const fetchUserProfile = async () => {
