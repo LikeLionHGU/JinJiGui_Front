@@ -13,7 +13,7 @@ function Header() {
   const [manager, setManager] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const userInfo = sessionStorage.getItem("serverResponse:Id");
+  const userInfo = sessionStorage.getItem("serverResponse");
   const userAuth = sessionStorage.getItem("serverResponse:Authority");
 
   // const sessionValue = useRecoilValue(sessionState);
