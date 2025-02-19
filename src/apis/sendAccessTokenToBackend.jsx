@@ -36,7 +36,7 @@ const sendAccessTokenToBackend = async (idToken, setLoginCheck, navigate) => {
     console.log("Login successful with server response:", serverResponse);
 
     // memberId를 sessionStorage에 저장
-    sessionStorage.setItem("serverResponse:Id", serverResponse.data.id);
+    sessionStorage.setItem("serverResponse", serverResponse.data.id);
     sessionStorage.setItem(
       "serverResponse:Authority",
       serverResponse.data.authority
