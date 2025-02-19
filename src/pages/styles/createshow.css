@@ -238,14 +238,17 @@
 .Club_account {
   display: flex;
   align-items: flex-start;
-  margin: 10px 0 15px 0;
+  margin: 10px 0 10px 0;
 }
 
 .Club_account_space {
   margin-top: 8px;
   padding-right: 53px;
 }
-
+.Club_account_space2 {
+  margin-top: 8px;
+  width: 140px;
+}
 .last_input {
   display: flex;
   flex-direction: column;
@@ -283,4 +286,7 @@
   margin: 30px 10px 100px 670px;
   display: block;
   cursor: pointer;
+}
+.qrImage{
+  margin-left: 10%;
 }
