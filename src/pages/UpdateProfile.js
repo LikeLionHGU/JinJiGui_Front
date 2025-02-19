@@ -10,13 +10,14 @@ function UpdateProfile() {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const userId = sessionStorage.getItem("serverResponse");
 
   // 사용자 정보 조회
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const response = await fetch(
-          "https://jinjigui.info:443/mypage/update",
+          `https://jinjigui.info:443/mypage/update/${userId}`,
           {
             credentials: "include",
           }
@@ -73,21 +74,24 @@ function UpdateProfile() {
     }
 
     try {
-      const response = await fetch("https://jinjigui.info:443/mypage/save", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          user: {
-            userName: formData.userName?.toString() || "",
-            phoneNumber: formData.phoneNumber?.toString() || "",
-            stdCode: formData.stdCode?.toString() || "",
+      const response = await fetch(
+        `https://jinjigui.info:443/mypage/save/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
           },
-        }),
-      });
+          credentials: "include",
+          body: JSON.stringify({
+            user: {
+              userName: formData.userName?.toString() || "",
+              phoneNumber: formData.phoneNumber?.toString() || "",
+              stdCode: formData.stdCode?.toString() || "",
+            },
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

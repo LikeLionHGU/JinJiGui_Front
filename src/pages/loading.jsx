@@ -6,23 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { sessionState } from "../atom/atom";
 
-/*
-사용자의 토큰을 받는 페이지
-이 페이지에서는 url 에 포함된 response token을 백엔드에 보내고 성공하면 메인화면으로 보내고 실패하면 에러처리를 할것이다. 
-
-URLSearchParams를 통해 url에 있는 토큰을 추출하고 그 토큰을 axios를 사용해 backend에 보낸다. 
-
-이후 성공하면 navigate를 통해 메인화면으로 보낸다. 
-실패하면 에러처리 (알아서 ~)
-*/
-
 const Loading = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const setSessioState = useSetRecoilState(sessionState);
-  console.log("sessionState", sessionState);
+  const setSessionState = useSetRecoilState(sessionState);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,30 +20,36 @@ const Loading = () => {
         );
         const idToken = parsedHash.get("id_token");
 
-        console.log(idToken);
-
-        await sendAccessTokenToBackend(idToken);
-        setSessioState(true);
-        navigate("/");
-
-        const json = await parsedHash.json();
-        console.log("서버 응답:", json);
-
-        if (json.status && json.isFirst !== undefined) {
-          setIsLoading(false);
-          // isFirst true면 add-info로, false면 메인으로
-          navigate(json.isFirst ? "/add-info" : "/");
-        } else {
-          throw new Error("서버 응답 데이터 형식이 올바르지 않습니다.");
+        if (!idToken) {
+          throw new Error("로그인 토큰이 없습니다.");
         }
+
+        console.log("받은 idToken:", idToken);
+
+        // 서버에 토큰을 보내고 응답을 받음
+        const response = await sendAccessTokenToBackend(idToken);
+
+        if (!response || !response.status) {
+          throw new Error("서버 응답이 올바르지 않습니다.");
+        }
+
+        console.log("서버 응답:", response);
+
+        // 세션 상태 업데이트
+        setSessionState(response.user || true);
+
+        // `isFirst` 값이 true이면 추가 정보 입력 페이지로, false이면 메인으로
+        navigate(response.isFirst ? "/add-info" : "/");
       } catch (error) {
-        console.error("에러가 발생했습니다.", error);
-        setError(error.massage);
+        console.error("에러 발생:", error);
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [navigate]);
+  }, [navigate, setSessionState]);
 
   return (
     <div id="loading">
@@ -64,10 +58,10 @@ const Loading = () => {
       ) : (
         <LoadingImage>
           {isLoading ? "" : ""}
-          <img id="loging-logo" src={loginLogo} alt="loading" />
+          <img id="loading-logo" src={loginLogo} alt="loading" />
         </LoadingImage>
       )}
-      <div style={{ color: "white" }}>로딩중...</div>
+      <div style={{ color: "white" }}>로딩 중...</div>
     </div>
   );
 };
@@ -75,30 +69,16 @@ const Loading = () => {
 export default Loading;
 
 const LoadingImage = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: row;
-
   margin-top: 200px;
-
-  width: 1000px;
-
   width: 100%;
   height: 100%;
-
   justify-content: center;
-  align-content: center
+  align-content: center;
   font-size: 30px;
   color: #fff;
 `;
-
-// const LoadingText = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   font-size: 30px;
-//   font-weight: 500;
-//   color: #333;
-// `;
 
 const ErrorText = styled.div`
   display: flex;
