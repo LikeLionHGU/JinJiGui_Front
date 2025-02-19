@@ -31,7 +31,6 @@ function PerformDetail() {
         return `${timeParts[0]}:${timeParts[1]}`;
       }
     }
-
     return timeString;
   };
 
