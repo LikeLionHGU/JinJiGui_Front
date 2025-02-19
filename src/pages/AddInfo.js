@@ -74,7 +74,7 @@ function AddInfo() {
     }
 
     try {
-      const response = await fetch("https://jinjigui.info:443/mypage/save", {
+      const response = await fetch("https://jinjigui.info:443/add-info", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

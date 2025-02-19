@@ -30,7 +30,7 @@ function Main() {
         title: info?.show?.title || "제목 없음",
         startDate: info?.show?.startDate || "",
         endDate: info?.show?.endDate || "",
-        clubName: info?.show?.name || "이름 없음",
+        clubName: info?.show?.clubName || "이름 없음",
         category: info?.show?.category || "카테고리 없음",
       }));
 

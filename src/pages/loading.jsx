@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import sendAccessTokenToBackend from "../apis/sendAccessTokenToBackend";
 import styled from "styled-components";
 import loginLogo from "../assets/login_logo.svg";
@@ -18,6 +18,8 @@ URLSearchParams를 통해 url에 있는 토큰을 추출하고 그 토큰을 axi
 
 const Loading = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const setSessioState = useSetRecoilState(sessionState);
   console.log("sessionState", sessionState);
@@ -35,19 +37,36 @@ const Loading = () => {
         await sendAccessTokenToBackend(idToken);
         setSessioState(true);
         navigate("/");
+
+        const json = await parsedHash.json();
+        console.log("서버 응답:", json);
+
+        if (json.status && json.isFirst !== undefined) {
+          setIsLoading(false);
+          // isFirst true면 add-info로, false면 메인으로
+          navigate(json.isFirst ? "/add-info" : "/");
+        } else {
+          throw new Error("서버 응답 데이터 형식이 올바르지 않습니다.");
+        }
       } catch (error) {
         console.error("에러가 발생했습니다.", error);
+        setError(error.massage);
       }
     };
 
     fetchData();
-  }, [navigate("/")]);
+  }, [navigate]);
 
   return (
     <div id="loading">
-      <LoadingImage>
-        <img id="loging-logo" src={loginLogo} alt="loading" />
-      </LoadingImage>
+      {error ? (
+        <ErrorText>에러: {error}</ErrorText>
+      ) : (
+        <LoadingImage>
+          {isLoading ? "" : ""}
+          <img id="loging-logo" src={loginLogo} alt="loading" />
+        </LoadingImage>
+      )}
       <div style={{ color: "white" }}>로딩중...</div>
     </div>
   );
@@ -81,12 +100,12 @@ const LoadingImage = styled.div`
 //   color: #333;
 // `;
 
-// const ErrorText = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   font-size: 24px;
-//   color: #e74c3c;
-//   text-align: center;
-//   padding: 20px;
-// `;
+const ErrorText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #e74c3c;
+  text-align: center;
+  padding: 20px;
+`;

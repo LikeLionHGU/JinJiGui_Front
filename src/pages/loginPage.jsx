@@ -2,7 +2,6 @@ import styled from "styled-components";
 import "./styles/Login.css";
 import GoogleLoginBtn from "../assets/GoogleLoginBtn.svg";
 import LoginLogo from "../assets/login_logo.svg";
-import { sessionState } from "../atom/atom";
 
 const GoogleLogin = () => {
   const handleGoogleLogin = () => {
@@ -44,7 +43,7 @@ const GoogleLogin = () => {
       <div id="loginBox">
         <div id="loginTop">
           <img id="loginLogo" src={LoginLogo} alt="loginLogo" />
-          <h4 id="loginText">로그인 해서 모보까 만나러 가기</h4>
+          <h4 id="loginText">모보까 로그인하고 모보까</h4>
         </div>
         <LoginBtn
           src={GoogleLoginBtn}
