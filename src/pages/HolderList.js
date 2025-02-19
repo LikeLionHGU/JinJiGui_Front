@@ -1,98 +1,113 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import HolderListCard from "../components/HolderListCard";
 import "./styles/HolderList.css";
 import Swal from "sweetalert2";
 
 function HolderList() {
-  const holderList_data = [
-    {
-      isDeposit: true,
-      totalCost: 4500,
-      name: "강병찬",
-      stdNum: 22100100,
-      ticketNum: 1,
-      phoneNum: "010-1234-1234",
-    },
-    {
-      isDeposit: false,
-      totalCost: 105000,
-      name: "김시온",
-      stdNum: 22188134,
-      ticketNum: 50,
-      phoneNum: "010-3453-3214",
-    },
-    {
-      isDeposit: true,
-      totalCost: 50000,
-      name: "한규호",
-      stdNum: 22143533,
-      ticketNum: 10,
-      phoneNum: "010-2134-5467",
-    },
-    {
-      isDeposit: false,
-      totalCost: 13500,
-      name: "이지원",
-      stdNum: 22156789,
-      ticketNum: 3,
-      phoneNum: "010-8765-4321",
-    },
-    {
-      isDeposit: true,
-      totalCost: 27000,
-      name: "박민수",
-      stdNum: 22167890,
-      ticketNum: 6,
-      phoneNum: "010-5678-1234",
-    },
-    {
-      isDeposit: true,
-      totalCost: 9000,
-      name: "정유진",
-      stdNum: 22178901,
-      ticketNum: 2,
-      phoneNum: "010-9012-3456",
-    },
-    {
-      isDeposit: false,
-      totalCost: 31500,
-      name: "최서연",
-      stdNum: 22189012,
-      ticketNum: 7,
-      phoneNum: "010-3456-7890",
-    },
-    {
-      isDeposit: true,
-      totalCost: 18000,
-      name: "송현우",
-      stdNum: 22190123,
-      ticketNum: 4,
-      phoneNum: "010-7890-1234",
-    },
-    {
-      isDeposit: false,
-      totalCost: 22500,
-      name: "임수진",
-      stdNum: 22123456,
-      ticketNum: 5,
-      phoneNum: "010-4567-8901",
-    },
-    {
-      isDeposit: true,
-      totalCost: 36000,
-      name: "윤도현",
-      stdNum: 22134567,
-      ticketNum: 8,
-      phoneNum: "010-6789-0123",
-    },
-  ];
-
   const navigate = useNavigate();
+  const { scheduleId } = useParams();
+  const [HolderListCards, setHolderListCards] = useState([]);
+  const [selectedHolders, setSelectedHolders] = useState({});
+
+  const getHolderListCards = async () => {
+    try {
+      const response = await fetch(
+        `https://jinjigui.info:443/manager/holder/${scheduleId}`
+      );
+      const json = await response.json();
+      setHolderListCards(json.reservation_list);
+
+      // 초기 선택 상태 설정
+      const initialSelected = {};
+      json.reservation_list.forEach((holder) => {
+        initialSelected[holder.reservation.id] = false;
+      });
+      setSelectedHolders(initialSelected);
+    } catch (error) {
+      console.error("Error fetching holder list:", error);
+    }
+  };
+
+  const handleCheckboxChange = (id, isChecked) => {
+    setSelectedHolders((prev) => ({
+      ...prev,
+      [id]: isChecked,
+    }));
+  };
+
+  const handleConfirmDepositClick = async () => {
+    // 선택된 예약 ID 배열 생성
+    const selectedIds = Object.keys(selectedHolders)
+      .filter((id) => selectedHolders[id])
+      .map((id) => parseInt(id));
+
+    if (selectedIds.length === 0) {
+      Swal.fire({
+        title: "선택된 예약이 없습니다",
+        icon: "warning",
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
+    try {
+      // 입금 확인 API 요청 - 형식에 맞게 변환
+      const requestBody = selectedIds.map((id) => ({ reservationId: id }));
+
+      const response = await fetch(
+        `https://jinjigui.info:443/manager/holder/save`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            credentials: "include",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      console.log(requestBody);
+
+      if (response.ok) {
+        Swal.fire({
+          title: "입금 확인 처리가 완료되었습니다",
+          icon: "success",
+          confirmButtonText: "확인",
+        }).then(() => {
+          // 목록 다시 불러오기
+          getHolderListCards();
+        });
+      } else {
+        throw new Error("Server responded with an error");
+      }
+    } catch (error) {
+      console.error("Error confirming deposits:", error);
+      Swal.fire({
+        title: "입금 확인 처리 중 오류가 발생했습니다",
+        icon: "error",
+        confirmButtonText: "확인",
+      });
+    }
+  };
 
   const handleDeleteButtonClick = () => {
+    const selectedIds = Object.keys(selectedHolders)
+      .filter((id) => selectedHolders[id])
+      .map((id) => parseInt(id));
+
+    if (selectedIds.length === 0) {
+      Swal.fire({
+        title: "선택된 예약이 없습니다",
+        icon: "warning",
+        confirmButtonText: "확인",
+      });
+      return;
+    }
+
     Swal.fire({
-      title: holderList_data.name + " 을(를) 삭제하시겠습니까?",
+      title: "선택한 예약을 삭제하시겠습니까?",
+      text: "이 작업은 되돌릴 수 없습니다.",
       icon: "warning",
       showCancelButton: true,
       cancelButtonColor: "#3085d6",
@@ -102,28 +117,53 @@ function HolderList() {
       customClass: {
         title: "alert-title",
       },
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.value) {
-        navigate(`/manager/holder`);
+        try {
+          // 삭제 API 요청 - 형식에 맞게 변환
+          const requestBody = selectedIds.map((id) => ({ reservationId: id }));
+
+          const response = await fetch(
+            `https://jinjigui.info:443/manager/holder/delete`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                credentials: "include",
+              },
+              body: JSON.stringify(requestBody),
+            }
+          );
+
+          if (response.ok) {
+            Swal.fire({
+              title: "예약이 삭제되었습니다",
+              icon: "success",
+              confirmButtonText: "확인",
+            }).then(() => {
+              // 목록 다시 불러오기
+              getHolderListCards();
+            });
+          } else {
+            throw new Error("Server responded with an error");
+          }
+        } catch (error) {
+          console.error("Error deleting reservations:", error);
+          Swal.fire({
+            title: "예약 삭제 중 오류가 발생했습니다",
+            icon: "error",
+            confirmButtonText: "확인",
+          });
+        }
       }
     });
   };
 
-  const [HolderListCards, setHolderListCards] = useState([]);
-
-  const getHolderListCards = async () => {
-    // const response = await fetch(
-    //   `예매자명단 DB API`
-    // );
-    // const json = await response.json();
-    setHolderListCards(holderList_data);
-  };
-
   useEffect(() => {
-    console.log(holderList_data);
-    getHolderListCards();
-    // eslint-disable-next-line
-  }, []);
+    if (scheduleId) {
+      getHolderListCards();
+    }
+  }, [scheduleId]);
 
   return (
     <>
@@ -133,7 +173,10 @@ function HolderList() {
             <div className="manager-holderlist-title">예매명단관리</div>
           </div>
           <div className="manager-holderlist-button-box">
-            <div className="manager-holderlist-confirmButton">
+            <div
+              className="manager-holderlist-confirmButton"
+              onClick={handleConfirmDepositClick}
+            >
               입금여부 확정하기
             </div>
             <div
@@ -150,19 +193,22 @@ function HolderList() {
               <div className="manager-holderlist-header">총 금액</div>
               <div className="manager-holderlist-header">이름</div>
               <div className="manager-holderlist-header">학번</div>
-              <div className="manager-holderlist-header">매수</div>
+              {/* <div className="manager-holderlist-header">매수</div> */}
               <div className="manager-holderlist-header">전화번호</div>
             </div>
             <div className="manager-holderlist-content">
               {HolderListCards.map((holder) => (
                 <HolderListCard
-                  key={holder.name}
-                  isDeposit={holder.isDeposit}
+                  key={holder.reservation.id}
+                  id={holder.reservation.id}
+                  isDeposit={holder.reservation.isDeposit}
                   totalCost={holder.totalCost}
-                  name={holder.name}
-                  stdNum={holder.stdNum}
-                  ticketNum={holder.ticketNum}
-                  phoneNum={holder.phoneNum}
+                  name={holder.user.name}
+                  stdNum={holder.user.stdNumber}
+                  // ticketNum={holder.reservation.ticketNumber}
+                  phoneNum={holder.user.phoneNumber}
+                  isSelected={selectedHolders[holder.reservation.id] || false}
+                  onCheckboxChange={handleCheckboxChange}
                 />
               ))}
             </div>
