@@ -11,14 +11,14 @@ function MyReservList() {
   const getMyReservCards = async () => {
     console.log("getMyReservCards 함수 시작");
     try {
-      const uerID = sessionStorage.getItem("serverResponse");
+      const userID = sessionStorage.getItem("serverResponse");
       console.log("로딩 상태 설정: true");
       setIsLoading(true);
       setError(null);
 
       console.log("API 요청 시작");
       const response = await fetch(
-        `https://jinjigui.info:443/mypage/reservation/${uerID}`
+        `https://jinjigui.info:443/mypage/reservation/${userID}`
       );
       console.log("API 응답 수신:", response.status);
 
@@ -114,7 +114,8 @@ function MyReservList() {
                   >
                     <MyReservCard
                       img_path={myReservCard.poster}
-                      id={myReservCard.primary}
+                      key={myReservCard.primary}
+                      id={myReservCard.show.id}
                       title={myReservCard.show.title}
                       order={myReservCard.schedule.order}
                       date={myReservCard.schedule.date}
