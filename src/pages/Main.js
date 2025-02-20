@@ -113,9 +113,13 @@ function Main() {
           selectedIndex={selectedIndex}
           setSelectedIndex={setSelectedIndex}
         />
-        <div id="list-text">
-          <p> 전체 공연 목록</p>
+        <div id="main-devide-line"></div>
+        <div id="show-list-title-box">
+          <div id="show-list-title">
+            <div> 전체 공연 목록</div>
+          </div>
         </div>
+
         <Filter
           setSelectedCategory={setSelectedCategory} // setState 전달
           selectedCategory={selectedCategory} // state 전달
