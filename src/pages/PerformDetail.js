@@ -75,7 +75,7 @@ function PerformDetail() {
       });
     }
   };
-  
+
   /* 예매 버튼 api 전송 */
   const handleBooking = async () => {
     if (!selectedSchedule) {
@@ -137,6 +137,10 @@ function PerformDetail() {
             위 QR을 스캔하여 송금하실 수도 있습니다.<br>
             입금자명은 <strong>❗️학번+이름❗️</strong>으로 해주세요.<br>
             계좌번호는 마이페이지에서 확인 가능합니다.`,
+        }).then(async (result) => {
+          if (result.value) {
+            window.location.reload();
+          }
         });
       } else {
         Swal.fire({

@@ -45,7 +45,11 @@ function Header() {
       title: "로그아웃 되었습니다!",
       text: "다음에 또 놀러오세요~",
       icon: "success",
-    });
+    }).then(async (result) => {
+      if (result.value) {
+        window.location.reload();
+      }
+    });;
     navigate("/");
   };
 
