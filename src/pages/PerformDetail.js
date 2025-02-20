@@ -11,7 +11,7 @@ function PerformDetail() {
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  // const [data, setData] 
+  // const [data, setData]
 
   const [isDisable, setIsDisable] = useState(false);
 
@@ -54,7 +54,6 @@ function PerformDetail() {
     // eslint-disable-next-line
   }, [id]);
 
-
   if (loading) {
     return <p>로딩중...</p>;
   }
@@ -71,13 +70,12 @@ function PerformDetail() {
     } else {
       Swal.fire({
         title: "경고",
-        text:
-          "인당 구매 가능한 최대 티켓 수는"+ show.maxTickets + "매입니다!",
+        text: "인당 구매 가능한 최대 티켓 수는" + show.maxTickets + "매입니다!",
         icon: "warning",
       });
     }
   };
-
+  
   /* 예매 버튼 api 전송 */
   const handleBooking = async () => {
     if (!selectedSchedule) {
@@ -134,37 +132,32 @@ function PerformDetail() {
           imageHeight: 250,
           imageAlt: "송금 QR",
           text: "성공적으로 예매되었습니다.",
-          html:
-            `<strong>${responseData.account}</strong>로
+          html: `<strong>${responseData.account}</strong>로
             <strong>${responseData.totalCost}원</strong>을 입금해주세요.<br>
             위 QR을 스캔하여 송금하실 수도 있습니다.<br>
             입금자명은 <strong>❗️학번+이름❗️</strong>으로 해주세요.<br>
             계좌번호는 마이페이지에서 확인 가능합니다.`,
         });
-        
-      }else{
+      } else {
         Swal.fire({
-          icon:"error",
-          title:"예매 실패!",
-          text:"예매에 실패하였습니다.",
-          html:
-            `남은 티켓은<strong>${responseData.remain_tickets}<strong>장 입니다.`
-        })
+          icon: "error",
+          title: "예매 실패!",
+          text: "예매에 실패하였습니다.",
+          html: `남은 티켓은<strong>${responseData.remain_tickets}<strong>장 입니다.`,
+        });
       }
     } catch (error) {
       console.error("가져오기 ERROR:", error);
       Swal.fire({
-        icon:"error",
-        title:"예매 실패!",
-        text:"예매에 실패하였습니다.",
-        html:
-          `남은 티켓은<strong>${responseData.remain_tickets}<strong>장 입니다.`
-      })
+        icon: "error",
+        title: "예매 실패!",
+        text: "예매에 실패하였습니다.",
+        html: `남은 티켓은<strong>${responseData.remain_tickets}<strong>장 입니다.`,
+      });
     } finally {
       setLoading(false);
     }
   };
-
 
   return (
     <div>
@@ -266,12 +259,12 @@ function PerformDetail() {
               </button>
             </div>
           </div>
-
-          {/* 공연소개 */}
           <div className="showInfoBox">
             <h2>공연에 대한 소개</h2>
             <div className="InfoBox">
-              <span>{show?.content || "공연소개글 정보 없음"}</span>
+              <span style={{ whiteSpace: "pre-wrap" }}>
+                {show.content || "공연소개글 정보 없음"}
+              </span>
               <img
                 style={{ marginTop: "50px", marginBottom: "50px" }}
                 src={show?.showPic || ""}
