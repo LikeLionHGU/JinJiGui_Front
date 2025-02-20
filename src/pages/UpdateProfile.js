@@ -45,7 +45,7 @@ function UpdateProfile() {
     };
 
     fetchUserProfile();
-  }, []); // 컴포넌트 마운트 시 한 번만 실행
+  }, [userId]); // 컴포넌트 마운트 시 한 번만 실행
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

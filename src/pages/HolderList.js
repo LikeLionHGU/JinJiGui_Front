@@ -293,12 +293,12 @@ function HolderList() {
                 className="manager-holderlist-exportButton"
                 onClick={downloadCSV}
               >
-                  <img
-                    src={excel_icon}
-                    height={20}
-                    style={{"marginRight": "5px"}}
-                    className="manager-holderlist-excel-icon"
-                  />
+                <img
+                  src={excel_icon}
+                  height={20}
+                  style={{ marginRight: "5px" }}
+                  className="manager-holderlist-excel-icon"
+                />
                 전체 명단 CSV 추출
               </div>
             </div>

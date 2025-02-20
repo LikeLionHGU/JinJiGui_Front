@@ -95,7 +95,7 @@ function Create() {
       Swal.fire("계좌를 입력해 주세요");
       return;
     }
-    if (!maxTickets || maxTickets <= 0) { 
+    if (!maxTickets || maxTickets <= 0) {
       Swal.fire("인당 최대 구매가능 티켓수를 입력해 주세요");
       return;
     }
@@ -112,11 +112,11 @@ function Create() {
         Swal.fire(`${i + 1}공의 시작시간을 입력해 주세요`);
         return;
       }
-      if (!shows[i].cost || shows[i].cost<=0 ) {
+      if (!shows[i].cost || shows[i].cost <= 0) {
         Swal.fire(`${i + 1}공의 가격을 입력해 주세요`);
         return;
       }
-      if (!shows[i].maxPeople || shows[i].maxPeople <=0) {
+      if (!shows[i].maxPeople || shows[i].maxPeople <= 0) {
         Swal.fire(`${i + 1}공의 수용 인원을 입력해 주세요`);
         return;
       }
@@ -218,7 +218,7 @@ function Create() {
       console.error("저장 오류", error);
       Swal.fire(
         "저장 실패",
-        `서버 오류:${error.response?.data?.message || "알 수없는 오류"}`,
+        `서버 오류:${error.response?.data?.message || "알 수 없는 오류"}`,
         "error"
       );
     }

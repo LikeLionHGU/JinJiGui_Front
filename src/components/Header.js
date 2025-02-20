@@ -21,9 +21,9 @@ function Header() {
     color: "#EB5A3C",
   };
 
-  const isLoginActive = () => {
-    return location.pathname === "/login" || location.pathname === "/";
-  };
+  // const isLoginActive = () => {
+  //   return location.pathname === "/login" || location.pathname === "/";
+  // };
 
   // const sessionValue = useRecoilValue(sessionState);
 
@@ -49,7 +49,7 @@ function Header() {
       if (result.value) {
         window.location.reload();
       }
-    });;
+    });
     navigate("/");
   };
 
