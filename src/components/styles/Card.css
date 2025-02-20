@@ -29,36 +29,41 @@
 }
 
 #list-info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  align-content: start;
   padding-left: 10px;
   padding-top: 13px;
-  justify-items: left;
   color: #fff;
-  font-family: "Noto Sans";
   font-size: 13px;
 }
 
 #list-title-box {
   display: flex;
-  max-width: 150px;
+  max-width: 300px;
   text-align: left;
 
   color: #eb5a3c;
 
-  font-family: "Noto Sans";
-  font-size: 20px;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
 #list-date {
-  max-width: 150px;
-  margin-top: 13px;
+  margin-top: 10px;
+  font-size: 1rem;
+
 }
 
 #list-club {
+  margin-top: 5px;
   max-width: 150px;
-  margin-top: 13px;
+  font-size: 1rem;
+
 }
 
 #list-category {

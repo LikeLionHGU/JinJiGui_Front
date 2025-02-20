@@ -2,65 +2,65 @@ import "./styles/Filter.css";
 
 export const Filter = ({ setSelectedCategory, selectedCategory }) => {
   return (
-    <div>
-      <div className="filter-container">
+    <>
+      <div className="category-box">
         <button
           type="button"
-          className="all cate"
+          id="all"
           onClick={() => setSelectedCategory("all")}
         >
           전체
         </button>
         <button
           type="button"
-          className="band cate"
+          id="band"
           onClick={() => setSelectedCategory("밴드")}
         >
           밴드
         </button>
         <button
           type="button"
-          className="dance cate"
+          id="dance"
           onClick={() => setSelectedCategory("춤")}
         >
           춤
         </button>
         <button
           type="button"
-          className="acappella cate"
+          id="acappella"
           onClick={() => setSelectedCategory("아카펠라")}
         >
           아카펠라
         </button>
         <button
           type="button"
-          className="theater cate"
+          id="theater"
           onClick={() => setSelectedCategory("연극")}
         >
           연극
         </button>
         <button
           type="button"
-          className="hiphop cate"
+          id="hiphop"
           onClick={() => setSelectedCategory("힙합")}
         >
           힙합
         </button>
         <button
           type="button"
-          className="instroment cate"
+          id="instrument"
           onClick={() => setSelectedCategory("악기연주")}
         >
           악기연주
         </button>
         <button
           type="button"
-          className="etc cate"
+          id="etc"
           onClick={() => setSelectedCategory("기타")}
         >
           기타
         </button>
       </div>
-    </div>
+    </>
   );
 };

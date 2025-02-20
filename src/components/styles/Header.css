@@ -23,13 +23,18 @@
   cursor: pointer;
   text-decoration: none;
   color: #ffffff;
-  width: 200px;
+
+  &:hover {
+    color: #eb5a3c;
+  }
 }
 
-/* .Header_Link img {
+#main-logo {
   width: 200px;
-} */
+  cursor: pointer;
 
-.Header_Link :active {
-  color: #eb5a3c;
+  &:active {
+    transform: translateY(1px);
+    transition: all 0.1s ease;
+  }
 }

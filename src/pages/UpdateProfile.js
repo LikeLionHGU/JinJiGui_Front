@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./styles/UpdateProfile.css";
+import SubHeader from "../components/SubHeader";
 import Swal from "sweetalert2";
-// import Swal from "sweetalert2";
 
 function UpdateProfile() {
   const [formData, setFormData] = useState({
@@ -124,47 +124,50 @@ function UpdateProfile() {
   }
 
   return (
-    <div className="update-page-body">
-      <div className="update-page-box">
-        <div className="update-page-title-box">
-          <div className="update-page-title">회원정보 수정</div>
+    <>
+      <SubHeader />
+      <div className="update-page-body">
+        <div className="update-page-box">
+          <div className="update-page-title-box">
+            <div className="update-page-title">회원정보 수정</div>
+          </div>
+          <form onSubmit={saveProfile} className="update-page-content-box">
+            <div className="update-page-content" id="update-my-name">
+              <input
+                type="text"
+                name="userName"
+                value={formData.userName}
+                onChange={handleInputChange}
+                placeholder="이름"
+              />
+            </div>
+            <div className="update-page-content" id="update-my-phone">
+              <input
+                type="tel"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
+                placeholder="전화번호"
+              />
+            </div>
+            <div className="update-page-content" id="update-my-stdNum">
+              <input
+                type="text"
+                name="stdCode"
+                value={formData.stdCode}
+                onChange={handleInputChange}
+                placeholder="학번"
+              />
+            </div>
+            <div className="update-page-saveButton-box">
+              <button type="submit" className="update-page-saveButton">
+                저장
+              </button>
+            </div>
+          </form>
         </div>
-        <form onSubmit={saveProfile} className="update-page-content-box">
-          <div className="update-page-content" id="update-my-name">
-            <input
-              type="text"
-              name="userName"
-              value={formData.userName}
-              onChange={handleInputChange}
-              placeholder="이름"
-            />
-          </div>
-          <div className="update-page-content" id="update-my-phone">
-            <input
-              type="tel"
-              name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleInputChange}
-              placeholder="전화번호"
-            />
-          </div>
-          <div className="update-page-content" id="update-my-stdNum">
-            <input
-              type="text"
-              name="stdCode"
-              value={formData.stdCode}
-              onChange={handleInputChange}
-              placeholder="학번"
-            />
-          </div>
-          <div className="update-page-saveButton-box">
-            <button type="submit" className="update-page-saveButton">
-              저장
-            </button>
-          </div>
-        </form>
       </div>
-    </div>
+    </>
   );
 }
 
