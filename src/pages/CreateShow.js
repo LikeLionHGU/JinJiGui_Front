@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import "../pages/styles/createshow.css";
+import "../pages/styles/CreateShow.css";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -87,15 +87,15 @@ function Create() {
       Swal.fire("끝 날짜를 입력해 주세요");
       return;
     }
-    if (!runtime) {
-      Swal.fire("런타임을을 입력해 주세요");
+    if (!runtime || runtime <= 0) {
+      Swal.fire("런타임을 입력해 주세요");
       return;
     }
     if (!account) {
       Swal.fire("계좌를 입력해 주세요");
       return;
     }
-    if (!maxTickets) {
+    if (!maxTickets || maxTickets <= 0) {
       Swal.fire("인당 최대 구매가능 티켓수를 입력해 주세요");
       return;
     }
@@ -112,11 +112,11 @@ function Create() {
         Swal.fire(`${i + 1}공의 시작시간을 입력해 주세요`);
         return;
       }
-      if (!shows[i].cost) {
+      if (!shows[i].cost || shows[i].cost <= 0) {
         Swal.fire(`${i + 1}공의 가격을 입력해 주세요`);
         return;
       }
-      if (!shows[i].maxPeople) {
+      if (!shows[i].maxPeople || shows[i].maxPeople <= 0) {
         Swal.fire(`${i + 1}공의 수용 인원을 입력해 주세요`);
         return;
       }
@@ -272,7 +272,7 @@ function Create() {
   return (
     <div>
       <div className="CreateBody">
-        <h3>공연 생성하기</h3>
+        <h1>공연 생성하기</h1>
         <div className="Create_Container">
           <div className="Detail_Entire_Box">
             <div className="SImage_Box">
@@ -289,10 +289,10 @@ function Create() {
 
             <div className="entir_Boxs">
               <ul className="Name_info">
-                <li>제목</li>
-                <li>동아리명</li>
+                <li>공연명</li>
+                <li>동아리</li>
                 <li>장소</li>
-                <li>날짜</li>
+                <li>기간</li>
                 <li>런타임</li>
                 <li>카테고리</li>
               </ul>
@@ -301,18 +301,16 @@ function Create() {
               <div className="input_Boxs">
                 <input
                   type="text"
-                  placeholder="제목을 입력하시오 (최대14자)"
+                  placeholder="최대 14자로 입력해주세요"
                   value={title}
                   onChange={handletitle}
                 />
                 <input
                   type="text"
-                  placeholder="동아리 이름을 입력하시오"
                   onChange={(e) => setClubName(e.target.value)}
                 />
                 <input
                   type="text"
-                  placeholder="장소를 입력하시오"
                   onChange={(e) => setLocation(e.target.value)}
                 />
                 <div className="Start_To_End">
@@ -329,13 +327,13 @@ function Create() {
                 <div className="runtime_shows">
                   <input
                     type="number"
+                    placeholder="(분)"
                     // inputMode="numeric"
-                    placeholder="공연 런타임을 입력하시오(분)"
                     onChange={(e) => setRunTime(e.target.value)}
                   />
                 </div>
                 <select onChange={(e) => setCategory(e.target.value)}>
-                  <option value="">공연 카테고리를 선택하세요</option>
+                  <option value="">공연 카테고리를 선택해주세요</option>
                   <option value="밴드">밴드</option>
                   <option value="춤">춤</option>
                   <option value="아카펠라">아카펠라</option>
@@ -348,15 +346,15 @@ function Create() {
             </div>
           </div>
 
-          <div className="Each_shows">상세 공연 만들기</div>
+          <div className="Each_shows">공연 회차 만들기</div>
 
           {/* 상세 공연 이름들 헤더 */}
           <div className="Each_shows_Name">
             <div className="form">회차 (공)</div>
             <div>날짜</div>
             <div>시간</div>
-            <div>가격 (원)</div>
-            <div>수용인원 (명)</div>
+            <div>가격</div>
+            <div>수용인원</div>
             <div>삭제</div>
           </div>
 
@@ -378,7 +376,7 @@ function Create() {
               </div>
               <div className="form_detail_date_2">
                 <input
-                  className="form_detail_date"
+                  id="form_detail_date"
                   type="date"
                   onChange={(e) =>
                     updateSchedule(show.id, "date", e.target.value)
@@ -387,7 +385,7 @@ function Create() {
               </div>
               <div className="form_detail_time_2">
                 <input
-                  className="form_detail_time"
+                  id="form_detail_time"
                   type="time"
                   onChange={(e) =>
                     updateSchedule(show.id, "time", e.target.value)
@@ -398,7 +396,7 @@ function Create() {
                 <input
                   className="form_detail_price"
                   type="number"
-                  placeholder="00000"
+                  placeholder="0000"
                   onChange={(e) =>
                     updateSchedule(show.id, "cost", e.target.value)
                   }
@@ -410,7 +408,7 @@ function Create() {
                   className="form_detail_maxPeople"
                   type="number"
                   // inputMode="numeric"
-                  placeholder="00"
+                  placeholder="000"
                   onChange={(e) =>
                     updateSchedule(show.id, "maxPeople", e.target.value)
                   }
@@ -425,9 +423,8 @@ function Create() {
 
           {/* 회차 추가 버튼 */}
           <div className="add_show" onClick={handleAddRow}>
-            회차 추가하기(+)
+            회차 추가하기
           </div>
-
           <div className="last_input">
             <div className="Club_account">
               <label className="Club_account_space">계좌번호</label>
@@ -435,13 +432,13 @@ function Create() {
                 <input
                   type="text"
                   // inputMode="numeric"
-                  placeholder="입금받을 계좌번호와 은행을 입력하시오."
+                  placeholder="ex) 123-1234-1234-12 농협은행"
                   onChange={(e) => setAccount(e.target.value)}
                 />
               </div>
             </div>
             <div className="Club_account">
-              <label className="Club_account_space2">카카오페이 QR</label>
+              <label className="Club_account_space2">송금계좌 QR</label>
               <div className="qrImage">
                 <input
                   type="file"
@@ -451,8 +448,9 @@ function Create() {
                 />
               </div>
             </div>
+
             <div className="Club_account">
-              <label>인당 최대 구매수</label>
+              <label className="Club_account_space2">인당 최대 구매수</label>
               <div className="last_Detail2_input">
                 <input
                   type="number"
@@ -467,10 +465,10 @@ function Create() {
 
         {/* 공연소개란 */}
         <div className="show_content_Entire">
-          <p>공연에 대한 소개</p>
+          <p>공연 소개</p>
           <div className="show_content">
             <textarea
-              placeholder="공연에 대한 소개를 작성하세요"
+              placeholder="공연에 대한 소개를 작성해주세요(최대 500자)."
               onChange={handleContent}
             />
             <p>( {content.length}/500 )</p>

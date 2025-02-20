@@ -21,7 +21,7 @@ const Loading = () => {
         const idToken = parsedHash.get("id_token");
 
         if (!idToken) {
-          throw new Error("로그인 토큰이 없습니다.");
+          throw new Error("세션이 만료되었습니다. 로그인을 다시 해주세요.");
         }
 
         console.log("받은 idToken:", idToken);
@@ -54,7 +54,7 @@ const Loading = () => {
   return (
     <div id="loading">
       {error ? (
-        <ErrorText>에러: {error}</ErrorText>
+        <ErrorText>{error}</ErrorText>
       ) : (
         <LoadingImage>
           {isLoading ? "" : ""}

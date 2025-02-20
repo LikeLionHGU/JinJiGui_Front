@@ -17,8 +17,8 @@ function MyReservCard({
   const navigate = useNavigate();
 
   const getDepositStatus = () => (
-    <span className={`deposit-status ${isDeposit ? 'complete' : 'pending'}`}>
-      {isDeposit ? '입금 완료' : '입금 전'}
+    <span className={`deposit-status ${isDeposit === true ? 'complete' : 'pending'}`}>
+      {isDeposit === true ? '입금 완료' : '입금 전'}
     </span>
   );
 
