@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 function Create() {
-
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -33,7 +32,7 @@ function Create() {
   const updateSchedule = (id, key, value) => {
     setShows((prevShows) =>
       prevShows.map((show, index) =>
-        show.id === id ? { ...show, [key]: value, order: index+1 } : show
+        show.id === id ? { ...show, [key]: value, order: index + 1 } : show
       )
     );
   };
@@ -47,7 +46,7 @@ function Create() {
     if (file) {
       setPoster(file);
       setPreviewURL(URL.createObjectURL(file)); //미리 보기 url 생성
-    }else {
+    } else {
       setQrImage(null);
     }
   };
@@ -124,12 +123,12 @@ function Create() {
     }
 
     const fileInput = document.getElementById("handleQr");
-    if(fileInput && fileInput.files.length === 0){
+    if (fileInput && fileInput.files.length === 0) {
       console.log("QR 파일이 선택 되지 않았습니다.");
       setQrImage(null);
     }
 
-    console.log("show : ",shows);
+    console.log("show : ", shows);
     console.log("Schedule : ", schedule);
 
     //보내주어야 하는 전체 데이터
@@ -151,9 +150,9 @@ function Create() {
         date: show.date,
         time: show.time,
         cost: show.cost,
-        maxPeople: show.maxPeople
-      }))
-    }; 
+        maxPeople: show.maxPeople,
+      })),
+    };
     const formData = new FormData();
     formData.append("poster", poster);
 
@@ -164,7 +163,7 @@ function Create() {
     // }
     if (qrImage && qrImage instanceof File) {
       formData.append("qrImage", qrImage);
-    }else{
+    } else {
       console.log("QR 이미지 없음, formData에 추가되지 않음");
       formData.delete("qrImage");
     }
@@ -185,17 +184,17 @@ function Create() {
     // formData.append("poster", poster);
 
     console.log("폼 데이터 확인:");
-    for(let [key, value] of formData.entries()) {
+    for (let [key, value] of formData.entries()) {
       if (key === "request") {
-        value.text().then(text => console.log(`${key}:`, JSON.parse(text)));
+        value.text().then((text) => console.log(`${key}:`, JSON.parse(text)));
       } else if (value instanceof File) {
         console.log(`${key}:`, value.name); // 파일 이름 출력
-        } else {
+      } else {
         console.log(`${key}:`, value);
+      }
     }
-  }
 
-    try{
+    try {
       const response = await axios.post(
         `https://jinjigui.info:443/manager/create/save`,
         formData,
@@ -215,12 +214,11 @@ function Create() {
       } else {
         Swal.fire("저장은 되었지만, 문제가 발생했습니다.");
       }
-      
-    }catch (error) {
+    } catch (error) {
       console.error("저장 오류", error);
       Swal.fire(
         "저장 실패",
-        `서버 오류:${error.response?.data?.message || "알 수없는 오류"}`,
+        `서버 오류:${error.response?.data?.message || "알 수 없는 오류"}`,
         "error"
       );
     }
@@ -248,15 +246,15 @@ function Create() {
   const handleAddRow = () => {
     // const newArr = [{...schedule}, {id: Date.now()}];
     // console.log(newArr);
-    setShows( (prevShow) => [
-      ...prevShow, 
-      { 
+    setShows((prevShow) => [
+      ...prevShow,
+      {
         id: Date.now(),
-        order:prevShow.length + 1,
-        date:"",
-        time:"",
-        cost:"",
-        maxPeople:"",
+        order: prevShow.length + 1,
+        date: "",
+        time: "",
+        cost: "",
+        maxPeople: "",
       },
     ]);
   };
@@ -336,9 +334,7 @@ function Create() {
                     onChange={(e) => setRunTime(e.target.value)}
                   />
                 </div>
-                <select
-                  onChange={(e) => setCategory(e.target.value)}
-                >
+                <select onChange={(e) => setCategory(e.target.value)}>
                   <option value="">공연 카테고리를 선택하세요</option>
                   <option value="밴드">밴드</option>
                   <option value="춤">춤</option>
@@ -374,7 +370,9 @@ function Create() {
                   type="number"
                   // inputMode="numeric"
                   placeholder="0"
-                  onChange={(e) => updateSchedule(show.id,"order", e.target.value)}
+                  onChange={(e) =>
+                    updateSchedule(show.id, "order", e.target.value)
+                  }
                 />
                 공
               </div>
@@ -382,14 +380,18 @@ function Create() {
                 <input
                   className="form_detail_date"
                   type="date"
-                  onChange={(e) => updateSchedule(show.id,"date", e.target.value)}
+                  onChange={(e) =>
+                    updateSchedule(show.id, "date", e.target.value)
+                  }
                 />
               </div>
               <div className="form_detail_time_2">
                 <input
                   className="form_detail_time"
                   type="time"
-                  onChange={(e) => updateSchedule(show.id,"time", e.target.value)}
+                  onChange={(e) =>
+                    updateSchedule(show.id, "time", e.target.value)
+                  }
                 />
               </div>
               <div className="form_detail_price_2">
@@ -397,7 +399,9 @@ function Create() {
                   className="form_detail_price"
                   type="number"
                   placeholder="00000"
-                  onChange={(e) => updateSchedule(show.id,"cost", e.target.value)}
+                  onChange={(e) =>
+                    updateSchedule(show.id, "cost", e.target.value)
+                  }
                 />
                 원
               </div>
@@ -407,7 +411,9 @@ function Create() {
                   type="number"
                   // inputMode="numeric"
                   placeholder="00"
-                  onChange={(e) => updateSchedule(show.id,"maxPeople", e.target.value)}
+                  onChange={(e) =>
+                    updateSchedule(show.id, "maxPeople", e.target.value)
+                  }
                 />
                 명
               </div>
@@ -440,7 +446,7 @@ function Create() {
                 <input
                   type="file"
                   accept="image/*"
-                  id='handleQr'
+                  id="handleQr"
                   onChange={handleQrImageChange}
                 />
               </div>
