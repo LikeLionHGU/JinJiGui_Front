@@ -167,7 +167,7 @@ function PerformDetail() {
     <div>
       <div className="DetailBody">
         <div className="PerformDetail_Container">
-          <h2>공연 예매</h2>
+          <h1>공연 예매</h1>
 
           <div className="Perform_Box_Info">
             <img

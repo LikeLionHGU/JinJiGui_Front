@@ -1,21 +1,14 @@
-.runtime_shows input[type="number"],
-.form_detail_price_2 input[type="number"],
-.form_detail_maxPeople_2 input[type="number"],
-.shows_line input[type="number"]   {
-  -moz-appearance: textfield; 
-  appearance: none; 
-}
-.runtime_shows input[type="number"]::-webkit-outer-spin-button,
-.runtime_shows input[type="number"]::-webkit-inner-spin-button,
-.form_detail_price_2 input[type="number"]::-webkit-outer-spin-button,
-.form_detail_price_2 input[type="number"]::-webkit-inner-spin-button,
-.form_detail_maxPeople_2 input[type="number"]::-webkit-outer-spin-button,
-.form_detail_maxPeople_2 input[type="number"]::-webkit-inner-spin-button,
-.shows_line input[type="number"]::-webkit-outer-spin-button,
-.shows_line input[type="number"]::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .CreateBody {
   display: flex;
   justify-content: center;
@@ -24,16 +17,22 @@
   height: auto;
   color: #ffff;
   background-color: #161616;
+  padding-bottom: 200px;
 }
 
-.CreateBody h3 {
-  margin-top: 60px;
+.CreateBody h1 {
+  margin: 50px;
 }
 
 .Create_Container {
-  border: 1px solid #fff;
   width: 920px;
   min-height: 950px;
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.show_content_Entire p {
+  font-size: 1.5rem;
 }
 
 .Detail_Entire_Box {
@@ -51,10 +50,11 @@
   margin: 70px 0 10px 80px;
   /* display: none; */
 }
-.SImage_Box img{
+.SImage_Box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 20px;
 }
 .entir_Boxs {
   display: flex;
@@ -67,22 +67,25 @@
 }
 
 .Name_info li {
-  width: 60px;
-  padding: 14px 15px;
+  width: 80px;
+  padding: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   margin: 10px;
+  margin-bottom: 20px;
   background-color: #ffff;
   color: #161616;
   font-size: 15px;
-  font-weight: bold;
-  border-radius: 10px;
+  border-radius: 20px;
   list-style: none;
   border: 1px solid #ffff;
+  font-weight: bold;
 }
 
 .input_Boxs {
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 380px;
   margin-top: 80px;
 }
 
@@ -94,13 +97,14 @@
   background-color: #161616;
   color: #fff;
   font-size: 15px;
-  font-weight: bold;
-  border-radius: 10px;
-  border: 1px solid #ffff;
+  border: none;
+  border-bottom: 1px solid #ffff;
 }
-.Start_To_End input{
-  padding: 12px 10px; 
+
+.Start_To_End input {
+  padding: 12px 10px;
 }
+
 .Start_To_End {
   display: flex;
   align-items: center;
@@ -108,88 +112,76 @@
 
 /* 상세 공연 만들기 */
 .Each_shows {
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-  margin-top: 40px;
+  margin-top: 100px;
   padding: 20px 0;
+  font-size: 1.5rem;
 }
 
 .Each_shows_Name {
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr 2fr 2fr 2fr;
+  border-bottom: 1px solid #fff;
+  color: #eb5a3c;
+}
+
+.runtime_shows input {
   display: flex;
-  justify-content: center;
-  gap: 70px;
+}
+.Detail_show {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-bottom: 1px solid #fff;
 }
 
-.Each_shows_Name div {
-  margin: 20px 0;
+#form_detail_date {
+  outline: none;
+  width: 150px;
 }
-.runtime_shows input{
-  width:303px;
-  height: 15px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.Detail_show {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 20px;
-  border-bottom: 1px solid #fff;
+
+#form_detail_time {
+  outline: none;
+  width: 100px;
 }
 
 .Detail_show input {
   background-color: #161616;
   color: #fff;
   border: none;
+  width: 40px;
 }
 /*회차 (공)*/
-.shows_line{
-  margin-top: 3px;
-  margin-left: 150px;
+.shows_line {
   /* border: 1px solid #fff; */
 }
 .form_detail_show {
-  width: 10px;
   outline: none;
 }
 /* 상세 날짜 */
-.form_detail_date_2{
-  margin: -3px 0 15px 38px;
+.form_detail_date_2 {
   /* border: 1px solid #fff; */
 }
-.form_detail_date {
-  padding: 10px;
-  color: #fff;
-  outline: none;
-}
+
 /* 상세 시간 */
 /* .form_detail_time_2{
   border: 1px solid #fff;
 } */
 .form_detail_time {
-  width: 110px;
   outline: none;
 }
 /* 상세 금액 */
-.form_detail_price_2{
-  margin-top: 2px;
-  margin-left: 10px;
+.form_detail_price_2 {
   /* border: 1px solid #fff; */
 }
 .form_detail_price {
-  width: 40px;
   outline: none;
 }
 /* 상세 인원 */
-.form_detail_maxPeople_2{
-  margin-left: 90px;
-  margin-top: 3px;
+.form_detail_maxPeople_2 {
   /* border: 1px solid #fff; */
 }
-.form_detail_maxPeople{
-  width: 25px;
+.form_detail_maxPeople {
   outline: none;
 }
 /* 삭제 버튼 */
@@ -198,19 +190,35 @@
   color: #fff;
   border: 1px solid #fff;
   border-radius: 3px;
-  padding: 5px 10px;
-  margin-top: 3px;
-  margin-left: 60px;
+  width: 30px;
+  height: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    transform: translateY(-1px);
+  }
 }
 
 /* 회차 추가 버튼 */
 .add_show {
-  color: #EB5A3C;
-  padding: 18px;
-  border-bottom: 1px solid #fff;
+  color: #eb5a3c;
+  padding: 15px;
   cursor: pointer;
-}
+  border: 1px solid #eb5a3c;
+  border-radius: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
 
+  &:hover {
+    box-shadow: 3px 3px 10px gray;
+  }
+
+  &:active {
+  }
+}
 
 /* 공연 소개 */
 .show_content_Entire {
@@ -221,10 +229,13 @@
   background-color: #161616;
   color: #fff;
   border: 1px solid #fff;
-  margin-top: 30px;
+  border-radius: 20px;
   width: 920px;
   height: 300px;
   resize: none;
+  padding: 20px;
+  font-size: 1.3rem;
+  margin-bottom: 50px;
 }
 
 .show_content p {
@@ -238,30 +249,40 @@
 .Club_account {
   display: flex;
   align-items: flex-start;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 30px 0;
 }
 
 .Club_account_space {
-  margin-top: 8px;
-  padding-right: 53px;
+  margin: auto;
+  font-size: 1.2rem;
+  margin-right: 60px;
 }
 .Club_account_space2 {
-  margin-top: 8px;
-  width: 140px;
+  margin: auto;
+  font-size: 1.2rem;
 }
+
+#handleQr {
+  margin-left: 25%;
+}
+
 .last_input {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 35px 70px;
+  justify-items: start;
+  padding: 0 0 20px 80px;
+}
+
+.last_Detail_input {
 }
 
 .last_Detail_input input,
 .last_Detail2_input input {
   background-color: #161616;
   color: #fff;
-  padding: 10px;
-  border: 1px solid gray;
+  padding: 15px;
+  border: 1px solid white;
   border-radius: 10px;
 }
 
@@ -271,22 +292,41 @@
 }
 
 .last_Detail2_input input {
-  width: 30px;
+  width: 50px;
   margin-left: 30px;
 }
 
 /* 생성 버튼 */
 .make_show_submit {
-  width: 250px;
-  height: 60px;
-  background-color: #EB5A3C;
-  border-radius: 10px;
+  width: 360px;
+  height: 58px;
+  background-color: #eb5a3c;
+  border-radius: 30px;
+  font-size: 20px;
   font-weight: bold;
-  font-size: 18px;
-  margin: 30px 10px 100px 670px;
-  display: block;
-  cursor: pointer;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 8px rgba(235, 90, 60, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Remove any positioning that might be causing issues */
+  margin-left: auto;
+  margin-right: auto;
 }
-.qrImage{
-  margin-left: 10%;
+
+.make_show_submit:hover {
+  cursor: pointer;
+  background-color: #d94e33;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(235, 90, 60, 0.4);
+}
+
+.make_show_submit:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(235, 90, 60, 0.2);
 }
