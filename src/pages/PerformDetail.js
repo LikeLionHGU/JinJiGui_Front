@@ -70,7 +70,7 @@ function PerformDetail() {
     } else {
       Swal.fire({
         title: "경고",
-        text: "인당 구매 가능한 최대 티켓 수는" + show.maxTickets + "매입니다!",
+        text: "인당 구매 가능한 최대 티켓 수는 " + show.maxTickets + "매입니다!",
         icon: "warning",
       });
     }
@@ -211,7 +211,7 @@ function PerformDetail() {
 
           <div className="Box_LR">
             <div className="LR" style={{ borderBottomLeftRadius: "20px" }}>
-              <div style={{ fontSize: "20px", fontWeight: "bold" }}>
+              <div style={{ fontSize: "16px", fontWeight: "bold", marginBottom: "22px"}}>
                 상세 공연 선택
               </div>
 
@@ -235,13 +235,12 @@ function PerformDetail() {
 
             <div className="LR" style={{ borderBottomRightRadius: "20px" }}>
               <div className="LR_tic">
-                <div className="tic">
+              <div className="tic">
                   <div>티켓 매수</div>
                   <div className="ticketBtns">
-                    <button onClick={Decrese}>-</button>
+                    <button onClick={Decrese}>➖</button>
                     <span>{count}매</span>
-                    <button className="AddNum" onClick={Increse}>
-                      +
+                    <button className="AddNum" onClick={Increse}>➕
                     </button>
                   </div>
                 </div>
@@ -254,15 +253,17 @@ function PerformDetail() {
                 </div>
               </div>
 
-              <button
+            </div>
+            
+          </div>
+
+          <button
                 className="BookBtn"
                 onClick={handleBooking}
                 disabled={isDisable}
               >
                 {isDisable ? "예매 완료" : "예매하기"}
               </button>
-            </div>
-          </div>
           <div className="showInfoBox">
             <h2>공연에 대한 소개</h2>
             <div className="InfoBox">
