@@ -88,15 +88,15 @@ function Create() {
       Swal.fire("끝 날짜를 입력해 주세요");
       return;
     }
-    if (!runtime) {
-      Swal.fire("런타임을을 입력해 주세요");
+    if (!runtime || runtime <= 0) {
+      Swal.fire("런타임을 입력해 주세요");
       return;
     }
     if (!account) {
       Swal.fire("계좌를 입력해 주세요");
       return;
     }
-    if (!maxTickets) {
+    if (!maxTickets || maxTickets <= 0) { 
       Swal.fire("인당 최대 구매가능 티켓수를 입력해 주세요");
       return;
     }
@@ -113,11 +113,11 @@ function Create() {
         Swal.fire(`${i + 1}공의 시작시간을 입력해 주세요`);
         return;
       }
-      if (!shows[i].cost) {
+      if (!shows[i].cost || shows[i].cost<=0 ) {
         Swal.fire(`${i + 1}공의 가격을 입력해 주세요`);
         return;
       }
-      if (!shows[i].maxPeople) {
+      if (!shows[i].maxPeople || shows[i].maxPeople <=0) {
         Swal.fire(`${i + 1}공의 수용 인원을 입력해 주세요`);
         return;
       }
