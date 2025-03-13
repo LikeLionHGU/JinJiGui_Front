@@ -17,7 +17,7 @@
 ## ✨ MOBOGGA 개발자 소개✨
 |  kimwonjin   |    leeharin    |   ohyeonju   |   kimsion   |   kangbyeongchan   |
 |   :--------:   |    :--------:    |    :--------:   |    :--------:   |    :--------:   | 
-|   <a href="https://github.com/lingard09"><img src="https://cdn.discordapp.com/attachments/1331500701808988244/1349710466758348890/IMG_3989.png?ex=67d41753&is=67d2c5d3&hm=9a353d2689f535c34706a8c8876e014b6a5d06cbd1a78449bebbbfab8a14dde5&" width="150" height="100"></a>  |  <a href="https://github.com/junnyang"><img src="https://cdn.discordapp.com/attachments/1331500701808988244/1349709470183325736/image0.jpg?ex=67d41666&is=67d2c4e6&hm=472005c07e65db5de33e2a2cb355e450c508fed639f3727d59e358a86f6158c4&" width="150" height="100"></a>    |  <a href="https://github.com/playoh"><img src="https://cdn.discordapp.com/attachments/1331500701808988244/1349708877977092149/image.png?ex=67d415d8&is=67d2c458&hm=f77717096d88f48a73acc210dc331f2a07ea911dc2948723af257dec2bec1d81&" width="150" height="100"></a>    |   <a href="https://github.com/sion1212"><img src="https://cdn.discordapp.com/attachments/1331500701808988244/1349710466758348890/IMG_3989.png?ex=67d41753&is=67d2c5d3&hm=9a353d2689f535c34706a8c8876e014b6a5d06cbd1a78449bebbbfab8a14dde5&" width="150" height="100"></a>  |  <a href="https://github.com/byoungchan-kang"><img src="" width="150" height="100"></a>    |
+|   <a href="https://github.com/lingard09"><img src="https://cdn.discordapp.com/attachments/1331500701808988244/1349710466758348890/IMG_3989.png?ex=67d41753&is=67d2c5d3&hm=9a353d2689f535c34706a8c8876e014b6a5d06cbd1a78449bebbbfab8a14dde5&" width="150" height="100"></a>  |  <a href="https://github.com/junnyang"><img src="https://cdn.discordapp.com/attachments/1331500701808988244/1349709470183325736/image0.jpg?ex=67d41666&is=67d2c4e6&hm=472005c07e65db5de33e2a2cb355e450c508fed639f3727d59e358a86f6158c4&" width="150" height="100"></a>    |  <a href="https://github.com/playoh"><img src="https://cdn.discordapp.com/attachments/1331500701808988244/1349708877977092149/image.png?ex=67d415d8&is=67d2c458&hm=f77717096d88f48a73acc210dc331f2a07ea911dc2948723af257dec2bec1d81&" width="150" height="100"></a>    |   <a href="https://github.com/sion1212"><img src="https://cdn.discordapp.com/attachments/1331500701808988244/1349709731442331700/IMG_3988.png?ex=67d416a4&is=67d2c524&hm=6e8f4e2fd385c6c9ed107f551a57352f70ddec3752316ef00d0809cbfff8c4eb&" width="150" height="100"></a>  |  <a href="https://github.com/byoungchan-kang"><img src="" width="150" height="100"></a>    |
 
 ### 🖥️ 배포 주소
 [한동대 동아리 공연 모보까?](https://mobogga.netlify.app/)
@@ -42,7 +42,7 @@
 ✹ **Git Branch**
 
 - 각자 생성한 브랜치에서만 작업합니다.
-- 브랜치 이름 구조는 <**이슈번호_이름_이슈타이틀**> 입니다. (ex. #1_sungyu_데이타통계)
+- 브랜치 이름 구조는 <**이슈번호_이름_이슈타이틀**> 입니다.
   <br />
 
 ### Commit 메시지 작성법
@@ -56,14 +56,14 @@
 | add      | asset 파일(이미지, 아이콘 등) 추가    | add : 위젯 이미지 추가                                  |
 | chore    | 파일, 경로를 옮기거나 이름 변경       | chore : feet -> feat 이름 변경                          |
 | delete   | 덤프 파일 삭제                        | delete : Empty.md 파일 삭제                             |
-| merge    | 브랜치 병합(merge)                    | merge : pull request #3 from LikeLionHGU/Haeun_Style/#1 |
+| merge    | 브랜치 병합(merge)                    | merge : pull request                                   |
 | fix      | 버그 픽스                             | fix : Color 버그 수정                                   |
 | docs     | 문서 작업                             | docs : Readme 작성                                      |
 | refactor | 코드 리팩토링                         | refactor : 변수명 수정                                  |
 | model    | 데이터베이스(모델) 작업               | model : 데이터 모델 생성                                |
 | init     | 프로젝트 생성                         | init : 프로젝트 생성                                    |
 | test     | 테스트 케이스 생성                    | test: 테스트 케이스 생성                                |
-| 빌드관련 |                                       |                                                         |
+| 빌드관련 |                                       |                                                           |
 | build    | 재빌드                                | build: 동일버전 재빌드(x.xx)                            |
 | version  | 버전 업                               | version : 버전(2.0.0) 업데이트                          |
 
